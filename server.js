@@ -15,12 +15,19 @@ mongoose.connect('mongodb://localhost:27017/sintesis')
 .catch(err => console.log(err));
 
 
-app.get('*',function(req,res){
-    res.sendFile(path.join(__dirname,'./dist/OnlineTaxi/index.html'))
-});
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(function(req,res,next){
+    console.log(req.connection.remoteAddress);
+
+    if ('::1'==req.connection.remoteAddress) {
+        next();
+    }else{
+        console.log('no authorized');
+        next();
+    }
+})
 
 app.get('/api',(req,res)=>{
     res.status(200).send({
