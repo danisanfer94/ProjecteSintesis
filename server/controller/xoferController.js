@@ -1,7 +1,7 @@
 var Xofer = require('./../models/xofer')
 
 var XoferController = {
-    getXofer: function(req,res){
+    getXofers: function(req,res){
         Xofer.find({}).exec((err,xofers)=>{
             if(err) return res.status(500).send({message:'Error al retornar dades'});
             if(!xofers) return res.status(404).send({message:'No hi han dades'});

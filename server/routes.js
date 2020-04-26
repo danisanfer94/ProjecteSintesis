@@ -28,9 +28,9 @@ router.put('/client/:clientId',clientController.updateClient);
 router.delete('/client/:cliendId',clientController.deleteClient);
 
 //Viatge routes
-router.get('viatges',viatgeController.getViatges);
+router.get('/viatges',viatgeController.getViatges);
 router.get('/viatge/:viatgeId',viatgeController.getViatges);
-router.post('/saveviatge',viatgeController.saveViatge);
+router.post('/saveviatge/:cotxeId/:xoferId/:clientId',viatgeController.saveViatge);
 router.put('/viatge/:viatgeId',viatgeController.updateViatge);
 router.delete('/viatge/:viatgeId',viatgeController.deleteViatge);
 

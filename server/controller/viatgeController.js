@@ -2,8 +2,8 @@ var Viatge = require('./../models/viatge')
 
 var ViatgeController = {
     getViatges : function(req,res){
-        Viatge.find({}).populate('Cotxe').populate('Xofer')
-        .populate('Client').exec((err,viatges)=>{
+        Viatge.find({}).populate('cotxe').populate('xofer')
+        .populate('client').exec((err,viatges)=>{
             if(err) return res.status(500).send({message:'Error al retornar dades'});
             if(!viatges) return res.status(404).send({message:'No hi han dades'});
             return res.status(200).send({viatges}); 
@@ -12,8 +12,8 @@ var ViatgeController = {
     getViatge : function(req,res){
         var viatgeId = req.params.viatgeId;
         if (viatgeId == null) return res.status(500).send({message:'No has dit cap ID'});
-        Viatge.findById(viatgeId).populate('Cotxe').populate('Xofer')
-        .populate('Client').exec((err,viatge)=>{
+        Viatge.findById(viatgeId).populate('cotxe').populate('xofer')
+        .populate('client').exec((err,viatge)=>{
             if(err) return res.status(500).send({message:'Error al retornar dades'});
             if(!viatge) return res.status(404).send({message:'No hi han dades'});
             return res.status(200).send({viatge});
