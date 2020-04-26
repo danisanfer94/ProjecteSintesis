@@ -1,0 +1,13 @@
+    .capç {
+        display: flex;
+        justify-content: left;
+        background-image: url("../../../assets/Logos/logo.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 400px;
+    }
+    
+    .form1 {
+        margin: 50px;
+    }
