@@ -1,16 +1,25 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-light bg-warning">
-        <a href="#" class="navbar-brand">OnlineTaxi</a>
+    <div class="idioma col">
+        <p>
+            Idioma
+            <a href=""><img class="ban" src="assets/Icons/cat.png" alt=""></a>
+            <a href=""><img class="ban" src="assets/Icons/en.jpg" alt=""></a>
+        </p>
+    </div>
+    <nav class="navbar navbar-expand-md navbar-light">
+        <a href="#" class="navbar-brand">TaxiOnline</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link active">Home</a>
-                <a href="#" class="nav-item nav-link">Profile</a>
-                <a href="#" class="nav-item nav-link">Messages</a>
-                <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a>
+                <a href="/about" class="nav-item nav-link active">Inici</a>
+                <a href="#" class="nav-item nav-link">Reserva</a>
+                <a href="#" class="nav-item nav-link">Tarífes</a>
+                <a href="#" class="nav-item nav-link">Serveis</a>
+                <a href="/coneixens" class="nav-item nav-link">Coneixe'ns</a>
+                <a href="/contact" class="nav-item nav-link">Contacte</a>
             </div>
             <div class="navbar-nav ml-auto">
                 <a href="#" class="nav-item nav-link">Login</a>
@@ -19,6 +28,9 @@
         </div>
     </nav>
 </header>
-<h1>Hola</h1>
-<div class="bg-success">BOOTSTRAP INTEGRAT</div>
+
 <router-outlet></router-outlet>
+
+<footer>
+    <p>&copy; CopyRight 2020 | TAXIONLINE</p>
+</footer>
