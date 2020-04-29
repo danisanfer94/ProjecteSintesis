@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname,'/dist/OnlineTaxi')));
 
 app.listen(process.env.PORT || 8080);
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/sintesis',{
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/sintesis',{
     useNewUrlParser:true,
     useUnifiedTopology:true
 })
@@ -21,14 +21,15 @@ mongoose.connect('mongodb://localhost:27017/sintesis',{
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-app.use(function(req,res,next){
-    if ('::1'==req.connection.remoteAddress) {
-        next();
-    }else{
-        console.log('no authorized');
-        res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
-    }
-});
+// app.use(function(req,res,next){
+//     if ('::1'==req.connection.remoteAddress) {
+//         next();
+//     }else{
+//         console.log('no authorized');
+//         console.log(req.connection.remoteAddress)
+//         res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
+//     }
+// });
 
 app.use((req, res,next) => {
     res.header('Access-Control-Allow-Origin','*');
@@ -37,5 +38,23 @@ app.use((req, res,next) => {
     res.header('Allow','GET, POST, OPTIONS, PUT, DELETE');
     next();
   });
+
 var rutes = require('./server/routes');
+
+// app.all('/api/*', function (req, res, next) {
+//     if ('::1'==req.connection.remoteAddress) {
+//         next();
+//     }else{
+//         console.log('no authorized');
+//         console.log(req.connection.remoteAddress)
+//         res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
+//     }
+//   });
 app.use('/api',rutes);
+app.get('/test',function(req,res){
+    console.log(req.ip);
+    res.send('holi');
+});
+app.get('*',function(req,res){
+    res.sendFile(path.join(__dirname,'/dist/OnlineTaxi/index.html'))
+});
