@@ -7,14 +7,14 @@
         </p>
     </div>
     <nav class="navbar navbar-expand-md navbar-light">
-        <a href="#" class="navbar-brand">TaxiOnline</a>
+        <a href="/home" class="navbar-brand titolprin pl-2 appfont">TaxiOnline</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
-                <a href="/about" class="nav-item nav-link active">Inici</a>
+                <a href="/home" class="nav-item nav-link active">Inici</a>
                 <a href="#" class="nav-item nav-link">Reserva</a>
                 <a href="#" class="nav-item nav-link">Tarífes</a>
                 <a href="#" class="nav-item nav-link">Serveis</a>
@@ -29,8 +29,26 @@
     </nav>
 </header>
 
-<router-outlet></router-outlet>
+<div class="body2">
+    <router-outlet></router-outlet>
+</div>
 
-<footer>
-    <p>&copy; CopyRight 2020 | TAXIONLINE</p>
+<footer class="row align-items-center">
+    <div class="col-4">
+        <img src="../../../assets/Logos/logo2.png" style="width: 200px;"><br>
+        <span class="appfont">TaxiOnline</span>
+        <p>&copy; CopyRight 2020</p>
+    </div>
+    <div class="col-4 ">
+        <p><a href="">RESERVA ARA</a></p>
+        <p><a href="">Coneixe'ns</a></p>
+        <p><a href="">Política de privacitat</a></p>
+        <p><a href="">Condicions Generals</a></p>
+    </div>
+    <div class="col-4">
+        <p>Serveis 24h</p>
+        <p>5 places o 9 places</p>
+        <p>Màxima puntualitat</p>
+        <p>Pagament amb visa</p>
+    </div>
 </footer>

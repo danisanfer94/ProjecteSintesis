@@ -9,7 +9,7 @@ import { CreateClientComponent } from './components/create-client/create-client.
 import { CreateXoferComponent } from './components/create-xofer/create-xofer.component';
 import { CreateCotxeComponent } from './components/create-cotxe/create-cotxe.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { AboutComponent } from './components/about/about.component';
+import { HomeComponent } from './components/home/home.component';
 import { DetailCotxeComponent } from './components/detail-cotxe/detail-cotxe.component';
 import { DetailClientComponent } from './components/detail-client/detail-client.component';
 import { DetailXoferComponent } from './components/detail-xofer/detail-xofer.component';
@@ -25,7 +25,7 @@ import { ErrorComponent } from './components/error/error.component';
     CreateXoferComponent,
     CreateCotxeComponent,
     ContactComponent,
-    AboutComponent,
+    HomeComponent,
     DetailCotxeComponent,
     DetailClientComponent,
     DetailXoferComponent,

@@ -1,0 +1,43 @@
+    .capç {
+        display: flex;
+        justify-content: left;
+        background-image: url("../../../assets/Logos/logo.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 400px;
+        width: 100%;
+    }
+    
+    .form1 {
+        margin: 50px;
+    }
+    
+    .inpabout {
+        background-color: #adad4c;
+        opacity: 0.8;
+        border: 2px solid #808055;
+        color: white;
+        font-weight: bold;
+    }
+    
+    .colabout {
+        padding: 0;
+    }
+    
+    .submitabout {
+        width: 100px;
+        float: right;
+        border: 2px solid #808055;
+        background-color: #adad4c;
+        opacity: 0.8;
+        color: white;
+        font-weight: bold;
+    }
+    
+    hr {
+        border: 2px solid #808055;
+    }
+    /* .homeservi {
+        width: 3.33%;
+    } */
