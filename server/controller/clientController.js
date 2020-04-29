@@ -1,4 +1,6 @@
 var Client = require('./../models/client')
+var service = require('./../services');
+var bcrypt = require('bcrypt');
 
 var ClientController = {
     
@@ -21,17 +23,39 @@ var ClientController = {
     saveClient : function(req,res){
         var client = new Client();
         var params = req.body;
-
-        client.nom = params.nom;
-        client.cognoms = params.cognoms;
-        client.email = params.email;
-        client.contrasenya = params.contrasenya;
-        client.telefon = params.telefon;
-
-        client.save((err,clientGuardat)=>{
-            if(err) return res.status(500).send({message:'Error al desar el client'});
-            if(!clientGuardat) return res.status(404).send({message:'Client no desat'});
-            return res.status(200).send({client: clientGuardat, message:'Client Guardat'});
+        var error = false;
+        Client.find({}).exec((err,clients)=>{
+            clients.forEach(cliente => {                                
+                if(cliente.email==params.email){
+                    error = true;                            
+                }        
+            });
+            if (error) {
+                return res.status(500).send({message:'El mail ya existeix'});
+            }
+        
+            client.nom = params.nom;
+            client.cognoms = params.cognoms;
+            client.email = params.email;
+            client.contrasenya = '';
+            client.telefon = params.telefon;
+            client.token='';
+            
+            client.save((err,clientGuardat)=>{
+                if(err) return res.status(500).send({message:err});
+                if(!clientGuardat) return res.status(404).send({message:'Client no desat'});            
+                //Creem el token i el guardem en el nou client creat
+                clientGuardat.token=service.createToken(clientGuardat);
+                //guardem el token i la contreasña
+                bcrypt.hash(params.contrasenya,6,function(err,hash){
+                    clientGuardat.contrasenya=hash;
+                    Client.findByIdAndUpdate(clientGuardat._id,clientGuardat,{new:true},(err,ClientUpdate)=>{
+                        if(err) return res.status(500).send({message:'Error actualizant les dades'});
+                        if(!ClientUpdate) return res.status(404).send({message:'No existeixen les dades'});
+                        return res.status(200).send({client: ClientUpdate,message:'Client Guardat'});
+                    });
+                });
+            });
         });
     },
     updateClient : function(req,res){
@@ -54,6 +78,36 @@ var ClientController = {
             if(!clientRemoved) return res.status(404).send({message:'No existeixen les dades'});
             return res.status(200).send({cotxe: clientRemoved});
         });
+    },
+    loginClient : function(req,res){
+        var login = req.body;
+        Client.findOne({'email':login.username}).exec((err,client)=>{
+            if(err) return res.status(500).send({message:'Error al retornar dades'});
+            if(!client) return res.status(404).send({message:'El usuari no existeix'});
+
+            bcrypt.compare(login.password, client.contrasenya,function(err,match){
+                if(match){
+                    return res.status(200).send({token:client.token , message:'Logejat correctament'});
+                }else{
+                    console.log(match);
+                    
+                    return res.status(200).send({message:'Contraseña incorrecta'});
+                }
+            });
+            
+        });
+    },
+    ClientLogged : function(req,res){
+        var token = req.body.token;
+
+        var id = service.checkToken(token);
+        
+        Client.findById(id).exec((err,client)=>{
+            if(err) return res.status(500).send({message:'Error al retornar dades'});
+            if(!client) return res.status(404).send({message:'No hi han dades'});
+            return res.status(200).send({client});
+        });
+
     }
 }
 
