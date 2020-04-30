@@ -1,7 +1,5 @@
-
 footer {
-    position: fixed;
-    left: 0;
+    position: absolute;
     bottom: 0;
     width: 100%;
     background-color: #80807C;
@@ -11,6 +9,7 @@ footer {
 
 .navbar {
     background-color: #FFFFAB;
+    padding: 0;
 }
 
 .idioma {
@@ -26,6 +25,29 @@ p {
     width: 30px;
     padding-right: 5px;
 }
+<<<<<<< HEAD
+
+.body2,
+header,
+footer {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.titolprin {
+    color: #adad4c;
+    font-size: 40px !important;
+    padding: 0;
+}
+
+.appfont {
+    font-family: Brush Script MT, cursive;
+    font-size: 30px;
+}
+
+a {
+    color: white;
+=======
 body{
     background-color: black;
+>>>>>>> dev
 }
