@@ -21,17 +21,25 @@
                 <a href="/coneixens" class="nav-item nav-link">Coneixe'ns</a>
                 <a href="/contact" class="nav-item nav-link">Contacte</a>
             </div>
-            <div class="navbar-nav ml-auto">
+            <div *ngIf="!client" class="navbar-nav ml-auto">
                 <a href="#" class="nav-item nav-link">Login</a>
                 <a href="#" class="nav-item nav-link">Registre</a>
+            </div>
+            <div *ngIf="client">
+                <a href="">{{client.email}}</a>
+                <a href="">Logout</a>
             </div>
         </div>
     </nav>
 </header>
+<<<<<<< HEAD
 
 <div class="body2">
     <router-outlet></router-outlet>
 </div>
+=======
+<router-outlet></router-outlet>
+>>>>>>> dev
 
 <footer class="row align-items-center">
     <div class="col-4">
