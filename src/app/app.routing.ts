@@ -16,16 +16,13 @@ const appRoutes: Routes = [
     // {path: 'reserva', component: ReservaComponent},
     // {path: 'serveis', component: ServeisComponent},
     // {path: 'coneixens', component: ConeixensComponent},
-<<<<<<< HEAD
     // {path: 'contact', component: AboutComponent},
-    {path: '**', component: HomeComponent}
-=======
     {path: 'contact', component: ContactComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'auth',component:AuthComponent},
     {path: 'contact', component: ContactComponent},
-    {path: '**', component: AboutComponent}
->>>>>>> dev
+    {path: '**', component: HomeComponent},
+
 ]
 
 export const appRoutingProviders: any[] = [];
