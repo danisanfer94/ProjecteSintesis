@@ -1,60 +1,68 @@
-<div class="login">
+<div class="login-reg-panel">
+    <div class="white-panel">
+        <div class="login-show">
+            <form class="custom-form" method="post" #formLogin="ngForm">
+                <h2>LOGIN</h2>
+                <input type="email" #emailL="ngModel" [(ngModel)]="emaillogin" name="emaillogin" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                <span *ngIf="emailL.touched && !emailL.valid">
+                  El email és obligatori
+                </span>
+                <input type="password" #passwordL="ngModel" [(ngModel)]="passwordlogin" name="passwordlogin" placeholder="Password" required pattern=".{6,}" />
+                <span *ngIf="passwordL.touched && !passwordL.valid">
+                  La contrassenya és obligatoria
+                </span>
+                <button type="submit" class="butlog" (click)="login()" [disabled]="!formLogin.form.valid">Login</button>
+                <a href="">Forgot password?</a>
+            </form>
+        </div>
+    </div>
+    <div class="register-info-box">
+        <div class="register-show">
+            <form class="custom-form" method="post" #formRegistre="ngForm">
+                <h2>REGISTRE</h2>
+                <input type="text" name="nom" #nomR="ngModel" [(ngModel)]="nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
+                <span *ngIf="nomR.touched && !nomR.valid">
+                El nom és obligatori
+              </span>
+                <input type="text" #cognomsR="ngModel" [(ngModel)]="cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
+                <span *ngIf="cognomsR.touched && !cognomsR.valid">
+                El cognom és obligatori
+              </span>
+                <input type="email" #emailR="ngModel" [(ngModel)]="email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                <span *ngIf="emailR.touched && !emailR.valid">
+                El email és obligatori
+              </span>
+                <input type="password" #passwordR="ngModel" [(ngModel)]="password" name="password" placeholder="Password" required="required" pattern=".{6,}" />
+                <span *ngIf="passwordR.touched && !passwordR.valid">
+                La contrassenya és obligatoria
+              </span>
+                <input type="text" #telefonR="ngModel" [(ngModel)]="telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
+                <span *ngIf="telefonR.touched && !telefonR.valid">
+                El telèfon és obligatori
+              </span>
+                <button type="submit" class="butreg" (click)="registre()" [disabled]="!formRegistre.form.valid">Registre</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- <div class="login">
     <form class="custom-form" method="post">
-      <h1>Registre</h1>
-      <input
-        type="text"
-        [(ngModel)]="nom"
-        name="nom"
-        placeholder="Nom"
-        required="required"
-      />
-      <input
-        type="text"
-        [(ngModel)]="cognoms"
-        name="cognoms"
-        placeholder="Cognoms"
-        required="required"
-      />
-      <input
-        type="email"
-        [(ngModel)]="email"
-        name="email"
-        placeholder="Email"
-        required="required"
-      />
-      <input
-        type="password"
-        [(ngModel)]="password"
-        name="password"
-        placeholder="Password"
-        required="required"
-      />
-      <input
-        type="text"
-        [(ngModel)]="telefon"
-        name="telefon"
-        placeholder="Telefon"
-        required="required"
-      />
-      <button type="submit" (click)="registre()">Registre</button>
+        <h1>Registre</h1>
+        <input type="text" [(ngModel)]="nom" name="nom" placeholder="Nom" required="required" />
+        <input type="text" [(ngModel)]="cognoms" name="cognoms" placeholder="Cognoms" required="required" />
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required="required" />
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required="required" />
+        <input type="text" [(ngModel)]="telefon" name="telefon" placeholder="Telefon" required="required" />
+        <button type="submit" (click)="registre()">Registre</button>
     </form>
     <form class="custom-form" method="post">
-      <h1>Login</h1>
-     
-      <input
-        type="email"
-        [(ngModel)]="emaillogin"
-        name="emaillogin"
-        placeholder="Email"
-        required="required"
-      />
-      <input
-        type="password"
-        [(ngModel)]="passwordlogin"
-        name="passwordlogin"
-        placeholder="Password"
-        required="required"
-      />
-      <button type="submit" (click)="login()">Log in</button>
+        <h1>Login</h1>
+
+        <input type="email" [(ngModel)]="emaillogin" name="emaillogin" placeholder="Email" required="required" />
+        <input type="password" [(ngModel)]="passwordlogin" name="passwordlogin" placeholder="Password" required="required" />
+        <button type="submit" (click)="login()">Log in</button>
     </form>
-  </div>
+</div>
+ -->

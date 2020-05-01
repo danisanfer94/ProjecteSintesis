@@ -37,9 +37,10 @@ export class AuthComponent implements OnInit {
     this.route.params.subscribe((params:Params) => {
       if(params.origen){
         this.origen = params.origen;
+        console.log(params.origen);
+        
       }
-    }) 
-    
+    }); 
   }
 
   registre(){
@@ -68,6 +69,7 @@ export class AuthComponent implements OnInit {
         window.location.href = '/';
       }else{
         window.location.href = '/reserva';
+        
       } 
       
     });

@@ -23,7 +23,7 @@ const appRoutes: Routes = [
     {path: 'reserva-details/:idReserva',component:ViatgeDetailsComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'contact', component: ContactComponent},
-    {path: 'auth/:origen?',component:AuthComponent},
+    {path: 'auth/:origen',component:AuthComponent},
     {path: 'contact', component: ContactComponent},
     {path: '**', component: ErrorComponent},
 

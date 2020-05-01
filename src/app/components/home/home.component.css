@@ -23,6 +23,37 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+    
+    .titolprin {
+        color: #f5b971;
+        font-size: 60px;
+        padding: 0;
+        font-family: Brush Script MT, cursive;
+    }
+    
+    .bara {
+        color: black;
+        background-color: #f5b971;
+    }
+    
+    .bara:hover {
+        background-color: #85a392;
+        color: white;
+        transition: 0.6s;
+    }
+    
+    .info {
+        display: flexbox;
+        text-align: center;
+    }
+    
+    hr {
+        border: 2px solid #f5b971;
+    }
+    
+    .row {
+        margin: 0;
+    }
     /* .form1 {
         margin: 50px;
     } */
@@ -46,10 +77,6 @@
         color: white;
         font-weight: bold;
     } */
-    
-    hr {
-        border: 2px solid rgb(206, 178, 17);
-    }
     /* .homeservi {
         width: 3.33%;
     } */
