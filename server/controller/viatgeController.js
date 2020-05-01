@@ -23,21 +23,22 @@ var ViatgeController = {
         var viatge = new Viatge();
         var params = req.body;
 
-        var cotxeId = req.params.cotxeId;
-        var xoferId = req.params.xoferId;
+        // var cotxeId = req.params.cotxeId;
+        // var xoferId = req.params.xoferId;
         var clientId = req.params.clientId;
-        if (cotxeId == null) return res.status(500).send({message:'No has dit ID de cotxe'})
-        if (xoferId == null) return res.status(500).send({message:'No has dit cap ID de xofer'})
+        // if (cotxeId == null) return res.status(500).send({message:'No has dit ID de cotxe'})
+        // if (xoferId == null) return res.status(500).send({message:'No has dit cap ID de xofer'})
         if (clientId == null) return res.status(500).send({message:'No has dit cap ID de client'})
 
 
         viatge.origen = params.origen;
         viatge.desti = params.desti;
         viatge.km = params.km;
+        viatge.data=params.data;
+        viatge.hora=params.hora;
+        viatge.places=params.places;
         viatge.preu = params.preu;
         viatge.tarifa = params.tarifa;
-        viatge.cotxe = cotxeId;
-        viatge.xofer = xoferId;
         viatge.client = clientId;
 
         viatge.save((err,viatgeGuardat)=>{

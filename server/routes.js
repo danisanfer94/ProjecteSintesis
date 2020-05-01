@@ -34,7 +34,7 @@ router.post('/logged',clientController.ClientLogged);
 //Viatge routes
 router.get('/viatges',viatgeController.getViatges);
 router.get('/viatge/:viatgeId',viatgeController.getViatges);
-router.post('/saveviatge/:cotxeId/:xoferId/:clientId',viatgeController.saveViatge);
+router.post('/saveviatge/:clientId',viatgeController.saveViatge);
 router.put('/viatge/:viatgeId',viatgeController.updateViatge);
 router.delete('/viatge/:viatgeId',viatgeController.deleteViatge);
 

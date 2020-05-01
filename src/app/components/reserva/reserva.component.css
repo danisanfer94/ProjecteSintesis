@@ -1,0 +1,29 @@
+.box-form{ 
+    /* background: linear-gradient(90deg, rgba(255,255,171,1) 9%, rgba(189,255,47,1) 47%, rgba(116,207,37,1) 100%);    background-size:600% 600%; */
+    background-image: url("../../../assets/images/furgo2.jpg");
+    background-size: cover;
+    animation: gradientAnim 30s ease infinite;
+}
+@keyframes gradientAnim {
+    0%{background-position:0% 0%}
+    50%{background-position:100% 100%}
+    100%{background-position:0% 0%}
+}
+
+.box-form{
+   border: 1px solid grey; 
+   border-radius: 5px;
+   box-shadow: 10px 10px 43px 0px rgba(0,0,0,0.75);
+   color: white;
+}
+.inp{
+    background-color: grey;
+    border: none;
+    color: white;
+}
+.inp:hover{
+   color: wheat;
+}
+.inp:focus{
+    color:  #FFFFAB;
+}
