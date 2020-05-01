@@ -6,14 +6,16 @@
         width: 100%;
         padding: 0;
     }
-    .test{
+    
+    .test {
         background-image: url("../../../assets/images/furgo2.jpg");
         background-repeat: no-repeat;
         background-position: center;
-        background-size:cover;
+        background-size: cover;
         background-attachment: fixed;
     }
-    .parallax{
+    
+    .parallax {
         background-image: url("../../../assets/images/monste.jpg");
         min-height: 500px;
         background-attachment: fixed;
@@ -21,11 +23,9 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
-    
     /* .form1 {
         margin: 50px;
     } */
-    
     /* .inpabout {
         background-color: #adad4c;
         opacity: 0.8;
@@ -33,11 +33,10 @@
         color: white;
         font-weight: bold;
     } */
-    
     /* .colabout {
         padding: 0;
     } */
-/*     
+    /*     
     .submitabout {
         width: 100px;
         float: right;
