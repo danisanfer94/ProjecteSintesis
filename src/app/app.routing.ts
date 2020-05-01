@@ -6,6 +6,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ReservaComponent } from './components/reserva/reserva.component';
+import { ViatgeDetailsComponent } from './components/viatge-details/viatge-details.component';
 
 // import { ReservaComponent } from './components/reserva/reserva.component';
 // import { TarifesComponent } from './components/tarifa/tarifa.component';
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
     // {path: 'serveis', component: ServeisComponent},
     // {path: 'coneixens', component: ConeixensComponent},
     {path: 'reserva', component: ReservaComponent},
+    {path: 'reserva-details/:idReserva',component:ViatgeDetailsComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'auth/:origen?',component:AuthComponent},

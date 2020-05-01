@@ -53,7 +53,7 @@ export class AuthComponent implements OnInit {
       if(this.origen=='nav'){
         window.location.href = '/';
       }else{
-        this.router.navigate(['/reserva']);
+        window.location.href = '/reserva';
       }    
     });
     
@@ -67,7 +67,7 @@ export class AuthComponent implements OnInit {
       if(this.origen=='nav'){
         window.location.href = '/';
       }else{
-        this.router.navigate(['/reserva']);
+        window.location.href = '/reserva';
       } 
       
     });
