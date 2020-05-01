@@ -1,5 +1,4 @@
     /* You can add global styles to this file, and also import other style files */
-    
     html {
         height: 100%;
     }
@@ -7,6 +6,10 @@
     body {
         position: relative;
         margin: 0;
+        padding: 0;
         padding-bottom: 12rem;
         min-height: 100%;
+        width: 100%;
     }
+    
+    

@@ -15,16 +15,14 @@ export class AppComponent {
   public client:any;
   constructor(
     private authService:AuthenticationService
-    )
+    ) 
     {
       if(this.authService.checkToken()){
         this.client = new Object();
         let token=this.authService.getToken();
-        console.log(token);
         var body = {token:token};
         this.authService.isLogged(body).subscribe(data=>{
           let clientdata:any=data;
-          console.log(clientdata.client);
           this.client=clientdata.client;
         }); 
 
@@ -36,6 +34,9 @@ export class AppComponent {
    
    
   }
-
+  public logout(){
+    this.authService.logout();
+    window.location.replace("/");
+  }
   
 }

@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { ErrorComponent } from './components/error/error.component';
+import { ReservaComponent } from './components/reserva/reserva.component';
 
 // import { ReservaComponent } from './components/reserva/reserva.component';
 // import { TarifesComponent } from './components/tarifa/tarifa.component';
@@ -16,12 +18,12 @@ const appRoutes: Routes = [
     // {path: 'reserva', component: ReservaComponent},
     // {path: 'serveis', component: ServeisComponent},
     // {path: 'coneixens', component: ConeixensComponent},
-    // {path: 'contact', component: AboutComponent},
+    {path: 'reserva', component: ReservaComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'contact', component: ContactComponent},
-    {path: 'auth',component:AuthComponent},
+    {path: 'auth/:origen?',component:AuthComponent},
     {path: 'contact', component: ContactComponent},
-    {path: '**', component: HomeComponent},
+    {path: '**', component: ErrorComponent},
 
 ]
 

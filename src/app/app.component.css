@@ -13,6 +13,7 @@ footer {
 }
 
 .idioma {
+    background-color: #FFFFAB;
     text-align: right;
     padding: 5px;
 }
@@ -32,6 +33,7 @@ footer {
     font-family: 'Montserrat', sans-serif;
 }
 
+
 .titolprin {
     color: #adad4c;
     font-size: 40px !important;
@@ -44,5 +46,5 @@ footer {
 }
 
 a {
-    color: white;
+    color: black;
 }

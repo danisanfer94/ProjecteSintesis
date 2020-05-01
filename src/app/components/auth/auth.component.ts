@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './../../services/auth.service';
 import { Client } from 'src/app/models/client';
 import { LoginObject } from 'src/app/models/loginObject';
-import { Router } from '@angular/router';
+import { Router , ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
+  providers: [AuthenticationService]
+
 })
 export class AuthComponent implements OnInit {
   public nom:string;
@@ -19,14 +21,24 @@ export class AuthComponent implements OnInit {
   public loginObject:LoginObject;
   public emaillogin:string;
   public passwordlogin:string;
+  public origen:string;
 
   
-  constructor(private authService: AuthenticationService,private router:Router) {
+  constructor(
+    private authService: AuthenticationService,
+    private route:ActivatedRoute,
+    private router:Router
+    ) {
     this.client = new Client();
     this.loginObject = new LoginObject();
    }
 
   ngOnInit() {
+    this.route.params.subscribe((params:Params) => {
+      if(params.origen){
+        this.origen = params.origen;
+      }
+    }) 
     
   }
 
@@ -38,7 +50,11 @@ export class AuthComponent implements OnInit {
     this.client.contrasenya=this.password;
     this.authService.registre(this.client).subscribe(data=>{
       this.authService.setToken(data.token);
-      window.location.href = '/';      
+      if(this.origen=='nav'){
+        window.location.href = '/';
+      }else{
+        this.router.navigate(['/reserva']);
+      }    
     });
     
   }
@@ -48,7 +64,11 @@ export class AuthComponent implements OnInit {
     this.loginObject.password=this.passwordlogin;
     this.authService.login(this.loginObject).subscribe(data=>{
       this.authService.setToken(data.token);
-      window.location.href = '/'; 
+      if(this.origen=='nav'){
+        window.location.href = '/';
+      }else{
+        this.router.navigate(['/reserva']);
+      } 
       
     });
   }

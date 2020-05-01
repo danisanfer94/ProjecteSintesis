@@ -44,4 +44,8 @@ export class AuthenticationService {
         return this._http.post(this.url+'logged',token);
     }
 
+    logout(){
+        this.cookies.delete("token");
+    }
+
 }
