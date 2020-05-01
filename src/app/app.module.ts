@@ -5,6 +5,7 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { CreateClientComponent } from './components/create-client/create-client.component';
@@ -20,6 +21,7 @@ import { EditCotxeComponent } from './components/edit-cotxe/edit-cotxe.component
 import { EditXoferComponent } from './components/edit-xofer/edit-xofer.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { ReservaComponent } from './components/reserva/reserva.component';
 
 @NgModule({
   declarations: [
@@ -36,14 +38,16 @@ import { AuthComponent } from './components/auth/auth.component';
     EditCotxeComponent,
     EditXoferComponent,
     ErrorComponent,
-    AuthComponent
+    AuthComponent,
+    ReservaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     routing,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     appRoutingProviders,

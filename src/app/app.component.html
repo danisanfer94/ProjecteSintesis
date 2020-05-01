@@ -6,14 +6,19 @@
             <a href=""><img class="ban" src="assets/Icons/en.jpg" alt=""></a>
         </p>
     </div>
-    <nav class="navbar navbar-expand-md navbar-light">
+    <nav class="navbar navbar-expand-md">
         <a href="/home" class="navbar-brand titolprin pl-2 appfont">TaxiOnline</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav">
+        <div class="navbar-collapse" [ngClass]="{'collapse':true}" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a href=""></a>
+                </li>
+            </ul>
+            <div class="navbar-nav mr-auto">
                 <a href="/home" class="nav-item nav-link active">Inici</a>
                 <a href="#" class="nav-item nav-link">Reserva</a>
                 <a href="#" class="nav-item nav-link">Tarífes</a>
@@ -22,12 +27,12 @@
                 <a href="/contact" class="nav-item nav-link">Contacte</a>
             </div>
             <div *ngIf="!client" class="navbar-nav ml-auto">
-                <a href="#" class="nav-item nav-link">Login</a>
-                <a href="#" class="nav-item nav-link">Registre</a>
+                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link">Login</a>
+                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link">Registre</a>
             </div>
             <div *ngIf="client">
                 <a href="">{{client.email}}</a>
-                <a href="">Logout</a>
+                <a href="" (click)="logout()">Logout</a>
             </div>
         </div>
     </nav>
