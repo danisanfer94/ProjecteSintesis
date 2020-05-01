@@ -1,4 +1,5 @@
 export class Viatge {
+    public _id:string;
     public origen:string;
     public desti:string;
     public km:number;
@@ -10,6 +11,8 @@ export class Viatge {
     public cotxe:string;
     public xofer:string;
     public client:string;
+    public comentari:string;
+    public confirmat:string;
     constructor(
     ){}
 } 

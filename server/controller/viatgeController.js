@@ -40,6 +40,7 @@ var ViatgeController = {
         viatge.preu = params.preu;
         viatge.tarifa = params.tarifa;
         viatge.client = clientId;
+        viatge.confirmat = params.confirmat;
 
         viatge.save((err,viatgeGuardat)=>{
             if(err) return res.status(500).send({message:'Error al desar el client'});

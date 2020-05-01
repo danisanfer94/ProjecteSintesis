@@ -22,6 +22,7 @@ export class ReservaComponent implements OnInit {
   public places:number;
   public data:string;
   public hora:string;
+  public comentari:string;
 
   constructor(
     private authService:AuthenticationService,
@@ -37,10 +38,9 @@ export class ReservaComponent implements OnInit {
         this.authService.isLogged(body).subscribe(data=>{
           let clientdata:any=data;
           this.client=clientdata.client;
-          console.log(this.client);
         }); 
       }else{
-        this.router.navigate(['/auth']);
+        this.router.navigate(['/auth/reserva']);
       }
     }
 
@@ -55,10 +55,17 @@ export class ReservaComponent implements OnInit {
     this.viatge.data=this.data;
     this.viatge.hora=this.hora;
     this.viatge.client=this.client._id;
+    this.viatge.confirmat="Pendent";
+    this.viatge.comentari=this.comentari;
     console.log(this.viatge);
     this.petiService.guardarViatge(this.viatge).subscribe(data=>{
       console.log(data);
       $(".reserva").fadeOut();
+      setTimeout (() => {
+        this.router.navigate(['/reserva-details/'+data.viatge._id]);
+     }, 1000);
+      
+      
     });
   }
 

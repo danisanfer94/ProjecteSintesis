@@ -27,3 +27,7 @@
 .inp:focus{
     color:  #FFFFAB;
 }
+.reserva{
+    background-image: url("../../../assets/Logos/logo2.png");
+    background-size: cover;
+}

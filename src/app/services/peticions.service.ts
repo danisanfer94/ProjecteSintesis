@@ -21,5 +21,7 @@ export class PeticionsService {
     guardarViatge(viatge:Viatge):Observable<any>{
         return this._http.post(this.url+'saveviatge/'+viatge.client,viatge);
     }
-    
+    getViatge(id:string):Observable<any>{
+        return this._http.get(this.url+'/viatge/'+id);
+    }
 }

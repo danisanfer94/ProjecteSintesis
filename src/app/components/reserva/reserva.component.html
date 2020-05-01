@@ -15,7 +15,7 @@
 
                 <div class="form-group">
                     <label for="places">Persones</label>
-                    <input type="number" class="form-control inp" [(ngModel)]="places" id="places" min=1 max=7 name="places">
+                    <input type="number" class="form-control inp" [(ngModel)]="places" id="places" min=1 max=8 name="places">
                 </div>
         
                 <div class="form-group">
@@ -27,6 +27,12 @@
                     <label for="hora">Hora</label>
                     <input type="time" class="form-control inp" [(ngModel)]="hora" id="hora" name="hora">
                 </div>
+
+                <div class="form-group">
+                    <label for="comentari">Comentaris</label>
+                    <input type="text" class="form-control inp" [(ngModel)]="comentari" id="comentari" name="comentari">
+                </div>
+
                 
                 <button type="submit" (click)="reserva()" class="btn btn-primary ">Reservar</button>
             </form>
