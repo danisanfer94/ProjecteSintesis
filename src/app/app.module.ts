@@ -22,6 +22,7 @@ import { EditXoferComponent } from './components/edit-xofer/edit-xofer.component
 import { ErrorComponent } from './components/error/error.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { ReservaComponent } from './components/reserva/reserva.component';
+import { ViatgeDetailsComponent } from './components/viatge-details/viatge-details.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ReservaComponent } from './components/reserva/reserva.component';
     EditXoferComponent,
     ErrorComponent,
     AuthComponent,
-    ReservaComponent
+    ReservaComponent,
+    ViatgeDetailsComponent
   ],
   imports: [
     BrowserModule,
