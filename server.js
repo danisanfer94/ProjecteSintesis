@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname,'/dist/OnlineTaxi')));
 
 app.listen(process.env.PORT || 8080);
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/sintesis',{
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/sintesis',{
     useNewUrlParser:true,
     useUnifiedTopology:true
 })
