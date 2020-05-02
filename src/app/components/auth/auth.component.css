@@ -1,0 +1,248 @@
+@media (max-width: 800px) {
+    .login-reg-panel {
+        position: relative;
+        text-align: center;
+        width: 70%;
+        right: 0;
+        left: 0;
+        margin: auto;
+        height: 440px;
+        background-color: #85a392;
+        margin-top: 70px;
+        margin-bottom: 40px;
+        box-shadow: 0 0 10px 6px #00000096;
+    }
+    .white-panel {
+        background-color: rgba(255, 255, 255, 1);
+        height: 215px;
+        position: absolute;
+        top: -40px;
+        width: 80%;
+        margin-left: 10%;
+        z-index: 0;
+        box-shadow: 0 0 10px 6px #00000096;
+        padding: 10px;
+    }
+    .register-info-box {
+        width: 77%;
+        margin-left: 10%;
+        margin-top: 180px;
+        position: absolute;
+        text-align: left;
+    }
+    .login-show,
+    .register-show {
+        z-index: 1;
+        color: #242424;
+        text-align: left;
+        padding: 5px;
+    }
+    .login-show input[type="email"],
+    .login-show input[type="password"] {
+        width: 100%;
+        display: block;
+        margin: 15px 0;
+        border: 1px solid #b5b5b5;
+        outline: none;
+        border-radius: 3px;
+        padding-left: 5px;
+    }
+    .login-show .butlog {
+        max-width: 90px;
+        width: 100%;
+        background: #f5b971;
+        color: black;
+        border: none;
+        padding: 5px;
+        text-transform: uppercase;
+        border-radius: 2px;
+        float: right;
+        cursor: pointer;
+    }
+    .register-show input[type="text"],
+    .register-show input[type="email"],
+    .register-show input[type="password"] {
+        width: 100%;
+        display: block;
+        margin: 5px 0;
+        border: 1px solid #b5b5b5;
+        outline: none;
+        border-radius: 3px;
+        padding-left: 5px;
+    }
+    .register-show .butreg {
+        max-width: 130px;
+        width: 100%;
+        background: #444444;
+        color: #f9f9f9;
+        border: none;
+        padding: 5px;
+        text-transform: uppercase;
+        border-radius: 2px;
+        float: right;
+        cursor: pointer;
+    }
+    a {
+        text-decoration: none;
+        color: #85a392;
+    }
+}
+
+@media (min-width: 801px) {
+    a {
+        text-decoration: none;
+        color: #444444;
+    }
+    .login-reg-panel {
+        position: relative;
+        text-align: center;
+        width: 70%;
+        right: 0;
+        left: 0;
+        margin: auto;
+        height: 430px;
+        background-color: #85a392;
+        margin-top: 70px;
+        margin-bottom: 40px;
+        box-shadow: 0 0 10px 6px #00000096;
+    }
+    .white-panel {
+        background-color: rgba(255, 255, 255, 1);
+        height: 500px;
+        position: absolute;
+        top: 0px;
+        width: 50%;
+        right: calc(50% - 50px);
+        z-index: 0;
+        box-shadow: 0 0 10px 6px #00000096;
+    }
+    .register-info-box {
+        width: 50%;
+        /* padding: 0 40px; */
+        padding-left: 60px;
+        padding-right: 20px;
+        right: 0;
+        position: absolute;
+        text-align: left;
+    }
+    .login-show,
+    .register-show {
+        z-index: 1;
+        color: #242424;
+        text-align: left;
+        padding: 30px;
+        /* display: flex; */
+    }
+    .login-show {
+        margin-top: 70px;
+    }
+    .login-show input[type="email"],
+    .login-show input[type="password"] {
+        width: 100%;
+        display: block;
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #b5b5b5;
+        outline: none;
+        border-radius: 3px;
+    }
+    .login-show .butlog {
+        max-width: 150px;
+        width: 100%;
+        background: #f5b971;
+        color: black;
+        border: none;
+        padding: 10px;
+        text-transform: uppercase;
+        border-radius: 2px;
+        float: right;
+        cursor: pointer;
+    }
+    .login-show a {
+        display: inline-block;
+        padding: 10px 0;
+    }
+    .register-show input[type="text"],
+    .register-show input[type="email"],
+    .register-show input[type="password"] {
+        width: 100%;
+        display: block;
+        margin: 20px 0;
+        padding: 5px;
+        border: 1px solid #b5b5b5;
+        outline: none;
+        border-radius: 3px;
+    }
+    .register-show .butreg {
+        max-width: 150px;
+        width: 100%;
+        background: #444444;
+        color: #f9f9f9;
+        border: none;
+        padding: 10px;
+        text-transform: uppercase;
+        border-radius: 2px;
+        float: right;
+        cursor: pointer;
+    }
+    a {
+        text-decoration: none;
+        color: #85a392;
+    }
+}
+
+
+/* * {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    background-color: coral;
+  }
+  h1 {
+    margin: 0;
+    padding: 0;
+  }
+  .custom-form {
+    min-width: 300px;
+    max-width: 60%;
+    margin: 0px auto;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 2rem 3rem;
+    margin: auto;
+    border-radius: 2.5rem;
+    background-color: #ecf0f3;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
+    color: black;
+    margin-top: 10rem;
+  }
+  .custom-form input {
+    display: block;
+    margin: 2rem 0;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: none;
+    box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px
+        rgba(0, 0, 0, 0.1);
+    border: 0 none;
+    background: #ebf5fc;
+  }
+  .custom-form button {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    font-size: 0.875rem;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #bcd8c1;
+    width: 100%;
+    display: block;
+    padding: 0.875rem 1rem;
+    border-radius: 1.5rem;
+    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
+    cursor: pointer;
+  }
+  .login{
+    display: inline-flex;
+  } */

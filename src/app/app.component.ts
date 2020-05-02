@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
+import { AuthenticationService } from './services/auth.service';
+import { Client } from 'src/app/models/client';
+
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +11,30 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'OnlineTaxi';
+  public token:string;
+  public client:any;
+  constructor(
+    private authService:AuthenticationService
+    ) 
+    {
+      if(this.authService.checkToken()){
+        this.client = new Object();
+        let token=this.authService.getToken();
+        var body = {token:token};
+        this.authService.isLogged(body).subscribe(data=>{
+          let clientdata:any=data;
+          this.client=clientdata.client;
+          
+        }); 
+
+      }  
+    }
+
+  ngOnInit(){
+  }
+  public logout(){
+    this.authService.logout();
+    window.location.replace("/");
+  }
+  
 }

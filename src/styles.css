@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+    /* You can add global styles to this file, and also import other style files */
+    
+    @media (max-width: 580px) {
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 400px;
+            min-height: 100%;
+            width: 100%;
+            background-color: #fffaef;
+            font-family: 'Montserrat', sans-serif;
+        }
+    }
+    
+    @media (min-width: 581px) {
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 12rem;
+            min-height: 100%;
+            width: 100%;
+            background-color: #fffaef;
+            font-family: 'Montserrat', sans-serif;
+        }
+    }
+    
+    html {
+        height: 100%;
+    }
