@@ -4,13 +4,13 @@ var mailController = {
     transporter : nodemailer.createTransport({
         service: 'gmail',
         auth:{
-            user: 'taxionline.sintesis@gmail.com',
+            user: '',
             pass: process.env.MAILPASS
         }
     }),
     enviarReserva : function(mail){
        let  mailOptions = {
-            from : 'taxionline.sintesis@gmail.com',
+            from : '',
             to: mail,
             subject: 'Avis de reserva',
             html: '<p>Nova reserva al panell del xofer</p>'
