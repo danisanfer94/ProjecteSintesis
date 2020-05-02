@@ -21,6 +21,7 @@
         margin-left: 10%;
         z-index: 0;
         box-shadow: 0 0 10px 6px #00000096;
+        padding: 10px;
     }
     .register-info-box {
         width: 77%;
@@ -109,7 +110,7 @@
         background-color: rgba(255, 255, 255, 1);
         height: 500px;
         position: absolute;
-        top: -40px;
+        top: 0px;
         width: 50%;
         right: calc(50% - 50px);
         z-index: 0;

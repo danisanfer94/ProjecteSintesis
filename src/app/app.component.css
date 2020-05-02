@@ -59,7 +59,5 @@ a {
 
 .nav-item:hover {
     color: #85a392 !important;
-    border-bottom: 1px solid #85a392;
     transition: 0.3s;
-    padding: 0;
 }

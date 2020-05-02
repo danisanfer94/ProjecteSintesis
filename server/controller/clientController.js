@@ -43,7 +43,8 @@ var ClientController = {
             
             client.save((err,clientGuardat)=>{
                 if(err) return res.status(500).send({message:err});
-                if(!clientGuardat) return res.status(404).send({message:'Client no desat'});            
+                if(!clientGuardat) return res.status(404).send({message:'Client no desat'});
+                console.log(clientGuardat);            
                 //Creem el token i el guardem en el nou client creat
                 clientGuardat.token=service.createToken(clientGuardat);
                 //guardem el token i la contreasña
@@ -91,7 +92,7 @@ var ClientController = {
                 }else{
                     console.log(match);
                     
-                    return res.status(200).send({message:'Contraseña incorrecta'});
+                    return res.status(500).send({message:'Contraseña incorrecta'});
                 }
             });
             
@@ -106,6 +107,19 @@ var ClientController = {
             if(err) return res.status(500).send({message:'Error al retornar dades'});
             if(!client) return res.status(404).send({message:'No hi han dades'});
             return res.status(200).send({client});
+        });
+
+    },
+    AdminLogged : function(req,res){
+        var token = req.body.token;
+
+        var id = service.checkToken(token);
+        
+        Client.findById(id).exec((err,client)=>{
+            if(err) return res.status(500).send({message:'Error al retornar dades'});
+            if(!client) return res.status(404).send({message:'No hi han dades'});
+            if(client.email=='admin@taxionline.cat') return res.status(200).send({client});
+            return res.status(404).send({message:'No admin'})
         });
 
     }

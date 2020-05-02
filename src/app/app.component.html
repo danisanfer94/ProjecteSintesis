@@ -13,20 +13,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a routerLink="/home" routerLinkActive="active" class="nav-item nav-link">Inici</a>
-                <a routerLink="/reserva" routerLinkActive="active" class="nav-item nav-link">Reserva</a>
-                <a routerLink="/tarifa" routerLinkActive="active" class="nav-item nav-link">Tarífes</a>
-                <a routerLink="/serveis" routerLinkActive="active" class="nav-item nav-link">Serveis</a>
-                <a routerLink="/coneixens" routerLinkActive="active" class="nav-item nav-link">Coneixe'ns</a>
-                <a routerLink="/contact" routerLinkActive="active" class="nav-item nav-link">Contacte</a>
+                <a routerLink="/home" routerLinkActive="active" class="nav-item nav-link text-center">Inici</a>
+                <a routerLink="/reserva" routerLinkActive="active" class="nav-item nav-link text-center">Reserva</a>
+                <a routerLink="/tarifa" routerLinkActive="active" class="nav-item nav-link text-center">Tarífes</a>
+                <a routerLink="/serveis" routerLinkActive="active" class="nav-item nav-link text-center">Serveis</a>
+                <a routerLink="/coneixens" routerLinkActive="active" class="nav-item nav-link text-center">Coneixe'ns</a>
+                <a routerLink="/contact" routerLinkActive="active" class="nav-item nav-link text-center">Contacte</a>
             </div>
             <div *ngIf="!client" class="navbar-nav ml-auto">
-                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link">Login</a>
-                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link">Registre</a>
+                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Login</a>
+                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Registre</a>
             </div>
             <div *ngIf="client" class="navbar-nav ml-auto">
-                <a href="" class="nav-item nav-link">{{client.nom}} {{client.cognoms}}</a>
-                <a href="" (click)="logout()" class="nav-item nav-link">Logout</a>
+                <a href="" class="nav-item nav-link text-center">{{client.nom}} {{client.cognoms}}</a>
+                <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
             </div>
         </div>
     </nav>

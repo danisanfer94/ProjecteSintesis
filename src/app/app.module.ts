@@ -23,6 +23,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { ReservaComponent } from './components/reserva/reserva.component';
 import { ViatgeDetailsComponent } from './components/viatge-details/viatge-details.component';
+import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ViatgeDetailsComponent } from './components/viatge-details/viatge-detai
     ErrorComponent,
     AuthComponent,
     ReservaComponent,
-    ViatgeDetailsComponent
+    ViatgeDetailsComponent,
+    PanelAdminComponent
   ],
   imports: [
     BrowserModule,

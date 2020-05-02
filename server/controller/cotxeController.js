@@ -27,9 +27,10 @@ var CotxeController = {
         
         cotxe.matricula = params.matricula;
         cotxe.marca = params.marca;
+        cotxe.model = params.model;
         cotxe.places = params.places;
         cotxe.dataITV = params.dataITV;
-        cotxe.daraSeguro = params.dataSeguro;
+        cotxe.dataSeguro = params.dataSeguro;
 
         cotxe.save((err, cotxeGuardat)=>{
             if(err) return res.status(500).send({message:'Error al desar el cotxe'});
