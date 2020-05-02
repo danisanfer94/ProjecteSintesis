@@ -35,6 +35,8 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params:Params) => {
+      console.log(params);
+      
       if(params.origen){
         this.origen = params.origen;
       }

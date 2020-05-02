@@ -1,4 +1,6 @@
-var Viatge = require('./../models/viatge')
+var Viatge = require('./../models/viatge');
+var mailController = require('./mailController');
+var Xofer = require('./../models/xofer');
 
 var ViatgeController = {
     getViatges : function(req,res){
@@ -46,6 +48,11 @@ var ViatgeController = {
             if(err) return res.status(500).send({message:'Error al desar el client'});
             if(!viatgeGuardat) return res.status(404).send({message:'Viatge no desat'});
             return res.status(200).send({viatge: viatgeGuardat, message:'Viatge Guardat'});
+        });
+        Xofer.find({}).exec((err,xofers)=>{
+            xofers.forEach(xofer => {
+                mailController.enviar(xofer.mail);
+            });
         });
 
     },
