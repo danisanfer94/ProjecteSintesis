@@ -6,33 +6,27 @@
             <a href=""><img class="ban" src="assets/Icons/en.jpg" alt=""></a>
         </p>
     </div>
-    <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <a href="/home" class="navbar-brand titolprin pl-2 appfont">TaxiOnline</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="navbar-collapse" [ngClass]="{'collapse':true}" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a href=""></a>
-                </li>
-            </ul>
-            <div class="navbar-nav mr-auto">
-                <a href="/home" class="nav-item nav-link active">Inici</a>
-                <a href="#" class="nav-item nav-link">Reserva</a>
-                <a href="#" class="nav-item nav-link">Tarífes</a>
-                <a href="#" class="nav-item nav-link">Serveis</a>
-                <a href="/coneixens" class="nav-item nav-link">Coneixe'ns</a>
-                <a href="/contact" class="nav-item nav-link">Contacte</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a routerLink="/home" routerLinkActive="active" class="nav-item nav-link text-center">Inici</a>
+                <a routerLink="/reserva" routerLinkActive="active" class="nav-item nav-link text-center">Reserva</a>
+                <a routerLink="/tarifa" routerLinkActive="active" class="nav-item nav-link text-center">Tarífes</a>
+                <a routerLink="/serveis" routerLinkActive="active" class="nav-item nav-link text-center">Serveis</a>
+                <a routerLink="/coneixens" routerLinkActive="active" class="nav-item nav-link text-center">Coneixe'ns</a>
+                <a routerLink="/contact" routerLinkActive="active" class="nav-item nav-link text-center">Contacte</a>
             </div>
             <div *ngIf="!client" class="navbar-nav ml-auto">
-                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link">Login</a>
-                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link">Registre</a>
+                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Login</a>
+                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Registre</a>
             </div>
-            <div *ngIf="client">
-                <a href="">{{client.email}}</a>
-                <a href="" (click)="logout()">Logout</a>
+            <div *ngIf="client" class="navbar-nav ml-auto">
+                <a href="" class="nav-item nav-link text-center">{{client.nom}} {{client.cognoms}}</a>
+                <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
             </div>
         </div>
     </nav>
@@ -42,20 +36,20 @@
     <router-outlet></router-outlet>
 </div>
 
-<div class="container-fluid">
-    <footer class="row align-items-center">
-        <div class="col-4">
+<div class="container-fluid fot">
+    <footer class="row d-flex justify-content-around">
+        <div class="m-2 text-center">
             <img src="assets/Logos/logo2.png" style="width: 200px;"><br>
             <span class="appfont">TaxiOnline</span>
             <p>&copy; CopyRight 2020</p>
         </div>
-        <div class="col-4 ">
-            <p><a href="">RESERVA ARA</a></p>
-            <p><a href="">Coneixe'ns</a></p>
-            <p><a href="">Política de privacitat</a></p>
-            <p><a href="">Condicions Generals</a></p>
+        <div class="m-2 text-center">
+            <p><a routerLink="/reserva">RESERVA ARA</a></p>
+            <p><a routerLink="">Coneixe'ns</a></p>
+            <p><a routerLink="">Política de privacitat</a></p>
+            <p><a routerLink="">Condicions Generals</a></p>
         </div>
-        <div class="col-4">
+        <div class="m-2 text-center">
             <p>Serveis 24h</p>
             <p>5 places o 9 places</p>
             <p>Màxima puntualitat</p>

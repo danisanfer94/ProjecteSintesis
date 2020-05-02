@@ -1,4 +1,8 @@
 var Xofer = require('./../models/xofer')
+var service = require('./../services');
+var bcrypt = require('bcrypt');
+var Client = require('./../models/client');
+
 
 var XoferController = {
     getXofers: function(req,res){
@@ -15,7 +19,7 @@ var XoferController = {
         Xofer.findById(idXofer).exec((err,xoferConsultat)=>{
             if(err) return res.status(500).send({message:'Error al retornar dades'});
             if(!xofer) return res.status(404).send({message:'No hi han dades'});
-            return res.status(200).send({xofer: xoferConsultat});
+            return res.status(200).send({xoferConsultat});
         });
     },
     saveXofer : function (req,res){
@@ -24,16 +28,26 @@ var XoferController = {
         var params =  req.body;
 
         xofer.nom=params.nom;
-        xofer.cognom=params.cognom;
+        xofer.cognoms=params.cognoms;
+        xofer.mail=params.mail;
         xofer.dataCarnet=params.dataCarnet;
         xofer.telefon=params.telefon;
+        xofer.token='';
         
         xofer.save((err, xoferGuardat)=>{
             if(err) return res.status(500).send({message:'Error al desar el xofer'});
 
             if(!xoferGuardat) return res.status(404).send({message:'Xofer no desat'});
+            xoferGuardat.token=service.createToken(xoferGuardat);
 
-            return res.status(200).send({xofer: xoferGuardat, message:'Xofer Guardat'});
+            bcrypt.hash(params.contrasenya,6,function(err,hash){
+                xoferGuardat.contrasenya=hash;
+                Xofer.findByIdAndUpdate(xoferGuardat._id,xoferGuardat,{new:true},(err,XoferUpdate)=>{
+                    if(err) return res.status(500).send({message:'Error actualizant les dades'});
+                    if(!XoferUpdate) return res.status(404).send({message:'No existeixen les dades'});
+                    return res.status(200).send({xofer: XoferUpdate});
+                });
+            });
         });
 
     },
@@ -61,6 +75,23 @@ var XoferController = {
         })
 
     },
+    xoferLogged : function(req,res){
+        var token = req.body.token;
+
+        var id = service.checkToken(token);
+        
+        Client.findById(id).exec((err,client)=>{
+            if(err) return res.status(500).send({message:'Error al retornar dades'});
+            if(!client) return res.status(404).send({message:'No hi han dades'});
+            Xofer.find({mail:client.email}).exec((err,xoferConsultat)=>{
+                if(err) return res.status(500).send({message:'Error al retornar dades'});
+                if(!xoferConsultat) return res.status(404).send({message:'No hi han dades'});
+                return res.status(200).send({xoferConsultat});
+            });
+        });
+
+    }
+
     
 }
 

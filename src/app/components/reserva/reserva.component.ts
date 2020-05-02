@@ -38,6 +38,8 @@ export class ReservaComponent implements OnInit {
         this.authService.isLogged(body).subscribe(data=>{
           let clientdata:any=data;
           this.client=clientdata.client;
+        },err=>{
+          console.log(err);
         }); 
       }else{
         this.router.navigate(['/auth/reserva']);
@@ -65,6 +67,9 @@ export class ReservaComponent implements OnInit {
         this.router.navigate(['/reserva-details/'+data.viatge._id]);
      }, 1000);
       
+      
+    },error=>{
+      console.log(error);
       
     });
   }

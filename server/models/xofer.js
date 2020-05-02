@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 var XoferSchema = mongoose.Schema({
     nom:String,
@@ -7,6 +6,8 @@ var XoferSchema = mongoose.Schema({
     dataCarnet:String,
     mail:String,
     telefon:String,
+    token:String,
+    contrasenya:String,
     // cotxe:{ type: Schema.Types.ObjectId, ref: 'Cotxe'}
 });
 

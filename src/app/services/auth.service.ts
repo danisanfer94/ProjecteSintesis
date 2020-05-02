@@ -43,6 +43,12 @@ export class AuthenticationService {
     isLogged(token:any){
         return this._http.post(this.url+'logged',token);
     }
+    isLoggedAdmin(token:any){
+        return this._http.post(this.url+'logadmin',token);
+    }
+    isLoggedXofer(token:any){
+        return this._http.post(this.url+"logxofer",token);
+    }
 
     logout(){
         this.cookies.delete("token");

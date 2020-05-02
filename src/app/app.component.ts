@@ -24,6 +24,7 @@ export class AppComponent {
         this.authService.isLogged(body).subscribe(data=>{
           let clientdata:any=data;
           this.client=clientdata.client;
+          
         }); 
 
       }  

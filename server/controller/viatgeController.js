@@ -49,11 +49,11 @@ var ViatgeController = {
             if(!viatgeGuardat) return res.status(404).send({message:'Viatge no desat'});
             return res.status(200).send({viatge: viatgeGuardat, message:'Viatge Guardat'});
         });
-        Xofer.find({}).exec((err,xofers)=>{
-            xofers.forEach(xofer => {
-                mailController.enviar(xofer.mail);
-            });
-        });
+        // Xofer.find({}).exec((err,xofers)=>{
+        //     xofers.forEach(xofer => {
+        //         mailController.enviar(xofer.mail);
+        //     });
+        // });
 
     },
     updateViatge : function(req,res){

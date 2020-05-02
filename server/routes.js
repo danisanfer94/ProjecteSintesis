@@ -30,6 +30,8 @@ router.delete('/client/:cliendId',clientController.deleteClient);
 //login and eslogged
 router.post('/login',clientController.loginClient);
 router.post('/logged',clientController.ClientLogged);
+router.post('/logadmin',clientController.AdminLogged);
+router.post('/logxofer',xoferController.xoferLogged);
 
 //Viatge routes
 router.get('/viatges',viatgeController.getViatges);

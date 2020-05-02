@@ -4,6 +4,8 @@ import { Client } from 'src/app/models/client';
 import { LoginObject } from 'src/app/models/loginObject';
 import { Router , ActivatedRoute, Params } from '@angular/router';
 
+declare var $:any;
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -22,6 +24,9 @@ export class AuthComponent implements OnInit {
   public emaillogin:string;
   public passwordlogin:string;
   public origen:string;
+  public error:string;
+  public passerror:string;
+  
 
   
   constructor(
@@ -34,14 +39,14 @@ export class AuthComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.route.params.subscribe((params:Params) => {
-      console.log(params);
-      
+    this.route.params.subscribe((params:Params) => {      
       if(params.origen){
-        this.origen = params.origen;
+        this.origen = params.origen; 
       }
-    }) 
+    });
     
+    $('.white-panel').animate({ opacity: 0 }, 0);
+    $('.white-panel').animate({ opacity: 1, top: "-40px" }, 'slow');
   }
 
   registre(){
@@ -51,26 +56,39 @@ export class AuthComponent implements OnInit {
     this.client.email=this.email;
     this.client.contrasenya=this.password;
     this.authService.registre(this.client).subscribe(data=>{
-      this.authService.setToken(data.token);
-      if(this.origen=='nav'){
-        window.location.href = '/';
-      }else{
-        window.location.href = '/reserva';
-      }    
+      console.log('Usuari registrat!!');
+        
+        this.authService.setToken(data.client.token);
+        if(this.origen=='nav'){
+          window.location.href = '/';
+        }else{
+          window.location.href = '/reserva';
+        }
+      
+    },error=>{
+      this.error = error.error.message;
+      console.log(this.error);
+      
     });
     
   }
 
   login(){
     this.loginObject.username=this.emaillogin;
-    this.loginObject.password=this.passwordlogin;
+    this.loginObject.password=this.passwordlogin;    
     this.authService.login(this.loginObject).subscribe(data=>{
-      this.authService.setToken(data.token);
-      if(this.origen=='nav'){
-        window.location.href = '/';
-      }else{
-        window.location.href = '/reserva';
-      } 
+      console.log(data);
+      if(data.token){
+        this.authService.setToken(data.token);
+        if(this.origen=='nav'){
+          window.location.href = '/';
+        }else{
+          window.location.href = '/reserva';
+        } 
+      }
+    },error=>{
+      this.passerror = error.error.message;
+      console.log(this.passerror);
       
     });
   }

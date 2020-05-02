@@ -8,19 +8,17 @@
             <p>Data: {{viatge.data}}</p>
             <p>Hora: {{viatge.hora}}</p>
             <p>Persones: {{viatge.places}}</p>
-            <p>Comentaris: {{viatges.comentari}}</p>
+            <p>Comentaris: {{viatge.comentari}}</p>
             <p [ngClass]="{
                 'bg-success':viatge.confirmat == 'Confirmat',
                 'bg-warning':viatge.confirmat == 'Pendent',
                 'bg-danger':viatge.confirmat == 'Cancelat'
             }">Confirmacio: {{viatge.confirmat}}</p>
             <blockquote>
-                Hem processat la teva reserva, un dels nostres xofers confirmara el viatge i rebras un avis al teu correu electronic.
-                
-                Pots entrar a consultar el estat de la reserva amb aquest link. 
+                Hem processat la teva reserva, un dels nostres xofers confirmara el viatge i rebras un avis al teu correu electronic. Pots entrar a consultar el estat de la reserva amb aquest link.
             </blockquote>
             <a href="">{{link}}</a>
-            
+
         </div>
         <div class="col"></div>
 

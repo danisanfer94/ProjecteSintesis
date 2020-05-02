@@ -7,6 +7,8 @@ import { AuthComponent } from './components/auth/auth.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ReservaComponent } from './components/reserva/reserva.component';
 import { ViatgeDetailsComponent } from './components/viatge-details/viatge-details.component';
+import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
+
 
 // import { ReservaComponent } from './components/reserva/reserva.component';
 // import { TarifesComponent } from './components/tarifa/tarifa.component';
@@ -19,6 +21,7 @@ const appRoutes: Routes = [
     // {path: 'reserva', component: ReservaComponent},
     // {path: 'serveis', component: ServeisComponent},
     // {path: 'coneixens', component: ConeixensComponent},
+    {path: 'panel-admin',component: PanelAdminComponent},
     {path: 'reserva', component: ReservaComponent},
     {path: 'reserva-details/:idReserva',component:ViatgeDetailsComponent},
     {path: 'contact', component: ContactComponent},
