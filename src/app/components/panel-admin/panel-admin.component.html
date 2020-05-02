@@ -43,7 +43,6 @@
 
               <div class="form-group">
                 <input type="email"  [(ngModel)]="xoferEmail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
-                <span *ngIf="error" class="text-danger">{{error}}</span>
               </div>
               
               <div class="form-group">
@@ -195,7 +194,7 @@
               <td>{{client.emaill}}</td>
               <td>{{client.telefon}}</td>
               <td class="d-flex flex-column">
-                <button class="btn btn-success mt-1" (click)="getClient(client._id)" >Veure</button>
+                <button class="btn btn-success mt-1" >Veure</button>
                 <button class="btn btn-warning mt-1">Editar</button>
                 <button class="btn btn-danger mt-1" >Eliminar</button>
               </td>
