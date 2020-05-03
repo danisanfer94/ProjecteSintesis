@@ -8,9 +8,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { CreateClientComponent } from './components/create-client/create-client.component';
-import { CreateXoferComponent } from './components/create-xofer/create-xofer.component';
-import { CreateCotxeComponent } from './components/create-cotxe/create-cotxe.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import { DetailCotxeComponent } from './components/detail-cotxe/detail-cotxe.component';
@@ -28,9 +25,6 @@ import { PanelAdminComponent } from './components/panel-admin/panel-admin.compon
 @NgModule({
   declarations: [
     AppComponent,
-    CreateClientComponent,
-    CreateXoferComponent,
-    CreateCotxeComponent,
     ContactComponent,
     HomeComponent,
     DetailCotxeComponent,
