@@ -8,6 +8,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { ReservaComponent } from './components/reserva/reserva.component';
 import { ViatgeDetailsComponent } from './components/viatge-details/viatge-details.component';
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
+import { PerfilClientComponent } from './components/perfil-client/perfil-client.component';
 
 
 // import { ReservaComponent } from './components/reserva/reserva.component';
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'auth/:origen',component:AuthComponent},
     {path: 'contact', component: ContactComponent},
+    {path: 'perfil-client', component: PerfilClientComponent},
     {path: '**', component: ErrorComponent},
 
 ]

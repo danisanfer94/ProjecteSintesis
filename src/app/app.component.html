@@ -24,9 +24,16 @@
                 <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Login</a>
                 <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Registre</a>
             </div>
-            <div *ngIf="client" class="navbar-nav ml-auto">
-                <a href="" class="nav-item nav-link text-center">{{client.nom}} {{client.cognoms}}</a>
-                <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
+            <div *ngIf="client" class="navbar-nav ml-auto dropdown ddown">
+                <button class="nav-link dropdown-toggle nav-item ddown" type="button" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{client.nom}} {{client.cognoms}} 
+                    </button>
+                <div class="dropdown-menu dropdown-menu-right ddown" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item nav-item" routerLink="/perfil-client">Perfil</a>
+                    <a class="dropdown-item nav-item" routerLink="#">Viatges</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -37,7 +44,7 @@
 </div>
 
 <div class="container-fluid fot">
-    <footer class="row d-flex justify-content-around">
+    <footer class="row d-flex justify-content-between">
         <div class="m-2 text-center">
             <img src="assets/Logos/logo2.png" style="width: 200px;"><br>
             <span class="appfont">TaxiOnline</span>
