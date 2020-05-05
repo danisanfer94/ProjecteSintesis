@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { Viatge } from './../models/viatge';
 import { Xofer } from './../models/xofer';
+import { Client } from './../models/client';
+
 
 
 
@@ -49,4 +51,21 @@ export class PeticionsService {
     getClients():Observable<any>{
         return this._http.get(this.url+"clients");
     }
+    updateClient(id,client:Client){
+        let body = JSON.stringify(client);
+        let headers = new HttpHeaders().set('Content-type', 'application/json');
+        return this._http.put(this.url+"client/"+id,body,{headers: headers});
+    }
+    deleteClient(id:any):Observable<any>{
+        return this._http.delete(this.url+'client/'+id);
+    }
+
+    // updateClients(id,pwd,client):Observable<any>{
+    //     if (pwd){
+    //         return this._http.put(this.url+"client/"+id+"/si",client);
+    //     }else{
+
+    //     }
+    //     return this._http.put(this.url+"client/"+id+"/no",client);
+    // }
 }
