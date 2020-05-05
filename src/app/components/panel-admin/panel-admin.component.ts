@@ -38,10 +38,12 @@ export class PanelAdminComponent implements OnInit {
         this.clientlog=clientdata.client;
         this.admin=true;
       },err=>{
-        this.admin=false;
+        this.admin=false;     
         this.authService.isLoggedXofer(body).subscribe(data=>{
           let xoferlogdata:any=data;
           this.xoferlog=xoferlogdata.xofer;
+          console.log(data);
+          
         },err=>{
           this.router.navigate(['/']);
         })
