@@ -86,16 +86,12 @@ var ClientController = {
 
         if (clientId == null) return res.status(500).send({ message: 'No has dit cap ID' })
         var update = req.body;
-        console.log(update);
 
         bcrypt.hash(update.contrasenya, 6, function(err, hash) {
             update.contrasenya = hash;
-            console.log(update.contrasenya);
 
             Client.findByIdAndUpdate(clientId, update, { new: true }, (err, update2) => {
                 if (err) return res.status(500).send({ message: 'Error actualizant les dades' });
-                console.log(update2);
-
                 if (!update2) return res.status(404).send({ message: 'No existeixen les dades' });
                 return res.status(200).send({ client: update2, message: 'Client Actualitzat' });
             });
@@ -104,8 +100,6 @@ var ClientController = {
     },
     deleteClient: function(req, res) {
         var clientId = req.params.clientId;
-        console.log(req.params.clientId);
-
         if (clientId == null) return res.status(500).send({ message: 'No has dit cap ID' })
 
         Client.findByIdAndDelete(clientId, (err, clientRemoved) => {
@@ -124,7 +118,6 @@ var ClientController = {
                 if (match) {
                     return res.status(200).send({ token: client.token, message: 'Logejat correctament' });
                 } else {
-                    console.log(match);
 
                     return res.status(500).send({ message: 'Contraseña incorrecta' });
                 }
