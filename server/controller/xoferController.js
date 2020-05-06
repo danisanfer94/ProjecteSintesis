@@ -83,16 +83,16 @@ var XoferController = {
         Client.findById(id).exec((err, client) => {
             if (err) return res.status(500).send({ message: 'Error al retornar dades' });
             if (!client) return res.status(404).send({ message: 'No hi han dades' });
-            console.log(client);
-            console.log(client.email);
-
-
+            
             Xofer.find({ mail: client.email }).exec((err, xoferConsultat) => {
                 if (err) return res.status(500).send({ message: 'Error al retornar dades' });
                 if (!xoferConsultat) return res.status(404).send({ message: 'No hi han dades' });
-                console.log(xoferConsultat);
+                if(xoferConsultat[0]){
+                    return res.status(200).send({ xoferConsultat });
+                }else{
+                    return res.status(404).send({ message: 'No hi han dades' }); 
+                }
 
-                // return res.status(200).send({ xoferConsultat });
             });
         });
 

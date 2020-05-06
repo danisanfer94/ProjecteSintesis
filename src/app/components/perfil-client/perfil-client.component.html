@@ -3,7 +3,7 @@
         <div class="col"></div>
         <div class="mb-5 pb-5 col-md-4 box-form">
             <h1>Perfil de l'usuari</h1>
-            <span *ngIf="missatge">Projecte actualitzat correctament</span>
+            <span *ngIf="missatge" class="success">Usuari actualitzat correctament</span>
             <form #formUpdate="ngForm" (ngSubmit)="onSubmit(formUpdate)">
                 <div class="form-group">
                     <label for="origen">Nom</label>

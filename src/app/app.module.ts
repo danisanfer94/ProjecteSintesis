@@ -5,7 +5,6 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -47,7 +46,6 @@ import { PerfilClientComponent } from './components/perfil-client/perfil-client.
     FormsModule,
     routing,
     HttpClientModule,
-    NgbModule
   ],
   providers: [
     appRoutingProviders,

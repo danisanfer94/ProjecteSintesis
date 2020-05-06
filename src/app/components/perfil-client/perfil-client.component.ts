@@ -60,7 +60,6 @@ export class PerfilClientComponent implements OnInit {
     this.petiService.updateClient(this.client._id, this.client).subscribe(data => {
         this.missatge=true;
         console.log(data);
-        form.reset();
         console.log("Input form capturat");
       },
       error => {
