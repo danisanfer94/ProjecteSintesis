@@ -8,9 +8,11 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
         <a href="/home" class="navbar-brand titolprin pl-2 appfont">TaxiOnline</a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a routerLink="/home" routerLinkActive="active" class="nav-item nav-link text-center">Inici</a>
@@ -20,13 +22,28 @@
                 <a routerLink="/coneixens" routerLinkActive="active" class="nav-item nav-link text-center">Coneixe'ns</a>
                 <a routerLink="/contact" routerLinkActive="active" class="nav-item nav-link text-center">Contacte</a>
             </div>
+            <div>
+                <hr style="border-top: 2px solid grey;width: 50%;">
+            </div>
             <div *ngIf="!client" class="navbar-nav ml-auto">
                 <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Login</a>
                 <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Registre</a>
             </div>
-            <div *ngIf="client" class="navbar-nav ml-auto">
-                <a href="" class="nav-item nav-link text-center">{{client.nom}} {{client.cognoms}}</a>
+            <div *ngIf="client" class="navbar-nav ml-auto dropdown ddown">
+                <!-- <button class="nav-link dropdown-toggle nav-item ddown" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{client.nom}} {{client.cognoms}} 
+                    </button>
+                <div class="dropdown-menu ddown" >
+                    <a class="dropdown-item nav-item" routerLink="/perfil-client">Perfil</a>
+                    <a class="dropdown-item nav-item" routerLink="#">Viatges</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
+                </div> -->
+                <a class="nav-item nav-link text-center" routerLink="/perfil-client">{{client.nom}} {{client.cognoms}}</a>
+                <a class="nav-item nav-link text-center" routerLink="#">Viatges</a>
                 <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
+                
+                 
             </div>
         </div>
     </nav>
@@ -37,7 +54,7 @@
 </div>
 
 <div class="container-fluid fot">
-    <footer class="row d-flex justify-content-around">
+    <footer class="row d-flex justify-content-between">
         <div class="m-2 text-center">
             <img src="assets/Logos/logo2.png" style="width: 200px;"><br>
             <span class="appfont">TaxiOnline</span>
@@ -57,3 +74,4 @@
         </div>
     </footer>
 </div>
+

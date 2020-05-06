@@ -5,12 +5,8 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { CreateClientComponent } from './components/create-client/create-client.component';
-import { CreateXoferComponent } from './components/create-xofer/create-xofer.component';
-import { CreateCotxeComponent } from './components/create-cotxe/create-cotxe.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import { DetailCotxeComponent } from './components/detail-cotxe/detail-cotxe.component';
@@ -24,13 +20,11 @@ import { AuthComponent } from './components/auth/auth.component';
 import { ReservaComponent } from './components/reserva/reserva.component';
 import { ViatgeDetailsComponent } from './components/viatge-details/viatge-details.component';
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
+import { PerfilClientComponent } from './components/perfil-client/perfil-client.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateClientComponent,
-    CreateXoferComponent,
-    CreateCotxeComponent,
     ContactComponent,
     HomeComponent,
     DetailCotxeComponent,
@@ -43,7 +37,8 @@ import { PanelAdminComponent } from './components/panel-admin/panel-admin.compon
     AuthComponent,
     ReservaComponent,
     ViatgeDetailsComponent,
-    PanelAdminComponent
+    PanelAdminComponent,
+    PerfilClientComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +46,6 @@ import { PanelAdminComponent } from './components/panel-admin/panel-admin.compon
     FormsModule,
     routing,
     HttpClientModule,
-    NgbModule
   ],
   providers: [
     appRoutingProviders,
