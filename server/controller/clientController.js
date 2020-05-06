@@ -62,47 +62,51 @@ var ClientController = {
     updateClient: function(req, res) {
         var clientId = req.params.clientId;
         var update = req.body;
+        var error = false;
 
-        Client.findByIdAndUpdate(clientId, update, { new: true }, (err, clientUpdated) => {
-            if (err) {
-                return res.status(500).send({ message: "Error actualitzant les dades" });
-            }
-            if (!clientUpdated) return res.status(404).send({ message: "No existeix el client" });
-            return res.status(200).send({ client: clientUpdated, message: "Client Actualitzat" });
-        })
+        Client.find({}).exec((err, clients) => {
+            clients.forEach(cliente => {
+                if (cliente.email == update.email && cliente._id != update._id) {
+                    error = true;
+                }
+            });
+            if (error) return res.status(500).send({ message: 'El mail ya existeix' });
 
-        // var clientId = req.params.clientId;
-        // var pwd = req.params.pwd;
-        // if (clientId == null) return res.status(500).send({ message: 'No has dit cap ID' })
-        // var update = req.body;
-        // console.log(pwd);
+            Client.findByIdAndUpdate(clientId, update, { new: true }, (err, clientUpdated) => {
+                if (err) {
+                    return res.status(500).send({ message: "Error actualitzant les dades" });
+                }
+                if (!clientUpdated) return res.status(404).send({ message: "No existeix el client" });
+                return res.status(200).send({ client: clientUpdated, message: "Client Actualitzat" });
+            })
+        });
+    },
+    updatePass: function(req, res) {
+        var clientId = req.params.clientId;
 
+        if (clientId == null) return res.status(500).send({ message: 'No has dit cap ID' })
+        var update = req.body;
+        console.log(update);
 
-        // Client.findByIdAndUpdate(clientId, update, { new: true }, (err, ClientUpdate) => {
-        //     if (err) return res.status(500).send({ message: 'Error actualizant les dades' });
-        //     if (!ClientUpdate) return res.status(404).send({ message: 'No existeixen les dades' });
-        //     if (pwd == "si") {
-        //         bcrypt.hash(ClientUpdate.contrasenya, 6, function(err, hash) {
-        //             ClientUpdate.contrasenya = hash;
-        //             Client.findByIdAndUpdate(ClientUpdate._id, ClientUpdate, { new: true }, (err, ClientUpdate2) => {
-        //                 if (err) return res.status(500).send({ message: 'Error actualizant les dades' });
-        //                 if (!ClientUpdate) return res.status(404).send({ message: 'No existeixen les dades' });
-        //                 return res.status(200).send({ client: ClientUpdate2, message: 'Client Actualitzat' });
-        //             });
-        //         });
-        //     } else {
-        //         return res.status(200).send({ client: ClientUpdate, message: 'Client Actualitzat' });
-        //     }
-        // });
+        bcrypt.hash(update.contrasenya, 6, function(err, hash) {
+            update.contrasenya = hash;
+
+            Client.findByIdAndUpdate(clientId, update, { new: true }, (err, update2) => {
+                if (err) return res.status(500).send({ message: 'Error actualizant les dades' });
+                if (!update2) return res.status(404).send({ message: 'No existeixen les dades' });
+                return res.status(200).send({ client: update2, message: 'Client Actualitzat' });
+            });
+        });
+
     },
     deleteClient: function(req, res) {
         var clientId = req.params.clientId;
         if (clientId == null) return res.status(500).send({ message: 'No has dit cap ID' })
 
         Client.findByIdAndDelete(clientId, (err, clientRemoved) => {
-            if (err) return res.status(500).send({ message: 'Error actualizant les dades' });
+            if (err) return res.status(500).send({ message: 'Error esborrant les dades' });
             if (!clientRemoved) return res.status(404).send({ message: 'No existeixen les dades' });
-            return res.status(200).send({ cotxe: clientRemoved });
+            return res.status(200).send({ client: clientRemoved, message: "Client Esborrat" });
         });
     },
     loginClient: function(req, res) {
@@ -115,8 +119,6 @@ var ClientController = {
                 if (match) {
                     return res.status(200).send({ token: client.token, message: 'Logejat correctament' });
                 } else {
-                    console.log(match);
-
                     return res.status(500).send({ message: 'Contraseña incorrecta' });
                 }
             });
