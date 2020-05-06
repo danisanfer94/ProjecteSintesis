@@ -56,8 +56,13 @@ export class PeticionsService {
         let headers = new HttpHeaders().set('Content-type', 'application/json');
         return this._http.put(this.url+"client/"+id,body,{headers: headers});
     }
-    deleteClient(id:any):Observable<any>{
-        return this._http.delete(this.url+'client/'+id);
+    updatePass(id,client:Client){
+        let body = JSON.stringify(client);
+        let headers = new HttpHeaders().set('Content-type', 'application/json');
+        return this._http.put(this.url+"pass/"+id,body,{headers: headers});
+    }
+    deleteClient (id:any):Observable<any>{
+        return this._http.delete(this.url+"client/"+id);
     }
 
     // updateClients(id,pwd,client):Observable<any>{
