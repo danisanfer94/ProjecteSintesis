@@ -1,9 +1,13 @@
-<div class="container-fluid reserva">
+<div class="container-fluid perfilc">
     <div class="row">
         <div class="col"></div>
         <div class="mb-5 pb-5 col-md-4 box-form">
             <h1>Perfil de l'usuari</h1>
-            <span *ngIf="missatge" class="success">Usuari actualitzat correctament</span>
+            <hr>
+            <h3>Actualitza les dades</h3>
+            <span *ngIf="missatge">Usuari actualitzat correctament</span>
+            <span *ngIf="passerror" class="text-danger">{{passerror}}</span>
+
             <form #formUpdate="ngForm" (ngSubmit)="onSubmit(formUpdate)">
                 <div class="form-group">
                     <label for="origen">Nom</label>
@@ -25,18 +29,22 @@
                     <input type="text" class="form-control inp" #mobile="ngModel" [(ngModel)]="client.telefon" id="data" name="telefon">
                 </div>
 
-                <!-- <p>Canviar la contrasenya</p>
-                <hr>
-                <div class="form-group">
-                    <label for="hora">Contrasenya</label>
-                    <input type="text" class="form-control inp" [(ngModel)]="contrassenya" id="hora" name="contrasenya">
-                </div>
- -->
-                <input type="submit" class="btn btn-primary " value="Actualitzar">
-                <!-- <button type="submit" (click)="onSubmit()" class="btn btn-primary ">Actualitzar</button> -->
+                <input type="submit" class="bara" value="Actualitzar">
             </form>
-            <p>Per eliminar el teu compte fes click al botó</p>
-            <button (click)="esborrar()">Esborrar-te</button>
+            <hr>
+            <h3>Canviar la contrasenya</h3>
+            <form #formUpdatePass="ngForm" (ngSubmit)="updatePass(formUpdatePass)">
+                <div class="form-group">
+                    <label for="contrassenya">Contrasenya</label>
+                    <input type="text" class="form-control inp" [(ngModel)]="contrassenya" name="contrasenya">
+                </div>
+                <input type="submit" class="bara" value="Actualitzar contrassenya">
+            </form>
+            <hr>
+            <div class="">
+                <p>Per eliminar el teu compte fes click al botó</p>
+                <button class="bara" (click)="esborrar()">Esborrar-te</button>
+            </div>
         </div>
         <div class="col"></div>
     </div>
