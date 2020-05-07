@@ -30,20 +30,9 @@
                 <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Registre</a>
             </div>
             <div *ngIf="client" class="navbar-nav ml-auto dropdown ddown">
-                <!-- <button class="nav-link dropdown-toggle nav-item ddown" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{client.nom}} {{client.cognoms}} 
-                    </button>
-                <div class="dropdown-menu ddown" >
-                    <a class="dropdown-item nav-item" routerLink="/perfil-client">Perfil</a>
-                    <a class="dropdown-item nav-item" routerLink="#">Viatges</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
-                </div> -->
                 <a class="nav-item nav-link text-center" routerLink="/perfil-client">{{client.nom}} {{client.cognoms}}</a>
                 <a class="nav-item nav-link text-center" routerLink="#">Viatges</a>
-                <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
-                
-                 
+                <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>   
             </div>
         </div>
     </nav>

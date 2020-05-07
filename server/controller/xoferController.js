@@ -1,4 +1,4 @@
-var Xofer = require('./../models/xofer')
+var Xofer = require('./../models/xofer');
 var service = require('./../services');
 var bcrypt = require('bcrypt');
 var Client = require('./../models/client');

@@ -51,10 +51,12 @@ var rutes = require('./server/routes');
 //     }
 //   });
 app.use('/api',rutes);
+
 app.get('/test',function(req,res){
-    console.log(req.ip);
-    res.send('holi');
+    console.log(req.connection.remoteAddress);
+    res.send(req.connection.remoteAddress); 
 });
+
 app.get('*',function(req,res){
     res.sendFile(path.join(__dirname,'/dist/OnlineTaxi/index.html'))
 });

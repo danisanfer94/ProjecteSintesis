@@ -26,7 +26,8 @@ router.get('/clients', clientController.getClients);
 router.get('/client/:clientId', clientController.getClient);
 router.post('/saveclient', clientController.saveClient);
 router.put('/client/:clientId', clientController.updateClient);
-router.delete('/client/:cliendId', clientController.deleteClient);
+router.put('/pass/:clientId', clientController.updatePass);
+router.delete('/client/:clientId', clientController.deleteClient);
 
 //login and eslogged
 router.post('/login', clientController.loginClient);
