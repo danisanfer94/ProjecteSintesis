@@ -54,7 +54,7 @@ app.use('/api',rutes);
 
 app.get('/test',function(req,res){
     console.log(req.connection.remoteAddress);
-    res.send(req.connection.remoteAddress); 
+    res.send({ helloFrom: req.connection.remoteAddress }); 
 });
 
 app.get('*',function(req,res){
