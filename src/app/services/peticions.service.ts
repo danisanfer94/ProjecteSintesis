@@ -64,6 +64,9 @@ export class PeticionsService {
     deleteClient (id:any):Observable<any>{
         return this._http.delete(this.url+"client/"+id);
     }
+    test ():Observable<any>{
+        return this._http.get('/test');
+    }
 
     // updateClients(id,pwd,client):Observable<any>{
     //     if (pwd){
