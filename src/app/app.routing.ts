@@ -9,6 +9,7 @@ import { ReservaComponent } from './components/reserva/reserva.component';
 import { ViatgeDetailsComponent } from './components/viatge-details/viatge-details.component';
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
 import { PerfilClientComponent } from './components/perfil-client/perfil-client.component';
+import { ViatgesClientComponent } from './components/viatges-client/viatges-client.component';
 
 
 // import { ReservaComponent } from './components/reserva/reserva.component';
@@ -30,8 +31,8 @@ const appRoutes: Routes = [
     {path: 'auth/:origen',component:AuthComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'perfil-client', component: PerfilClientComponent},
+    {path: 'viatges-client', component: ViatgesClientComponent},
     {path: '**', component: ErrorComponent},
-
 ]
 
 export const appRoutingProviders: any[] = [];

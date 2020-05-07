@@ -35,8 +35,8 @@
             <h3>Canviar la contrasenya</h3>
             <form #formUpdatePass="ngForm" (ngSubmit)="updatePass(formUpdatePass)">
                 <div class="form-group">
-                    <label for="contrassenya">Contrasenya</label>
-                    <input type="text" class="form-control inp" [(ngModel)]="contrassenya" name="contrasenya">
+                    <!-- <label for="contrassenya">Contrasenya</label> -->
+                    <input type="password" title="contrasenya" class="form-control inp" [(ngModel)]="contrassenya" name="contrasenya">
                 </div>
                 <input type="submit" class="bara" value="Actualitzar contrassenya">
             </form>
