@@ -24,12 +24,11 @@ var ViatgeController = {
     getViatgeClient: function(req, res) {
         var clientId = req.params.clientId;
         if (clientId == null) return res.status(500).send({ message: 'No has dit cap ID' });
-        Viatge.findById(clientId).populate('cotxe').populate('xofer')
-            .populate('client').exec((err, viatge) => {
-                if (err) return res.status(500).send({ message: 'Error al retornar dades' });
-                if (!viatge) return res.status(404).send({ message: 'No hi han dades' });
-                return res.status(200).send({ viatge });
-            });
+        Viatge.find({ client: clientId }).exec((err, viatge) => {
+            if (err) return res.status(500).send({ message: 'Error al retornar dades' });
+            if (!viatge) return res.status(404).send({ message: 'No hi han dades' });
+            return res.status(200).send({ viatge });
+        });
     },
     saveViatge: function(req, res) {
         var viatge = new Viatge();

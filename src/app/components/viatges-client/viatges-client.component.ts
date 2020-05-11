@@ -14,6 +14,7 @@ export class ViatgesClientComponent implements OnInit {
   public token:string;
   public client:any;
   public viatges:any;
+  public id:string;
 
   constructor(
     private authService:AuthenticationService,
@@ -21,35 +22,39 @@ export class ViatgesClientComponent implements OnInit {
     private router:Router,
     ) 
     {
-      if(this.authService.checkToken()){
-        this.client = new Object();
-        let token=this.authService.getToken();
-        var body = {token:token};
-        this.authService.isLogged(body).subscribe(data=>{
-          let clientdata:any=data;
-          this.client=clientdata.client;
-          console.log(this.client);
-          
-        },err=>{
-          console.log(err);
-        }); 
-      }else{
-        this.router.navigate(['/']);
-      }
     }
 
   ngOnInit() {
-    this.getViatges();
-    console.log(this.client._id);
+    this.getViatge();
   }  
 
-  getViatges(){
-    this.petiService.getViatgeClient(this.client._id).subscribe(data=>{
-      console.log(data);
-      this.viatges=data.viatges;
+  getViatge(){
+    if(this.authService.checkToken()){
+      this.client = new Object();
+      let token=this.authService.getToken();
+      var body = {token:token};
+      this.authService.isLogged(body).subscribe(data=>{
+        let clientdata:any=data;
+        this.client=clientdata.client;
+        console.log(this.client);
+        console.log(this.client._id);
+
+        this.petiService.getViatgeClient(this.client._id).subscribe(data=>{
+          console.log(data);
+          console.log(this.client._id);
+          this.viatges=data.viatge;
+          },err=>{
+          console.log(err);
+          console.log(this.client._id);
+          });    
+        
       },err=>{
-      console.log(err);
-      console.log(this.client._id);
-      });  
+        console.log(err);
+      }); 
+    }else{
+      this.router.navigate(['/']);
+    }
+
   }
+  
 }

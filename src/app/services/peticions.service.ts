@@ -30,7 +30,7 @@ export class PeticionsService {
         return this._http.get(this.url+'viatge/'+id);
     }
     getViatgeClient(id:string):Observable<any>{
-        return this._http.get(this.url+'viatge/'+id);
+        return this._http.get(this.url+'viatge2/'+id);
     }
     getViatges():Observable<any>{
         return this._http.get(this.url+'viatges');
