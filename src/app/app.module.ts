@@ -22,6 +22,7 @@ import { ViatgeDetailsComponent } from './components/viatge-details/viatge-detai
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
 import { PerfilClientComponent } from './components/perfil-client/perfil-client.component';
 import { ViatgesClientComponent } from './components/viatges-client/viatges-client.component';
+import { TarifaComponent } from './components/tarifa/tarifa.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ViatgesClientComponent } from './components/viatges-client/viatges-clie
     ViatgeDetailsComponent,
     PanelAdminComponent,
     PerfilClientComponent,
-    ViatgesClientComponent
+    ViatgesClientComponent,
+    TarifaComponent
   ],
   imports: [
     BrowserModule,

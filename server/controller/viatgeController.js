@@ -50,6 +50,7 @@ var ViatgeController = {
         viatge.places = params.places;
         viatge.preu = params.preu;
         viatge.tarifa = params.tarifa;
+        viatge.crodes = params.crodes;
         viatge.client = clientId;
         viatge.confirmat = params.confirmat;
 

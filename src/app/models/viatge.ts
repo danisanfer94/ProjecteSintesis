@@ -13,6 +13,9 @@ export class Viatge {
     public client:string;
     public comentari:string;
     public confirmat:string;
+    public crodes:boolean;
     constructor(
-    ){}
+    ){
+        this.crodes = false;
+    }
 } 

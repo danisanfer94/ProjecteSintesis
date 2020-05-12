@@ -29,14 +29,10 @@
                 <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Login</a>
                 <!-- <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Registre</a> -->
             </div>
-            <div class="container">
-                <button type="button" class="navbar-nav ml-auto ddown" data-toggle="collapse" data-target="#demo">{{client.nom}} {{client.cognoms}}</button>
-
-                <div *ngIf="client" id="demo" class="collapse navbar-nav">
-                    <a class="nav-item nav-link text-center" routerLink="/perfil-client">Perfil</a>
-                    <a class="nav-item nav-link text-center" routerLink="/viatges-client">Viatges</a>
-                    <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
-                </div>
+            <div *ngIf="client" class="navbar-nav ml-auto ddown">
+                <a class="nav-item nav-link text-center" routerLink="/perfil-client">{{client.nom}} {{client.cognoms}}</a>
+                <a class="nav-item nav-link text-center" routerLink="/viatges-client">Viatges</a>
+                <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
             </div>
         </div>
     </nav>

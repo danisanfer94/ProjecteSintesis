@@ -23,6 +23,7 @@ export class ReservaComponent implements OnInit {
   public data:string;
   public hora:string;
   public comentari:string;
+  public crodes:boolean;
 
   constructor(
     private authService:AuthenticationService,
@@ -59,8 +60,11 @@ export class ReservaComponent implements OnInit {
     this.viatge.client=this.client._id;
     this.viatge.confirmat="Pendent";
     this.viatge.comentari=this.comentari;
+    this.viatge.crodes=this.crodes;
     console.log(this.viatge);
+
     this.petiService.guardarViatge(this.viatge).subscribe(data=>{
+      console.log(this.crodes);
       console.log(data);
       $(".reserva").fadeOut();
       setTimeout (() => {

@@ -10,16 +10,15 @@ import { ViatgeDetailsComponent } from './components/viatge-details/viatge-detai
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
 import { PerfilClientComponent } from './components/perfil-client/perfil-client.component';
 import { ViatgesClientComponent } from './components/viatges-client/viatges-client.component';
-
+import { TarifaComponent } from './components/tarifa/tarifa.component';
 
 // import { ReservaComponent } from './components/reserva/reserva.component';
-// import { TarifesComponent } from './components/tarifa/tarifa.component';
 // import { ServeisComponent } from './components/serveis/serveis.component';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'home', component: HomeComponent},
-    // {path: 'tarifes', component: TarifesComponent},
+    {path: 'tarifa', component: TarifaComponent},
     // {path: 'reserva', component: ReservaComponent},
     // {path: 'serveis', component: ServeisComponent},
     // {path: 'coneixens', component: ConeixensComponent},
