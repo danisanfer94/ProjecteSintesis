@@ -55,6 +55,7 @@ export class AuthComponent implements OnInit {
     this.client.telefon=this.telefon;
     this.client.email=this.email;
     this.client.contrasenya=this.password;
+    this.client.rol="client";
     this.authService.registre(this.client).subscribe(data=>{
       console.log('Usuari registrat!!');
         

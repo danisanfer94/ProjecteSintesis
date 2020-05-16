@@ -6,6 +6,7 @@ import {Router } from '@angular/router';
 import { Xofer } from './../../models/xofer';
 import { Cotxe } from './../../models/cotxe';
 import { Client } from 'src/app/models/client';
+import { Viatge } from 'src/app/models/viatge';
 
 declare var $:any;
 
@@ -23,6 +24,7 @@ export class PanelAdminComponent implements OnInit {
   public xoferlog:any;
   public admin:boolean;
   public client:Client;
+  public viatge:Viatge;
 
   constructor(
     private authService:AuthenticationService,
@@ -37,12 +39,13 @@ export class PanelAdminComponent implements OnInit {
         let clientdata:any=data;
         this.clientlog=clientdata.client;
         this.admin=true;
+        this.xoferlog=new Xofer();
+        
       },err=>{
         this.admin=false;     
         this.authService.isLoggedXofer(body).subscribe(data=>{
           let xoferlogdata:any=data;
-          this.xoferlog=xoferlogdata.xofer;
-          console.log(data);
+          this.xoferlog=xoferlogdata.xoferConsultat[0];
           
         },err=>{
           this.router.navigate(['/']);
@@ -55,6 +58,7 @@ export class PanelAdminComponent implements OnInit {
     this.xofer=new Xofer();
     this.cotxe=new Cotxe();
     this.client=new Client();
+    this.viatge=new Viatge();
   }
 
   public viatges:Array<any>;
@@ -76,6 +80,22 @@ export class PanelAdminComponent implements OnInit {
   public cotxeDataITV:string;
   public cotxedataSeguro:string;
 
+  public clientNom:string;
+  public clientCognoms:string;
+  public clientEmail:string;
+  public clientContrasenya:string;
+  public clientTelefon:string;
+  public clientRol:string;
+
+  public viatgeOrigen:string;
+  public viatgeDesti:string;
+  public viatgePlaces:number;
+  public viatgeData:string;
+  public viatgeHora:string;
+  public viatgeComentari:string;
+  public viatgeClient:any;
+
+
 
 
   ngOnInit() {
@@ -87,22 +107,80 @@ export class PanelAdminComponent implements OnInit {
     $(".contenido").hide();
     $(".formChofer").show();
   }
-  formCotxe(){
-    $(".contenido").hide();
-    $(".formCotxe").show()
-  }
   getXofers(){
     $(".contenido").hide();
     $(".totsXofers").show();
     this.petiService.getXofers().subscribe(data=>{
       this.xofers=data.xofers;
-      console.log(this.xofers);
       
       
     },err=>{
       console.log(err);
       
     })
+  }
+  detallXofer(id:string){
+    $(".contenido").hide();
+    $(".detallXofer").show();    
+    this.petiService.getXofer(id).subscribe(data=>{
+      this.xofer=data.xoferConsultat;
+      console.log(this.xofer);
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+  eliminarXofer(id:string){
+    $(".contenido").hide();
+    $(".totsXofers").show();
+    this.petiService.deleteXofer(id).subscribe(data=>{
+      this.petiService.getXofers().subscribe(data2=>{
+        this.xofers=data2.xofers;
+        console.log(this.xofers);
+      },err=>{
+        console.log(err);
+        
+      })
+    },err=>{
+      console.log(err);
+    })
+  }
+  editarXofer(id:string){
+    $(".contenido").hide();
+    $(".editarXofer").show();
+    this.petiService.getXofer(id).subscribe(data=>{
+      this.xofer=data.xoferConsultat;
+      console.log(this.xofer);
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+  xoferUpdate(id:string){
+    $(".contenido").hide();
+    $(".totsXofers").show();
+    console.log(id);
+    console.log(this.xofer);
+    
+    this.petiService.updateXofer(id,this.xofer).subscribe(data=>{
+      this.petiService.getXofers().subscribe(data=>{
+        this.xofers=data.xofers;
+        console.log(this.xofers);
+        
+        
+      },err=>{
+        console.log(err);
+        
+      })
+    },err=>{
+      console.log(err);
+    })
+  }
+  formCotxe(){
+    $(".contenido").hide();
+    $(".formCotxe").show()
+    console.log(this.admin);
+    
   }
   getCotxes(){
     $(".contenido").hide();
@@ -113,6 +191,45 @@ export class PanelAdminComponent implements OnInit {
     },err=>{
       console.log(err);
       
+    })
+  }
+  editarCotxe(id:string){
+    $(".contenido").hide();
+    $(".editarCotxe").show();
+    this.petiService.getCotxe(id).subscribe(data=>{
+      this.cotxe=data.cotxe;
+    },err=>{
+      console.log(err);
+      
+    })
+  }
+  cotxeUpdate(id:string){
+    $(".contenido").hide();
+    $(".totsCotxes").show();
+    
+    this.petiService.updateCotxe(id,this.cotxe).subscribe(data=>{
+      this.petiService.getCotxes().subscribe(data=>{
+        this.cotxes=data.cotxes; 
+      },err=>{
+        console.log(err);
+      })
+    },err=>{
+      console.log(err);
+    })
+  }
+  eliminarCotxe(id:string){
+    $(".contenido").hide();
+    $(".totsCotxes").show();
+    console.log(id);
+    
+    this.petiService.deleteCotxe(id).subscribe(data=>{
+      this.petiService.getCotxes().subscribe(data2=>{
+        this.cotxes=data2.cotxes;
+      },err=>{
+        console.log(err);       
+      })
+    },err=>{
+      console.log(err);
     })
   }
   getClients(){
@@ -126,6 +243,56 @@ export class PanelAdminComponent implements OnInit {
       console.log(err);
     });
   }
+  detallClient(id:string){
+    $(".contenido").hide();
+    $(".detallClient").show();
+    this.petiService.getClient(id).subscribe(data=>{
+      this.client=data.client;
+    },err=>{
+      console.log(err);
+      
+    })
+  }
+  formClient(){
+    $(".contenido").hide();
+    $(".formClient").show();
+  }
+  editarClient(id:string){
+    $(".contenido").hide();
+    $(".editarClient").show();
+    this.petiService.getClient(id).subscribe(data=>{
+      this.client=data.client;
+    },err=>{
+      console.log(err);
+    })
+  }
+  clientUpdate(id:string){
+    $(".contenido").hide();
+    $(".totsClients").show();
+    this.petiService.updateClient(id,this.client).subscribe(data=>{
+      this.petiService.getClients().subscribe(data=>{
+        this.clients=data.clients;
+      },err=>{
+        console.log(err);
+      })
+    },err=>{
+      console.log(err);
+    })
+  }
+  eliminarClient(id:string){
+    $(".contenido").hide();
+    $(".totsClients").show();
+    
+    this.petiService.deleteClient(id).subscribe(data=>{
+      this.petiService.getClients().subscribe(data2=>{
+        this.clients=data2.clients;
+      },err=>{
+        console.log(err);       
+      })
+    },err=>{
+      console.log(err);
+    })
+  }
   getViatges(){
     $(".contenido").hide();
     $(".totsViatges").show();
@@ -137,6 +304,46 @@ export class PanelAdminComponent implements OnInit {
     console.log(err);
     
     });
+  }
+  formViatge(){
+    $(".contenido").hide();
+    $(".formViatge").show();
+    this.petiService.getClients().subscribe(data=>{
+      this.clients=data.clients;
+
+    },err=>{
+      console.log(err);
+      
+    });
+  }
+  detallViatge(id:string){
+    $(".contenido").hide();
+    $(".detallViatge").show();
+    this.petiService.getViatge(id).subscribe(data=>{
+      console.log(data);
+      this.viatge=data.viatge;
+    },err=>{
+      console.log(err);
+      
+    })
+  }
+  eliminarViatge(id:string){
+    $(".contenido").hide();
+    $(".totsViatges").show();
+    this.petiService.deleteViatge(id).subscribe(data=>{
+      console.log(data);
+      this.petiService.getViatges().subscribe(data2=>{
+        console.log(data2);
+        this.viatges=data2.viatges;
+        
+        },err=>{
+        console.log(err);
+        
+        });
+    },err=>{
+      console.log(err);
+      
+    })
   }
   getCotxe(id:string){
     $(".contenido").hide();
@@ -153,7 +360,6 @@ export class PanelAdminComponent implements OnInit {
     this.xofer.nom=this.xoferNom;
     this.xofer.cognoms=this.xoferCognoms;
     this.xofer.mail=this.xoferEmail;
-    this.xofer.contraseña=this.xoferPassword;
     this.xofer.telefon=this.xoferTelefon;
     this.xofer.dataCarnet=this.xoferDataCarnet;
     console.log(this.xofer);
@@ -161,7 +367,7 @@ export class PanelAdminComponent implements OnInit {
 
     this.petiService.guardarChofer(this.xofer).subscribe(data=>{
       console.log('Xofer registrat!!');
-      
+      $(".contenido").hide();
     },err=>{
       console.log(err.error.message);
       
@@ -179,11 +385,39 @@ export class PanelAdminComponent implements OnInit {
 
     this.petiService.guardarCotxe(this.cotxe).subscribe(data=>{
       console.log("Cotxe registrat");
-      
+      $(".contenido").hide();
     },err=>{
       console.log(err);
       
     })
     
+  }
+  clientRegistre(){
+    this.client.nom=this.clientNom;
+    this.client.cognoms=this.clientCognoms;
+    this.client.email=this.clientEmail;
+    this.client.contrasenya=this.clientContrasenya;
+    this.client.telefon=this.clientTelefon;
+    this.client.rol=this.clientRol;
+
+    this.authService.registre(this.client).subscribe(data=>{
+      console.log('Client registrat!!');
+      $(".contenido").hide();
+    })
+  }
+  viatgeRegistre(){
+    this.viatge.origen=this.viatgeOrigen;
+    this.viatge.desti=this.viatgeDesti;
+    this.viatge.hora=this.viatgeHora;
+    this.viatge.data=this.viatgeData;
+    this.viatge.places=this.viatgePlaces;
+    this.viatge.client=this.viatgeClient;
+    this.viatge.comentari=this.viatgeComentari;
+    this.viatge.confirmat="Pendent";
+
+    this.petiService.guardarViatge(this.viatge).subscribe(data=>{
+      console.log("Viatge registrat");
+      this.getViatges();
+    })
   }
 }

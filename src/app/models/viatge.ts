@@ -7,6 +7,7 @@ export class Viatge {
     public hora:string;
     public places:number;
     public preu:string;
+    public preuAprox:string;
     public tarifa:string;
     public cotxe:string;
     public xofer:string;
