@@ -25,6 +25,8 @@ export class ReservaComponent implements OnInit {
   public comentari:string;
   public crodes:boolean;
 
+  public aerror:string;
+
   constructor(
     private authService:AuthenticationService,
     private petiService:PeticionsService,
@@ -73,6 +75,7 @@ export class ReservaComponent implements OnInit {
       
       
     },error=>{
+      this.aerror = error.error.message;
       console.log(error);
       
     });
