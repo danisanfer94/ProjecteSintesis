@@ -87,7 +87,6 @@ var ClientController = {
 
         if (clientId == null) return res.status(500).send({ message: 'No has dit cap ID' })
         var update = req.body;
-        console.log(update);
 
         bcrypt.hash(update.contrasenya, 6, function(err, hash) {
             update.contrasenya = hash;
