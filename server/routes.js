@@ -38,6 +38,7 @@ router.post('/logxofer', xoferController.xoferLogged);
 //Viatge routes
 router.get('/viatges', viatgeController.getViatges);
 router.get('/viatge/:viatgeId', viatgeController.getViatge);
+router.get('/viatge2/:clientId', viatgeController.getViatgeClient);
 router.post('/saveviatge/:clientId', viatgeController.saveViatge);
 router.put('/viatge/:viatgeId', viatgeController.updateViatge);
 router.delete('/viatge/:viatgeId', viatgeController.deleteViatge);

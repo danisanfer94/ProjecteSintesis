@@ -3,17 +3,20 @@
         <div class="col"></div>
         <div class="col-md-5 mt-5">
             <h3>Detalls de la teva reserva</h3>
-            <p>Origen: {{viatge.origen}}</p>
-            <p>Desti: {{viatge.desti}}</p>
-            <p>Data: {{viatge.data}}</p>
-            <p>Hora: {{viatge.hora}}</p>
-            <p>Persones: {{viatge.places}}</p>
-            <p>Comentaris: {{viatge.comentari}}</p>
+            <p><strong>Origen:</strong> {{viatge.origen}}</p>
+            <p><strong>Desti:</strong> {{viatge.desti}}</p>
+            <p><strong>Data:</strong> {{viatge.data}}</p>
+            <p><strong>Hora:</strong> {{viatge.hora}}</p>
+            <p><strong>Persones:</strong> {{viatge.places}}</p>
+            <p><strong>Comentaris:</strong> {{viatge.comentari}}</p>
+            <div *ngIf="viatge.crodes">
+                <p><strong>Viatge amb cadira de rodes</strong></p>
+            </div>
             <p [ngClass]="{
                 'bg-success':viatge.confirmat == 'Confirmat',
                 'bg-warning':viatge.confirmat == 'Pendent',
                 'bg-danger':viatge.confirmat == 'Cancelat'
-            }">Confirmacio: {{viatge.confirmat}}</p>
+            }"><strong>Confirmacio:</strong> {{viatge.confirmat}}</p>
             <blockquote>
                 Hem processat la teva reserva, un dels nostres xofers confirmara el viatge i rebras un avis al teu correu electronic. Pots entrar a consultar el estat de la reserva amb aquest link.
             </blockquote>

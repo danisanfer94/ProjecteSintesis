@@ -27,14 +27,17 @@ export class PeticionsService {
         return this._http.post(this.url+'saveviatge/'+viatge.client,viatge);
     }
     getViatge(id:string):Observable<any>{
-        return this._http.get(this.url+'/viatge/'+id);
+        return this._http.get(this.url+'viatge/'+id);
+    }
+    getViatgeClient(id:string):Observable<any>{
+        return this._http.get(this.url+'viatge2/'+id);
     }
     getViatges():Observable<any>{
-        return this._http.get(this.url+'/viatges');
+        return this._http.get(this.url+'viatges');
     }
 
     guardarChofer(xofer: any) : Observable<any>{
-        return this._http.post(this.url+'/savexofer',xofer);
+        return this._http.post(this.url+'savexofer',xofer);
     }
     getXofers():Observable<any>{
         return this._http.get(this.url+"xofers");

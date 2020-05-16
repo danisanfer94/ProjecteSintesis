@@ -27,11 +27,11 @@
             </div>
             <div *ngIf="!client" class="navbar-nav ml-auto">
                 <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Login</a>
-                <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Registre</a>
+                <!-- <a routerLink="/auth/nav" routerLinkActive="active" class="nav-item nav-link text-center">Registre</a> -->
             </div>
-            <div *ngIf="client" class="navbar-nav ml-auto dropdown ddown">
+            <div *ngIf="client" class="navbar-nav ml-auto ddown">
                 <a class="nav-item nav-link text-center" routerLink="/perfil-client">{{client.nom}} {{client.cognoms}}</a>
-                <a class="nav-item nav-link text-center" routerLink="#">Viatges</a>
+                <a class="nav-item nav-link text-center" routerLink="/viatges-client">Viatges</a>
                 <a href="" (click)="logout()" class="nav-item nav-link text-center">Logout</a>
             </div>
         </div>
@@ -63,4 +63,3 @@
         </div>
     </footer>
 </div>
-
