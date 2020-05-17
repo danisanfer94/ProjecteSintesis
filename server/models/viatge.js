@@ -9,6 +9,7 @@ var ViatgeSchema = mongoose.Schema({
     places:Number,
     comentari:String,
     confirmat:String,
+    crodes:Boolean,
     cotxe:{ type: Schema.Types.ObjectId, ref: 'Cotxe'},
     xofer:{ type: Schema.Types.ObjectId, ref: 'Xofer'},
     client:{ type: Schema.Types.ObjectId, ref: 'Client'},

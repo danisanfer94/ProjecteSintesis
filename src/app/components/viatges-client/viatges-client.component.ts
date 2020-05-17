@@ -56,5 +56,8 @@ export class ViatgesClientComponent implements OnInit {
     }
 
   }
+  detallsViatge(id:string){
+    this.router.navigate(['/reserva-details/'+id]);
+  }
   
 }

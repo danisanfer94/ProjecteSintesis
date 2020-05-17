@@ -100,6 +100,9 @@ export class PanelAdminComponent implements OnInit {
   public preuAprox:string;
   public viatgeTarifa:string;
 
+  public viatgeXofer:any;
+  public viatgeCotxe:any;
+
 
 
 
@@ -324,6 +327,9 @@ export class PanelAdminComponent implements OnInit {
   detallViatge(id:string){
     this.petiService.getViatge(id).subscribe(data=>{
       this.viatge=data.viatge;
+      this.viatgeClient=this.viatge.client;
+      this.viatgeXofer=this.viatge.xofer;
+      this.viatgeCotxe=this.viatge.cotxe;
       this.getCotxes();
       this.getXofers();
       $(".contenido").hide();

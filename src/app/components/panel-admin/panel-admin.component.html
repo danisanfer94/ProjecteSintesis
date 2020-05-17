@@ -349,6 +349,7 @@
               <th scope="col">Data</th>
               <th scope="col">Hora</th>
               <th scope="col">Places</th>
+              <th scope="col">Cadira de Rodes</th>
               <th scope="col">Client</th>
               <th scope="col">Cotxe</th>
               <th scope="col">Xofer</th>
@@ -366,6 +367,7 @@
               <td>{{viatge.data}}</td>
               <td>{{viatge.hora}}</td>
               <td>{{viatge.places}}</td>
+              <td>{{viatge.crodes}}</td>
               <td>{{viatge.client.nom}} {{viatge.client.cognoms}}</td>
               <td *ngIf="viatge.cotxe;else celabuida">{{viatge.cotxe.model}} {{viatge.cotxe.matricula}}</td>
               <ng-template #celabuida><td></td> </ng-template>
@@ -387,6 +389,7 @@
           <p>Desti: {{viatge.desti}}</p>
           <p>Data: {{viatge.data}} Hora: {{viatge.hora}}</p>
           <p>Places: {{viatge.places}}</p>
+          <p *ngIf="viatge.crodes">Viatge amb cadira de rodes</p>
           <p>Comentartis: {{viatge.comentari}}</p>
           <p *ngIf="viatge.preuAprox">Preu aproximat : {{viatge.preuAprox}} €</p>
           <p *ngIf="viatge.tarifa">Tarifa: {{viatge.tarifa}}</p>
@@ -398,21 +401,21 @@
         
           <div *ngIf="viatge.client">
             <h4>Dades client</h4>
-            <p>Nom: {{viatge.client.nom}} {{viatge.client.cognoms}}</p>
-            <p>Email: {{viatge.client.email}}</p>
-            <p>Telefon: {{viatge.client.telefon}}</p>
+            <p>Nom: {{viatgeClient.nom}} {{viatgeClient.cognoms}}</p>
+            <p>Email: {{viatgeClient.email}}</p>
+            <p>Telefon: {{viatgeClient.telefon}}</p>
           </div>
           <div *ngIf="viatge.xofer">
             <h4>Dades Xofer</h4>
-            <p>Nom: {{viatge.xofer.nom}}</p>
-            <p>Email: {{viatge.xofer.mail}}</p>
-            <p>Telefon: {{viatge.xofer.telefon}}</p>
+            <p>Nom: {{viatgeXofer.nom}}</p>
+            <p>Email: {{viatgeXofer.mail}}</p>
+            <p>Telefon: {{viatgeXofer.telefon}}</p>
           </div>
           <div *ngIf="viatge.cotxe">
             <h4>Dades Cotxe</h4>
-            <p>{{viatge.cotxe.model}} {{viatge.cotxe.marca}}</p>
-            <p>{{viatge.cotxe.matricula}}</p>
-            <p>Places disponibles: {{viatge.cotxe.places}}</p>
+            <p>{{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
+            <p>{{viatgeCotxe.matricula}}</p>
+            <p>Places disponibles: {{viatgeCotxe.places}}</p>
           </div>
 
           <div *ngIf="viatge.confirmat=='Pendent'">
@@ -436,9 +439,9 @@
              </div>
              <div class="form-group">
                <select name="tarifa" id="tarifa" [(ngModel)]="viatgeTarifa">
-                 <option [(ngValue)]="D">Diürn</option>
-                 <option [(ngValue)]="F">Festiu/Nocturn</option>
-                 <option [(ngValue)]="U">Urbà</option>
+                 <option value="D">Diürn</option>
+                 <option value="F">Festiu/Nocturn</option>
+                 <option value="U">Urbà</option>
                </select>
              </div>
    

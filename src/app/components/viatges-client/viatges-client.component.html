@@ -22,7 +22,7 @@
                     'text-danger':viatge.confirmat == 'Cancelat'
                 }">{{viatge.confirmat}}</td>
 
-                <td><button>Detalls</button></td>
+                <td><button (click)="detallsViatge(viatge._id)">Detalls</button></td>
             </tr>
         </tbody>
     </table>
