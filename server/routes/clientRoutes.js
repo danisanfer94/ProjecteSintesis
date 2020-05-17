@@ -4,7 +4,8 @@ var viatgeController = require('../controller/viatgeController');
 
 var router = express.Router();
 
-router.get('/viatges', viatgeController.getViatges); //el seu
+// router.get('/viatges', viatgeController.getViatges); //el seu
+router.get('/viatge2/:clientId', viatgeController.getViatgeClient);
 router.get('/viatge/:viatgeId', viatgeController.getViatge); //el seu
 router.post('/saveviatge/:clientId', viatgeController.saveViatge);
 

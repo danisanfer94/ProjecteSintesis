@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <label for="desti">Cognoms</label>
                     <input type="text" class="form-control inp" #surname="ngModel" [(ngModel)]="client.cognoms" required id="desti" name="cognoms" pattern="[a-zA-Z ]">
-                    <span *ngIf="surname.touched && !nasurnameme.valid">
+                    <span *ngIf="surname.touched && !surname.valid">
                         El cognom és obligatori
                     </span>
                 </div>

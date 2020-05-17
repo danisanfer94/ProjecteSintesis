@@ -8,6 +8,8 @@
             <p><strong>Data:</strong> {{viatge.data}}</p>
             <p><strong>Hora:</strong> {{viatge.hora}}</p>
             <p><strong>Persones:</strong> {{viatge.places}}</p>
+            <p *ngIf="viatge.preuAprox"><strong>Preu Aproximat:</strong> {{viatge.preuAprox}}</p>
+            <p *ngIf="viatge.tarifa"><strong>Tarifa:</strong>{{viatge.tarifa}}</p>
             <p><strong>Comentaris:</strong> {{viatge.comentari}}</p>
             <div *ngIf="viatge.crodes">
                 <p><strong>Viatge amb cadira de rodes</strong></p>
@@ -17,9 +19,26 @@
                 'bg-warning':viatge.confirmat == 'Pendent',
                 'bg-danger':viatge.confirmat == 'Cancelat'
             }"><strong>Confirmacio:</strong> {{viatge.confirmat}}</p>
-            <blockquote>
-                Hem processat la teva reserva, un dels nostres xofers confirmara el viatge i rebras un avis al teu correu electronic. Pots entrar a consultar el estat de la reserva amb aquest link.
+            <blockquote *ngIf="viatge.confirmat=='Pendent'">
+                Hem processat la teva reserva, un dels nostres xofers confirmara el viatge i rebras un avis al teu correu electronic.
             </blockquote>
+
+            <div *ngIf="viatge.xofer">
+                <h4>Dades del  Xofer</h4>
+                <p>Aquest es el xofer asignat al teu viatge , per qualsevol dubte posat en contacte amb ell sense cap compromís.</p>
+                <p>Nom: {{viatgeXofer.nom}}</p>
+                <p>Email: {{viatgeXofer.mail}}</p>
+                <p>Telefon: {{viatgeXofer.telefon}}</p>
+            </div>
+            <div *ngIf="viatge.cotxe">
+                <h4>Dades del Taxi</h4>
+                <p>Aquestes són les dades del teu taxi </p>
+                <p>{{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
+                <p>{{viatgeCotxe.matricula}}</p>
+                <p>Places disponibles: {{viatgeCotxe.places}}</p>
+            </div>
+
+            <p>Pots entrar a consultar el estat de la reserva amb aquest link.</p>
             <a href="">{{link}}</a>
 
         </div>

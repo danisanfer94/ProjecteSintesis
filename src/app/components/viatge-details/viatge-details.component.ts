@@ -17,6 +17,9 @@ export class ViatgeDetailsComponent implements OnInit {
   public id:string;
   public link:string;
 
+  public viatgeCotxe:any;
+  public viatgeXofer:any;
+
   constructor(
     private authService:AuthenticationService,
     private petiService:PeticionsService,
@@ -48,6 +51,8 @@ export class ViatgeDetailsComponent implements OnInit {
             this.petiService.getViatge(this.id).subscribe(data=>{          
               if (data.viatge.client._id==this.client._id) {  
                 this.viatge=data.viatge;
+                this.viatgeCotxe=this.viatge.cotxe;
+                this.viatgeXofer=this.viatge.xofer;
                 console.log(this.viatge.crodes);
                 
                 this.link = "localhost:4200/viatges-client";
