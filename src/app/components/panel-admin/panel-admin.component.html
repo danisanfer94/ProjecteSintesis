@@ -1,35 +1,35 @@
 <div class="container-fluid">
     <div class="row mt-5">
         <div class="col">
-                <button class="btn btn-secondary" (click)="getXofers()">Xofers</button>
+            <button class="btn btn-secondary" (click)="getXofers()">Xofers</button>
         </div>
         <div class="col">
-              <button class="btn btn-secondary" (click)="getViatges()">Viatges</button>
+            <button class="btn btn-secondary" (click)="getViatges()">Viatges</button>
         </div>
         <div class="col">
-              <button class="btn btn-secondary" (click)="getCotxes()">Cotxes</button>
+            <button class="btn btn-secondary" (click)="getCotxes()">Cotxes</button>
         </div>
         <div class="col">
-              <button class="btn btn-secondary" (click)="getClients()">Clients</button>
+            <button class="btn btn-secondary" (click)="getClients()">Clients</button>
         </div>
-        
+
     </div>
     <div class="row mt-5 justify-content-center">
-      <div class="formChofer contenido">
-          <form class="custom-form" method="post">
-              <h4>Afegir Xofer</h4>
-              <div class="form-group">
-                <input type="text" name="nom"  [(ngModel)]="xoferNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
-              </div>
+        <div class="formChofer contenido">
+            <form class="custom-form" method="post">
+                <h4>Afegir Xofer</h4>
+                <div class="form-group">
+                    <input type="text" name="nom" [(ngModel)]="xoferNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="cognoms" [(ngModel)]="xoferCognoms" placeholder="Cognoms" required pattern="[a-zA-Z ]+" />
+                </div>
 
                 <div class="form-group">
                     <input type="email" [(ngModel)]="xoferEmail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                 </div>
 
-              <div class="form-group">
-                <input type="email"  [(ngModel)]="xoferEmail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
-              </div>
-              
 
                 <div class="form-group">
                     <input type="text" [(ngModel)]="xoferTelefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
@@ -46,480 +46,482 @@
             </form>
         </div>
 
-      <div class="totsXofers contenido table-responsive-lg">
-        <div *ngIf="admin">
-          <button class="btn btn-secondary mr-3" (click)="formChofer()">Afegir xofer</button>
+        <div class="totsXofers contenido table-responsive-lg">
+            <div *ngIf="admin">
+                <button class="btn btn-secondary mr-3" (click)="formChofer()">Afegir xofer</button>
+            </div>
+            <table class="table m-3">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Cognoms</th>
+                        <th scope="col">DataCaducitatCarnet</th>
+                        <th scope="col">Telefon</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Opcions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let xofer of xofers">
+                        <th scope="row">{{xofer._id}}</th>
+                        <td>{{xofer.nom}}</td>
+                        <td>{{xofer.cognoms}}</td>
+                        <td>{{xofer.dataCarnet}}</td>
+                        <td>{{xofer.telefon}}</td>
+                        <td>{{xofer.mail}}</td>
+                        <td class="d-flex flex-column">
+                            <button class="btn btn-success mt-1" (click)="detallXofer(xofer._id)">Veure</button>
+                            <button *ngIf="xoferlog.mail == xofer.mail || admin" class="btn btn-warning mt-1" (click)="editarXofer(xofer._id)">Editar</button>
+                            <button *ngIf="admin" class="btn btn-danger mt-1" (click)="eliminarXofer(xofer._id)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <table class="table m-3">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Cognoms</th>
-              <th scope="col">DataCaducitatCarnet</th>
-              <th scope="col">Telefon</th>
-              <th scope="col">Mail</th>
-              <th scope="col">Opcions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let xofer of xofers">
-              <th scope="row">{{xofer._id}}</th>
-              <td>{{xofer.nom}}</td>
-              <td>{{xofer.cognoms}}</td>
-              <td>{{xofer.dataCarnet}}</td>
-              <td>{{xofer.telefon}}</td>
-              <td>{{xofer.mail}}</td>
-              <td class="d-flex flex-column">
-                <button class="btn btn-success mt-1" (click)="detallXofer(xofer._id)" >Veure</button>
-                <button *ngIf="xoferlog.mail == xofer.mail || admin" class="btn btn-warning mt-1" (click)="editarXofer(xofer._id)">Editar</button>
-                <button *ngIf="admin" class="btn btn-danger mt-1" (click)="eliminarXofer(xofer._id)">Eliminar</button>
-              </td>
-            </tr>
-          </tbody>
-          </table>
-      </div>
 
-      <div class="detallXofer contenido">
-        <div class="row">
-          <div class="col">
-              <h3>Detalls del xofer</h3>
-              <p>Nom: {{xofer.nom}}</p>
-              <p>Cognoms: {{xofer.cognoms}}</p>
-              <p>Data Caducitat del Carnet: {{xofer.dataCarnet}}</p>
-              <p>Telefon: {{xofer.telefon}}</p>
-              <p>Email:  {{xofer.mail}}</p>
-          </div>
-  
-      </div>
-      </div>
+        <div class="detallXofer contenido">
+            <div class="row">
+                <div class="col">
+                    <h3>Detalls del xofer</h3>
+                    <p>Nom: {{xofer.nom}}</p>
+                    <p>Cognoms: {{xofer.cognoms}}</p>
+                    <p>Data Caducitat del Carnet: {{xofer.dataCarnet}}</p>
+                    <p>Telefon: {{xofer.telefon}}</p>
+                    <p>Email: {{xofer.mail}}</p>
+                </div>
 
-      <div class="editarXofer contenido">
-        <form class="custom-form" method="post">
-          <h4>Editar Xofer</h4>
-          <div class="form-group">
-            <input type="text" name="nom"  [(ngModel)]="xofer.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
-          </div>
-
-          <div class="form-group">
-            <input type="text"  [(ngModel)]="xofer.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
-          </div>
-
-          <div class="form-group">
-            <input type="email"  [(ngModel)]="xofer.mail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
-          </div>
-          
-
-          <div class="form-group">
-            <input type="text"  [(ngModel)]="xofer.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
-          </div>
-
-          <div class="form-group">
-            <label for="dataCatner">Caducitat del carnet</label><br>
-            <input type="date" [(ngModel)]="xofer.dataCarnet" name="dataCarnet" >
-          </div>
-
-          <div class="form-group">
-            <button type="submit" class="btn btn-success" (click)="xoferUpdate(xofer._id)">Editar</button>
-          </div>
-      </form>
-      </div>
-
-      <div class="formCotxe contenido">
-          <form class="" method="post">
-            <h4>Afegir Cotxe</h4>
-            
-            <div class="form-group">
-              <input  type="text" name="matricula"  [(ngModel)]="cotxeMatricula" placeholder="Matricula" required  />
             </div>
-
-            <div class="form-group">
-                <input type="text" name="matricula" [(ngModel)]="cotxeMatricula" placeholder="Matricula" required />
-            </div>
-
-            <div class="form-group">
-                <input type="text" [(ngModel)]="cotxeMarca" name="marca" placeholder="Marca" required />
-            </div>
-
-            <div class="form-group">
-                <input type="text" [(ngModel)]="cotxeModel" name="model" placeholder="Model" required />
-            </div>
-
-            <div class="form-group">
-                <input type="number" [(ngModel)]="cotxePlaces" name="places" placeholder="Places" required />
-            </div>
-
-            <div class="form-group">
-                <label for="dataITV">Caducitat ITV</label><br>
-                <input type="date" [(ngModel)]="cotxeDataITV" name="dataITV" placeholder="Caducitat ITV" required />
-            </div>
-
-            <div class="form-group">
-                <label for="dataSeguro">Caducitat Seguro</label><br>
-                <input type="date" [(ngModel)]="cotxedataSeguro" name="dataSeguro" placeholder="Caducitat Seguro" required>
-            </div>
-          </form>
         </div>
-      <div class="totsCotxes contenido table-responsive-lg">
-        <button class="btn btn-secondary mr-3" (click)="formCotxe()">Afegir cotxe</button>
-        <table class="table m-3">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Matricula</th>
-              <th scope="col">Marca</th>
-              <th scope="col">Model</th>
-              <th scope="col">Places</th>
-              <th scope="col">Data ITV</th>
-              <th scope="col">Data Seguro</th>
-              <th scope="col">Opcions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let cotxe of cotxes">
-              <th scope="row">{{cotxe._id}}</th>
-              <td>{{cotxe.matricula}}</td>
-              <td>{{cotxe.marca}}</td>
-              <td>{{cotxe.model}}</td>
-              <td>{{cotxe.places}}</td>
-              <td>{{cotxe.dataITV}}</td>
-              <td>{{cotxe.dataSeguro}}</td>
-              <td class="d-flex flex-column">
-                <button class="btn btn-success mt-1" (click)="getCotxe(cotxe._id)" >Veure</button>
-                <button class="btn btn-warning mt-1" (click)="editarCotxe(cotxe._id)">Editar</button>
-                <button class="btn btn-danger mt-1" (click)="eliminarCotxe(cotxe._id)">Eliminar</button>
-              </td>
-            </tr>
-          </tbody>
-          </table>
-      </div>
 
-      <div class="detallCotxe contenido">
-        <h3>Detalls del Cotxe</h3>
-        <p>Matricula: {{cotxe.matricula}}</p>
-        <p>Marca: {{cotxe.marca}}</p>
-        <p>Model: {{cotxe.model}}</p>
-        <p>Places: {{cotxe.places}}</p>
-        <p>Data caducitat ITV: {{cotxe.dataITV}}</p>
-        <p>Data renovacio seguro: {{cotxe.dataSeguro}}</p>
-      </div>
+        <div class="editarXofer contenido">
+            <form class="custom-form" method="post">
+                <h4>Editar Xofer</h4>
+                <div class="form-group">
+                    <input type="text" name="nom" [(ngModel)]="xofer.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
+                </div>
 
-      <div class="editarCotxe contenido">
-        <form class="" method="post">
-          <h4>Editar Cotxe</h4>
-          
-          <div class="form-group">
-            <input  type="text" name="matricula"  [(ngModel)]="cotxe.matricula" placeholder="Matricula" required  />
-          </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="xofer.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
+                </div>
 
-          <div class="form-group">
-            <input type="text"  [(ngModel)]="cotxe.marca" name="marca" placeholder="Marca" required />
-          </div>
+                <div class="form-group">
+                    <input type="email" [(ngModel)]="xofer.mail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                </div>
 
-          <div class="form-group">
-            <input type="text"  [(ngModel)]="cotxe.model" name="model" placeholder="Model" required />
-          </div>
 
-          <div class="form-group">
-            <input type="number"  [(ngModel)]="cotxe.places" name="places" placeholder="Places" required />
-          </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="xofer.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
+                </div>
 
-          <div class="form-group">
-            <label for="dataITV">Caducitat ITV</label><br>
-            <input type="date"  [(ngModel)]="cotxe.dataITV" name="dataITV" placeholder="Caducitat ITV" required />
-          </div>
+                <div class="form-group">
+                    <label for="dataCatner">Caducitat del carnet</label><br>
+                    <input type="date" [(ngModel)]="xofer.dataCarnet" name="dataCarnet">
+                </div>
 
-          <div class="form-group">
-            <label for="dataSeguro">Caducitat Seguro</label><br>
-            <input type="date" [(ngModel)]="cotxe.dataSeguro" name="dataSeguro" placeholder="Caducitat Seguro" required>
-          </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" (click)="xoferUpdate(xofer._id)">Editar</button>
+                </div>
+            </form>
+        </div>
 
-          <div class="form-group">
-            <button type="submit" class="btn btn-success" (click)="cotxeUpdate(cotxe._id)">Editar</button>
-          </div>
-        </form>
-      </div>
+        <div class="formCotxe contenido">
+            <form class="" method="post">
+                <h4>Afegir Cotxe</h4>
 
-      <div class="totsClients contenido table-responsive-lg">
-        <button class="btn btn-secondary mr-3" (click)="formClient()">Afegir client</button>
-        <table class="table m-3">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Cognom</th>
-              <th scope="col">Emaill</th>
-              <th scope="col">Telefon</th>
-              <th scope="col">Opcions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let client of clients">
-              <th scope="row">{{client._id}}</th>
-              <td>{{client.nom}}</td>
-              <td>{{client.cognoms}}</td>
-              <td>{{client.emaill}}</td>
-              <td>{{client.telefon}}</td>
-              <td class="d-flex flex-column">
-                <button class="btn btn-success mt-1" (click)="detallClient(client._id)">Veure</button>
-                <button class="btn btn-warning mt-1" *ngIf="admin" (click)="editarClient(client._id)">Editar</button>
-                <button class="btn btn-danger mt-1" *ngIf="admin" (click)="eliminarClient(client._id)">Eliminar</button>
-              </td>
-            </tr>
-          </tbody>
-          </table>
-      </div>
+                <div class="form-group">
+                    <input type="text" name="matricula" [(ngModel)]="cotxeMatricula" placeholder="Matricula" required />
+                </div>
 
-      <div class="formClient contenido">
-        <form class="" method="post" #formRegistre="ngForm">
-          <h2>Afegir Client</h2>
+                <div class="form-group">
+                    <input type="text" name="matricula" [(ngModel)]="cotxeMatricula" placeholder="Matricula" required />
+                </div>
 
-          <div class="form-group">
-          <input type="text" name="nom" #nomR="ngModel" [(ngModel)]="clientNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
-          </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="cotxeMarca" name="marca" placeholder="Marca" required />
+                </div>
 
-          <div class="form-group">
-          <input type="text" #cognomsR="ngModel" [(ngModel)]="clientCognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
-          </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="cotxeModel" name="model" placeholder="Model" required />
+                </div>
 
-          <div class="form-group">
-          <input type="email" #emailR="ngModel" [(ngModel)]="clientEmail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
-          </div>
+                <div class="form-group">
+                    <input type="number" [(ngModel)]="cotxePlaces" name="places" placeholder="Places" required />
+                </div>
 
-          <div class="form-group">
-          <input type="password"  [(ngModel)]="clientContrasenya" name="password" placeholder="Password" required="required" pattern=".{6,}" />
-          </div>
+                <div class="form-group">
+                    <label for="dataITV">Caducitat ITV</label><br>
+                    <input type="date" [(ngModel)]="cotxeDataITV" name="dataITV" placeholder="Caducitat ITV" required />
+                </div>
 
-          <div class="form-group">
-          <input type="text" #telefonR="ngModel" [(ngModel)]="clientTelefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
-          </div>
+                <div class="form-group">
+                    <label for="dataSeguro">Caducitat Seguro</label><br>
+                    <input type="date" [(ngModel)]="cotxedataSeguro" name="dataSeguro" placeholder="Caducitat Seguro" required>
+                </div>
+            </form>
+        </div>
+        <div class="totsCotxes contenido table-responsive-lg">
+            <button class="btn btn-secondary mr-3" (click)="formCotxe()">Afegir cotxe</button>
+            <table class="table m-3">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Matricula</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Places</th>
+                        <th scope="col">Data ITV</th>
+                        <th scope="col">Data Seguro</th>
+                        <th scope="col">Opcions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cotxe of cotxes">
+                        <th scope="row">{{cotxe._id}}</th>
+                        <td>{{cotxe.matricula}}</td>
+                        <td>{{cotxe.marca}}</td>
+                        <td>{{cotxe.model}}</td>
+                        <td>{{cotxe.places}}</td>
+                        <td>{{cotxe.dataITV}}</td>
+                        <td>{{cotxe.dataSeguro}}</td>
+                        <td class="d-flex flex-column">
+                            <button class="btn btn-success mt-1" (click)="getCotxe(cotxe._id)">Veure</button>
+                            <button class="btn btn-warning mt-1" (click)="editarCotxe(cotxe._id)">Editar</button>
+                            <button class="btn btn-danger mt-1" (click)="eliminarCotxe(cotxe._id)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-          <div class="form-group">
-          <input type="text" [(ngModel)]="clientRol" name="rol" placeholder="Rol->client/xofer" required="required" />
-          </div>
+        <div class="detallCotxe contenido">
+            <h3>Detalls del Cotxe</h3>
+            <p>Matricula: {{cotxe.matricula}}</p>
+            <p>Marca: {{cotxe.marca}}</p>
+            <p>Model: {{cotxe.model}}</p>
+            <p>Places: {{cotxe.places}}</p>
+            <p>Data caducitat ITV: {{cotxe.dataITV}}</p>
+            <p>Data renovacio seguro: {{cotxe.dataSeguro}}</p>
+        </div>
 
-        <button type="submit" class="butreg" (click)="clientRegistre()" [disabled]="!formRegistre.form.valid">Registrar Client</button>
-      </form>
-      </div>
+        <div class="editarCotxe contenido">
+            <form class="" method="post">
+                <h4>Editar Cotxe</h4>
 
-      <div class="detallClient contenido">
-        <h3>Detalls del Client</h3>
-        <p>Nom: {{client.nom}}</p>
-        <p>Cognoms: {{client.cognoms}}</p>
-        <p>Email: {{client.email}}</p>
-        <p>Telefon: {{client.telefon}}</p>
-      </div>
+                <div class="form-group">
+                    <input type="text" name="matricula" [(ngModel)]="cotxe.matricula" placeholder="Matricula" required />
+                </div>
 
-      <div class="editarClient contenido">
-        <form class="" method="post" #formRegistre="ngForm">
-          <h2>Editar Client</h2>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="cotxe.marca" name="marca" placeholder="Marca" required />
+                </div>
 
-          <div class="form-group">
-          <input type="text" name="nom" #nomR="ngModel" [(ngModel)]="client.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
-          </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="cotxe.model" name="model" placeholder="Model" required />
+                </div>
 
-          <div class="form-group">
-          <input type="text" #cognomsR="ngModel" [(ngModel)]="client.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
-          </div>
+                <div class="form-group">
+                    <input type="number" [(ngModel)]="cotxe.places" name="places" placeholder="Places" required />
+                </div>
 
-          <div class="form-group">
-          <input type="email" #emailR="ngModel" [(ngModel)]="client.email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
-          </div>
+                <div class="form-group">
+                    <label for="dataITV">Caducitat ITV</label><br>
+                    <input type="date" [(ngModel)]="cotxe.dataITV" name="dataITV" placeholder="Caducitat ITV" required />
+                </div>
 
-          <div class="form-group">
-          <input type="text" #telefonR="ngModel" [(ngModel)]="client.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
-          </div>
+                <div class="form-group">
+                    <label for="dataSeguro">Caducitat Seguro</label><br>
+                    <input type="date" [(ngModel)]="cotxe.dataSeguro" name="dataSeguro" placeholder="Caducitat Seguro" required>
+                </div>
 
-          <div class="form-group">
-          <input type="text" [(ngModel)]="client.rol" name="rol" placeholder="Rol->client/xofer" required="required" />
-          </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" (click)="cotxeUpdate(cotxe._id)">Editar</button>
+                </div>
+            </form>
+        </div>
 
-          <button type="submit" class="butreg" (click)="clientUpdate(client._id)">Editar Client</button>
-        </form>
-      </div>
+        <div class="totsClients contenido table-responsive-lg">
+            <button class="btn btn-secondary mr-3" (click)="formClient()">Afegir client</button>
+            <table class="table m-3">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Cognom</th>
+                        <th scope="col">Emaill</th>
+                        <th scope="col">Telefon</th>
+                        <th scope="col">Opcions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let client of clients">
+                        <th scope="row">{{client._id}}</th>
+                        <td>{{client.nom}}</td>
+                        <td>{{client.cognoms}}</td>
+                        <td>{{client.emaill}}</td>
+                        <td>{{client.telefon}}</td>
+                        <td class="d-flex flex-column">
+                            <button class="btn btn-success mt-1" (click)="detallClient(client._id)">Veure</button>
+                            <button class="btn btn-warning mt-1" *ngIf="admin" (click)="editarClient(client._id)">Editar</button>
+                            <button class="btn btn-danger mt-1" *ngIf="admin" (click)="eliminarClient(client._id)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-      <div class="totsViatges contenido table-responsive-lg">
+        <div class="formClient contenido">
+            <form class="" method="post" #formRegistre="ngForm">
+                <h2>Afegir Client</h2>
 
-        <button class="btn btn-secondary mr-3" (click)="formViatge()">Afegir viatge</button>
-        <table class="table m-3">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Origen</th>
-              <th scope="col">Desti</th>
-              <th scope="col">Data</th>
-              <th scope="col">Hora</th>
-              <th scope="col">Places</th>
-              <th scope="col">Cadira de Rodes</th>
-              <th scope="col">Client</th>
-              <th scope="col">Cotxe</th>
-              <th scope="col">Xofer</th>
-              <th scope="col">Opcions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let viatge of viatges" [ngClass]="{
+                <div class="form-group">
+                    <input type="text" name="nom" #nomR="ngModel" [(ngModel)]="clientNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" #cognomsR="ngModel" [(ngModel)]="clientCognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
+                </div>
+
+                <div class="form-group">
+                    <input type="email" #emailR="ngModel" [(ngModel)]="clientEmail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                </div>
+
+                <div class="form-group">
+                    <input type="password" [(ngModel)]="clientContrasenya" name="password" placeholder="Password" required="required" pattern=".{6,}" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" #telefonR="ngModel" [(ngModel)]="clientTelefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="clientRol" name="rol" placeholder="Rol->client/xofer" required="required" />
+                </div>
+
+                <button type="submit" class="butreg" (click)="clientRegistre()" [disabled]="!formRegistre.form.valid">Registrar Client</button>
+            </form>
+        </div>
+
+        <div class="detallClient contenido">
+            <h3>Detalls del Client</h3>
+            <p>Nom: {{client.nom}}</p>
+            <p>Cognoms: {{client.cognoms}}</p>
+            <p>Email: {{client.email}}</p>
+            <p>Telefon: {{client.telefon}}</p>
+        </div>
+
+        <div class="editarClient contenido">
+            <form class="" method="post" #formRegistre="ngForm">
+                <h2>Editar Client</h2>
+
+                <div class="form-group">
+                    <input type="text" name="nom" #nomR="ngModel" [(ngModel)]="client.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" #cognomsR="ngModel" [(ngModel)]="client.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
+                </div>
+
+                <div class="form-group">
+                    <input type="email" #emailR="ngModel" [(ngModel)]="client.email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" #telefonR="ngModel" [(ngModel)]="client.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="client.rol" name="rol" placeholder="Rol->client/xofer" required="required" />
+                </div>
+
+                <button type="submit" class="butreg" (click)="clientUpdate(client._id)">Editar Client</button>
+            </form>
+        </div>
+
+        <div class="totsViatges contenido table-responsive-lg">
+
+            <button class="btn btn-secondary mr-3" (click)="formViatge()">Afegir viatge</button>
+            <table class="table m-3">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Origen</th>
+                        <th scope="col">Desti</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Places</th>
+                        <th scope="col">Cadira de Rodes</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Cotxe</th>
+                        <th scope="col">Xofer</th>
+                        <th scope="col">Opcions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let viatge of viatges" [ngClass]="{
               'text-success':viatge.confirmat == 'Confirmat',
               'text-warning':viatge.confirmat == 'Pendent',
               'text-danger':viatge.confirmat == 'Cancelat'
           }">
-              <td>{{viatge.origen}}</td>
-              <td>{{viatge.desti}}</td>
-              <td>{{viatge.data}}</td>
-              <td>{{viatge.hora}}</td>
-              <td>{{viatge.places}}</td>
-              <td>{{viatge.crodes}}</td>
-              <td>{{viatge.client.nom}} {{viatge.client.cognoms}}</td>
-              <td *ngIf="viatge.cotxe;else celabuida">{{viatge.cotxe.model}} {{viatge.cotxe.matricula}}</td>
-              <ng-template #celabuida><td></td> </ng-template>
-              <td *ngIf="viatge.xofer;else celabuida">{{viatge.xofer.nom}} {{viatge.xofer.cognoms}}</td>
-              <td class="d-flex flex-column">
-                <button class="btn btn-success mt-1" (click)="detallViatge(viatge._id)">Veure</button>
-                <button class="btn btn-warning mt-1" (click)="editarViatge(viatge._id)">Editar</button>
-                <!-- <button class="btn btn-warning mt-1" (click)="viatgeConfirmar(viatge._id)" *ngIf="viatge.confirmat=='Pendent'">Confirmar</button> -->
-                <button class="btn btn-danger mt-1" (click)="eliminarViatge(viatge._id)" >Eliminar</button>
-              </td>
-            </tr>
-          </tbody>
-          </table>
-      </div>
+                        <td>{{viatge.origen}}</td>
+                        <td>{{viatge.desti}}</td>
+                        <td>{{viatge.data}}</td>
+                        <td>{{viatge.hora}}</td>
+                        <td>{{viatge.places}}</td>
+                        <td>{{viatge.crodes}}</td>
+                        <td>{{viatge.client.nom}} {{viatge.client.cognoms}}</td>
+                        <td *ngIf="viatge.cotxe;else celabuida">{{viatge.cotxe.model}} {{viatge.cotxe.matricula}}</td>
+                        <ng-template #celabuida>
+                            <td></td>
+                        </ng-template>
+                        <td *ngIf="viatge.xofer;else celabuida">{{viatge.xofer.nom}} {{viatge.xofer.cognoms}}</td>
+                        <td class="d-flex flex-column">
+                            <button class="btn btn-success mt-1" (click)="detallViatge(viatge._id)">Veure</button>
+                            <button class="btn btn-warning mt-1" (click)="editarViatge(viatge._id)">Editar</button>
+                            <!-- <button class="btn btn-warning mt-1" (click)="viatgeConfirmar(viatge._id)" *ngIf="viatge.confirmat=='Pendent'">Confirmar</button> -->
+                            <button class="btn btn-danger mt-1" (click)="eliminarViatge(viatge._id)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-      <div class="detallViatge contenido">
-          <h3>Detall del Viatge</h3>
-          <p>Origen: {{viatge.origen}}</p>
-          <p>Desti: {{viatge.desti}}</p>
-          <p>Data: {{viatge.data}} Hora: {{viatge.hora}}</p>
-          <p>Places: {{viatge.places}}</p>
-          <p *ngIf="viatge.crodes">Viatge amb cadira de rodes</p>
-          <p>Comentartis: {{viatge.comentari}}</p>
-          <p *ngIf="viatge.preuAprox">Preu aproximat : {{viatge.preuAprox}} €</p>
-          <p *ngIf="viatge.tarifa">Tarifa: {{viatge.tarifa}}</p>
-          <p [ngClass]="{
+        <div class="detallViatge contenido">
+            <h3>Detall del Viatge</h3>
+            <p>Origen: {{viatge.origen}}</p>
+            <p>Desti: {{viatge.desti}}</p>
+            <p>Data: {{viatge.data}} Hora: {{viatge.hora}}</p>
+            <p>Places: {{viatge.places}}</p>
+            <p *ngIf="viatge.crodes">Viatge amb cadira de rodes</p>
+            <p>Comentartis: {{viatge.comentari}}</p>
+            <p *ngIf="viatge.preuAprox">Preu aproximat : {{viatge.preuAprox}} €</p>
+            <p *ngIf="viatge.tarifa">Tarifa: {{viatge.tarifa}}</p>
+            <p [ngClass]="{
             'bg-success':viatge.confirmat == 'Confirmat',
             'bg-warning':viatge.confirmat == 'Pendent',
             'bg-danger':viatge.confirmat == 'Cancelat'
         }">Confirmacio: {{viatge.confirmat}}</p>
-        
-          <div *ngIf="viatge.client">
-            <h4>Dades client</h4>
-            <p>Nom: {{viatgeClient.nom}} {{viatgeClient.cognoms}}</p>
-            <p>Email: {{viatgeClient.email}}</p>
-            <p>Telefon: {{viatgeClient.telefon}}</p>
-          </div>
-          <div *ngIf="viatge.xofer">
-            <h4>Dades Xofer</h4>
-            <p>Nom: {{viatgeXofer.nom}}</p>
-            <p>Email: {{viatgeXofer.mail}}</p>
-            <p>Telefon: {{viatgeXofer.telefon}}</p>
-          </div>
-          <div *ngIf="viatge.cotxe">
-            <h4>Dades Cotxe</h4>
-            <p>{{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
-            <p>{{viatgeCotxe.matricula}}</p>
-            <p>Places disponibles: {{viatgeCotxe.places}}</p>
-          </div>
 
-          <div *ngIf="viatge.confirmat=='Pendent'">
-            <hr>
-            <form method="post" class="mt-3">
-             <div class="form-group">
-               <label for="cotxe">Cotxe</label>
-               <select name="cotxe" id="cotxe" [(ngModel)]="cotxeId">
+            <div *ngIf="viatge.client">
+                <h4>Dades client</h4>
+                <p>Nom: {{viatgeClient.nom}} {{viatgeClient.cognoms}}</p>
+                <p>Email: {{viatgeClient.email}}</p>
+                <p>Telefon: {{viatgeClient.telefon}}</p>
+            </div>
+            <div *ngIf="viatge.xofer">
+                <h4>Dades Xofer</h4>
+                <p>Nom: {{viatgeXofer.nom}}</p>
+                <p>Email: {{viatgeXofer.mail}}</p>
+                <p>Telefon: {{viatgeXofer.telefon}}</p>
+            </div>
+            <div *ngIf="viatge.cotxe">
+                <h4>Dades Cotxe</h4>
+                <p>{{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
+                <p>{{viatgeCotxe.matricula}}</p>
+                <p>Places disponibles: {{viatgeCotxe.places}}</p>
+            </div>
+
+            <div *ngIf="viatge.confirmat=='Pendent'">
+                <hr>
+                <form method="post" class="mt-3">
+                    <div class="form-group">
+                        <label for="cotxe">Cotxe</label>
+                        <select name="cotxe" id="cotxe" [(ngModel)]="cotxeId">
                  <option *ngFor="let cotxe of cotxes" [ngValue]="cotxe._id">{{cotxe.model}} {{cotxe.matricula}}</option>
                </select>
-             </div>
-             <div class="form-group">
-               <label for="xofer">Xofer</label>
-               <select name="xofer" id="xofer" [(ngModel)]="xoferId">
+                    </div>
+                    <div class="form-group">
+                        <label for="xofer">Xofer</label>
+                        <select name="xofer" id="xofer" [(ngModel)]="xoferId">
                  <option *ngFor="let xofer of xofers" [ngValue]="xofer._id">{{xofer.nom}} {{xofer.cognoms}}</option>
                </select>
-             </div>
-             <div class="form-group">
-               <label for="preuAprox">Preu Aproximat</label>
-               <input type="number" name="preuAprox" [(ngModel)]="preuAprox" required>
-             </div>
-             <div class="form-group">
-               <select name="tarifa" id="tarifa" [(ngModel)]="viatgeTarifa">
+                    </div>
+                    <div class="form-group">
+                        <label for="preuAprox">Preu Aproximat</label>
+                        <input type="number" name="preuAprox" [(ngModel)]="preuAprox" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="tarifa" id="tarifa" [(ngModel)]="viatgeTarifa">
                  <option value="D">Diürn</option>
                  <option value="F">Festiu/Nocturn</option>
                  <option value="U">Urbà</option>
                </select>
-             </div>
-   
-             <button type="submit" class="butreg" (click)="confirmarViatge(viatge._id)">Confirmar</button>
-            </form>
-          </div>
-      </div>
+                    </div>
 
-      <div class="formViatge contenido">
-        <form class="" method="post" #formRegistre="ngForm">
-          <h2>Afegir Viatge</h2>
+                    <button type="submit" class="butreg" (click)="confirmarViatge(viatge._id)">Confirmar</button>
+                </form>
+            </div>
+        </div>
 
-          <div class="form-group">
-          <input type="text" name="origen" [(ngModel)]="viatgeOrigen" placeholder="Origen" required/>
-          </div>
+        <div class="formViatge contenido">
+            <form class="" method="post" #formRegistre="ngForm">
+                <h2>Afegir Viatge</h2>
 
-          <div class="form-group">
-          <input type="text"  [(ngModel)]="viatgeDesti" name="desti" placeholder="Desti" required />
-          </div>
+                <div class="form-group">
+                    <input type="text" name="origen" [(ngModel)]="viatgeOrigen" placeholder="Origen" required/>
+                </div>
 
-          <div class="form-group">
-          <input type="number"  [(ngModel)]="viatgePlaces" name="places" placeholder="Persones" required />
-          </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="viatgeDesti" name="desti" placeholder="Desti" required />
+                </div>
 
-          <div class="form-group">
-          <input type="date"  [(ngModel)]="viatgeData" name="data"  required />
-          </div>
+                <div class="form-group">
+                    <input type="number" [(ngModel)]="viatgePlaces" name="places" placeholder="Persones" required />
+                </div>
 
-          <div class="form-group">
-          <input type="time" [(ngModel)]="viatgeHora" name="hora"  required />
-          </div>
+                <div class="form-group">
+                    <input type="date" [(ngModel)]="viatgeData" name="data" required />
+                </div>
 
-          <div class="form-group">
-          <input type="text" [(ngModel)]="viatgeComentari" name="comentari" placeholder="Comentaris"  />
-          </div>
+                <div class="form-group">
+                    <input type="time" [(ngModel)]="viatgeHora" name="hora" required />
+                </div>
 
-          <div class="form-group">
-            <select name="client" id="client" [(ngModel)]="viatgeClient">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="viatgeComentari" name="comentari" placeholder="Comentaris" />
+                </div>
+
+                <div class="form-group">
+                    <select name="client" id="client" [(ngModel)]="viatgeClient">
               <option *ngFor="let client of clients" [ngValue]="client._id">{{client.nom}} {{client.cognoms}}</option>
             </select>
-          </div>
+                </div>
 
-        <button type="submit" class="butreg" (click)="viatgeRegistre()" >Registrar Viatge</button>
-      </form>
-      </div>
+                <button type="submit" class="butreg" (click)="viatgeRegistre()">Registrar Viatge</button>
+            </form>
+        </div>
 
-      <div class="editarViatge contenido">
-        <form class="" method="post" #formRegistre="ngForm">
-          <h2>Editar Viatge</h2>
+        <div class="editarViatge contenido">
+            <form class="" method="post" #formRegistre="ngForm">
+                <h2>Editar Viatge</h2>
 
-          <div class="form-group">
-          <input type="text" name="origen" [(ngModel)]="viatge.origen"  required/>
-          </div>
+                <div class="form-group">
+                    <input type="text" name="origen" [(ngModel)]="viatge.origen" required/>
+                </div>
 
-          <div class="form-group">
-          <input type="text"  [(ngModel)]="viatge.desti" name="desti"  required />
-          </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="viatge.desti" name="desti" required />
+                </div>
 
-          <div class="form-group">
-          <input type="number"  [(ngModel)]="viatge.places" name="places"  required />
-          </div>
+                <div class="form-group">
+                    <input type="number" [(ngModel)]="viatge.places" name="places" required />
+                </div>
 
-          <div class="form-group">
-          <input type="date"  [(ngModel)]="viatge.data" name="data"  required />
-          </div>
+                <div class="form-group">
+                    <input type="date" [(ngModel)]="viatge.data" name="data" required />
+                </div>
 
-          <div class="form-group">
-          <input type="time" [(ngModel)]="viatge.hora" name="hora"  required />
-          </div>
+                <div class="form-group">
+                    <input type="time" [(ngModel)]="viatge.hora" name="hora" required />
+                </div>
 
-          <div class="form-group">
-          <input type="text" [(ngModel)]="viatge.comentari" name="comentari" />
-          </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="viatge.comentari" name="comentari" />
+                </div>
 
-        <button type="submit" class="butreg" (click)="viatgeUpdate(viatge._id)" >Registrar Viatge</button>
-      </form>
+                <button type="submit" class="butreg" (click)="viatgeUpdate(viatge._id)">Registrar Viatge</button>
+            </form>
 
-      </div>
+        </div>
 
     </div>
 </div>
