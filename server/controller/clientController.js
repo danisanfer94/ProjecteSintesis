@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt');
 var ClientController = {
 
     getClients: function(req, res) {
-        Client.find({}).exec((err, clients) => {
+        Client.find({}).select("-contrasenya").select("-token").exec((err, clients) => {
             if (err) return res.status(500).send({ message: 'Error al retornar dades' });
             if (!clients) return res.status(404).send({ message: 'No hi han dades' });
             return res.status(200).send({ clients });
@@ -14,7 +14,7 @@ var ClientController = {
     getClient: function(req, res) {
         var clientId = req.params.clientId;
         if (clientId == null) return res.status(500).send({ message: 'No has dit cap ID' })
-        Client.findById(clientId).exec((err, client) => {
+        Client.findById(clientId).select("-contrasenya").select("-token").exec((err, client) => {
             if (err) return res.status(500).send({ message: 'Error al retornar dades' });
             if (!client) return res.status(404).send({ message: 'No hi han dades' });
             return res.status(200).send({ client });
@@ -40,6 +40,7 @@ var ClientController = {
             client.contrasenya = '';
             client.telefon = params.telefon;
             client.token = '';
+            client.rol = params.rol;
 
             client.save((err, clientGuardat) => {
                 if (err) return res.status(500).send({ message: err });
@@ -53,7 +54,7 @@ var ClientController = {
                     Client.findByIdAndUpdate(clientGuardat._id, clientGuardat, { new: true }, (err, ClientUpdate) => {
                         if (err) return res.status(500).send({ message: 'Error actualizant les dades' });
                         if (!ClientUpdate) return res.status(404).send({ message: 'No existeixen les dades' });
-                        return res.status(200).send({ client: ClientUpdate, message: 'Client Guardat' });
+                        return res.status(200).send({client: ClientUpdate, message: 'Client Guardat' });
                     });
                 });
             });
@@ -77,7 +78,7 @@ var ClientController = {
                     return res.status(500).send({ message: "Error actualitzant les dades" });
                 }
                 if (!clientUpdated) return res.status(404).send({ message: "No existeix el client" });
-                return res.status(200).send({ client: clientUpdated, message: "Client Actualitzat" });
+                return res.status(200).send({  message: "Client Actualitzat" });
             })
         });
     },
@@ -93,7 +94,7 @@ var ClientController = {
             Client.findByIdAndUpdate(clientId, update, { new: true }, (err, update2) => {
                 if (err) return res.status(500).send({ message: 'Error actualizant les dades' });
                 if (!update2) return res.status(404).send({ message: 'No existeixen les dades' });
-                return res.status(200).send({ client: update2, message: 'Client Actualitzat' });
+                return res.status(200).send({ message: 'Client Actualitzat' });
             });
         });
 
@@ -105,7 +106,7 @@ var ClientController = {
         Client.findByIdAndDelete(clientId, (err, clientRemoved) => {
             if (err) return res.status(500).send({ message: 'Error esborrant les dades' });
             if (!clientRemoved) return res.status(404).send({ message: 'No existeixen les dades' });
-            return res.status(200).send({ client: clientRemoved, message: "Client Esborrat" });
+            return res.status(200).send({ message: "Client Esborrat" });
         });
     },
     loginClient: function(req, res) {
@@ -118,7 +119,6 @@ var ClientController = {
                 if (match) {
                     return res.status(200).send({ token: client.token, message: 'Logejat correctament' });
                 } else {
-
                     return res.status(500).send({ message: 'Contraseña incorrecta' });
                 }
             });
@@ -130,7 +130,7 @@ var ClientController = {
 
         var id = service.checkToken(token);
 
-        Client.findById(id).exec((err, client) => {
+        Client.findById(id).select("-contrasenya").select("-token").exec((err, client) => {
             if (err) return res.status(500).send({ message: 'Error al retornar dades' });
             if (!client) return res.status(404).send({ message: 'No hi han dades' });
             return res.status(200).send({ client });
@@ -142,7 +142,7 @@ var ClientController = {
 
         var id = service.checkToken(token);
 
-        Client.findById(id).exec((err, client) => {
+        Client.findById(id).select("-contrasenya").select("-token").exec((err, client) => {
             if (err) return res.status(500).send({ message: 'Error al retornar dades' });
             if (!client) return res.status(404).send({ message: 'No hi han dades' });
             if (client.email == 'admin@taxionline.cat') return res.status(200).send({ client });

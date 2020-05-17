@@ -8,6 +8,7 @@ var ClientSchema = mongoose.Schema({
     email:String,
     contrasenya:String,
     telefon:String,
+    rol:String,
     token:String,
 });
 

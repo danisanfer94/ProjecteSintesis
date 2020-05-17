@@ -5,11 +5,11 @@ var Xofer = require('./../models/xofer');
 var ViatgeController = {
     getViatges: function(req, res) {
         Viatge.find({}).populate('cotxe').populate('xofer')
-            .populate('client').exec((err, viatges) => {
-                if (err) return res.status(500).send({ message: 'Error al retornar dades' });
-                if (!viatges) return res.status(404).send({ message: 'No hi han dades' });
-                return res.status(200).send({ viatges });
-            });
+        .populate('client').sort([['data', -1]]).exec((err,viatges)=>{
+            if(err) return res.status(500).send({message:'Error al retornar dades'});
+            if(!viatges) return res.status(404).send({message:'No hi han dades'});
+            return res.status(200).send({viatges}); 
+        });
     },
     getViatge: function(req, res) {
         var viatgeId = req.params.viatgeId;
@@ -70,7 +70,7 @@ var ViatgeController = {
         var viatgeId = req.params.viatgeId;
         if (viatgeId == null) return res.status(500).send({ message: 'No has dit cap ID' });
         var update = req.body;
-
+        
         Viatge.findByIdAndUpdate(viatgeId, update, { new: true }, (err, ViatgeUpdate) => {
             if (err) return res.status(500).send({ message: 'Error actualizant les dades' });
             if (!ViatgeUpdate) return res.status(404).send({ message: 'No existeixen les dades' });

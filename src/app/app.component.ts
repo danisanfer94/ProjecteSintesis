@@ -2,6 +2,8 @@ import { Component , OnInit} from '@angular/core';
 import { AuthenticationService } from './services/auth.service';
 import { Client } from 'src/app/models/client';
 
+import { PeticionsService } from './services/peticions.service';
+
 
 
 @Component({
@@ -14,7 +16,8 @@ export class AppComponent {
   public token:string;
   public client:any;
   constructor(
-    private authService:AuthenticationService
+    private authService:AuthenticationService,
+    private petiService:PeticionsService
     ) 
     {
       if(this.authService.checkToken()){
@@ -35,6 +38,12 @@ export class AppComponent {
   public logout(){
     this.authService.logout();
     window.location.replace("/");
+  }
+
+  test(){
+    this.petiService.test().subscribe(data=>{
+      console.log(data.message);
+    })
   }
   
 }

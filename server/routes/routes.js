@@ -1,11 +1,17 @@
 var express = require('express');
-var cotxeController = require('./controller/cotxeController');
-var xoferController = require('./controller/xoferController');
-var clientController = require('./controller/clientController');
-var viatgeController = require('./controller/viatgeController');
+var cotxeController = require('../controller/cotxeController');
+var xoferController = require('../controller/xoferController');
+var clientController = require('../controller/clientController');
+var viatgeController = require('../controller/viatgeController');
 
 
 var router = express.Router();
+// //login islogged registre
+// router.post('/login', clientController.loginClient);
+// router.post('/logged', clientController.ClientLogged);
+// router.post('/logadmin', clientController.AdminLogged);
+// router.post('/logxofer', xoferController.xoferLogged);
+// router.post('/saveclient', clientController.saveClient);
 
 //Cotxe routes
 router.get('/cotxes', cotxeController.getCotxes);
@@ -24,16 +30,11 @@ router.delete('/xofer/:xoferId', xoferController.deleteXofer);
 //Client routes
 router.get('/clients', clientController.getClients);
 router.get('/client/:clientId', clientController.getClient);
-router.post('/saveclient', clientController.saveClient);
 router.put('/client/:clientId', clientController.updateClient);
 router.put('/pass/:clientId', clientController.updatePass);
 router.delete('/client/:clientId', clientController.deleteClient);
 
-//login and eslogged
-router.post('/login', clientController.loginClient);
-router.post('/logged', clientController.ClientLogged);
-router.post('/logadmin', clientController.AdminLogged);
-router.post('/logxofer', xoferController.xoferLogged);
+
 
 //Viatge routes
 router.get('/viatges', viatgeController.getViatges);

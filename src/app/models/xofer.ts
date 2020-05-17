@@ -5,8 +5,6 @@ export class Xofer{
     public dataCarnet: string;
     public telefon: string;
     public mail:string;
-    public token:string;
-    public contraseña:string;
     constructor(
     ){}
 }
