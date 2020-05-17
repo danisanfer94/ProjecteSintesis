@@ -95,6 +95,11 @@ export class PanelAdminComponent implements OnInit {
   public viatgeComentari:string;
   public viatgeClient:any;
 
+  public cotxeId:string;
+  public xoferId:string;
+  public preuAprox:string;
+  public viatgeTarifa:string;
+
 
 
 
@@ -317,14 +322,12 @@ export class PanelAdminComponent implements OnInit {
     });
   }
   detallViatge(id:string){
-    $(".contenido").hide();
-    $(".detallViatge").show();
     this.petiService.getViatge(id).subscribe(data=>{
-      console.log(data);
       this.viatge=data.viatge;
-    },err=>{
-      console.log(err);
-      
+      this.getCotxes();
+      this.getXofers();
+      $(".contenido").hide();
+      $(".detallViatge").show();
     })
   }
   eliminarViatge(id:string){
@@ -343,6 +346,29 @@ export class PanelAdminComponent implements OnInit {
     },err=>{
       console.log(err);
       
+    })
+  }
+  editarViatge(id:string){
+    $(".contenido").hide();
+    $(".editarViatge").show();
+    this.petiService.getViatge(id).subscribe(data=>{
+      this.viatge=data.viatge;
+    },err=>{
+      console.log(err);
+      
+    })
+  }
+  viatgeUpdate(id:string){
+    $(".contenido").hide();
+    $(".totsViatges").show();
+    this.petiService.updateViatge(id,this.viatge).subscribe(data=>{
+      this.petiService.getViatges().subscribe(data2=>{
+        this.viatges=data2.viatges;
+      },err=>{
+        console.log(err);
+      })
+    },err=>{
+      console.log(err);
     })
   }
   getCotxe(id:string){
@@ -418,6 +444,24 @@ export class PanelAdminComponent implements OnInit {
     this.petiService.guardarViatge(this.viatge).subscribe(data=>{
       console.log("Viatge registrat");
       this.getViatges();
+    })
+  }
+  confirmarViatge(id:string){
+    $(".contenido").hide();
+    $(".totsViatges").show();
+    this.viatge.xofer=this.xoferId;
+    this.viatge.cotxe=this.cotxeId;
+    this.viatge.preuAprox=this.preuAprox;
+    this.viatge.tarifa=this.viatgeTarifa;
+    this.viatge.confirmat="Confirmat"
+    this.petiService.updateViatge(id,this.viatge).subscribe(data=>{
+      this.petiService.getViatges().subscribe(data2=>{
+        this.viatges=data2.viatges;
+      },err=>{
+        console.log(err);
+      })
+    },err=>{
+      console.log(err);
     })
   }
 }

@@ -21,6 +21,8 @@ import { ReservaComponent } from './components/reserva/reserva.component';
 import { ViatgeDetailsComponent } from './components/viatge-details/viatge-details.component';
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
 import { PerfilClientComponent } from './components/perfil-client/perfil-client.component';
+import { ViatgesClientComponent } from './components/viatges-client/viatges-client.component';
+import { TarifaComponent } from './components/tarifa/tarifa.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { PerfilClientComponent } from './components/perfil-client/perfil-client.
     ReservaComponent,
     ViatgeDetailsComponent,
     PanelAdminComponent,
-    PerfilClientComponent
+    PerfilClientComponent,
+    ViatgesClientComponent,
+    TarifaComponent
   ],
   imports: [
     BrowserModule,

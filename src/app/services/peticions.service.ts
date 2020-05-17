@@ -28,17 +28,20 @@ export class PeticionsService {
         return this._http.post(this.url+'saveviatge/'+viatge.client,viatge);
     }
     getViatge(id:string):Observable<any>{
-        return this._http.get(this.url+'/viatge/'+id);
+        return this._http.get(this.url+'viatge/'+id);
+    }
+    getViatgeClient(id:string):Observable<any>{
+        return this._http.get(this.url+'viatge2/'+id);
     }
     getViatges():Observable<any>{
-        return this._http.get(this.url+'/viatges');
+        return this._http.get(this.url+'viatges');
     }
     deleteViatge(id:String):Observable<any>{
         return this._http.delete(this.url+"viatge/"+id);
     }
 
     guardarChofer(xofer: any) : Observable<any>{
-        return this._http.post(this.url+'/savexofer',xofer);
+        return this._http.post(this.url+'savexofer',xofer);
     }
     getXofers():Observable<any>{
         return this._http.get(this.url+"xofers");
@@ -81,6 +84,11 @@ export class PeticionsService {
         let body = JSON.stringify(client);
         let headers = new HttpHeaders().set('Content-type', 'application/json');
         return this._http.put(this.url+"client/"+id,body,{headers: headers});
+    }
+    updateViatge(id,viatge:Viatge){
+        let body = JSON.stringify(viatge);
+        let headers = new HttpHeaders().set('Content-type', 'application/json');
+        return this._http.put(this.url+"viatge/"+id,body,{headers: headers});
     }
     updatePass(id,client:Client){
         let body = JSON.stringify(client);

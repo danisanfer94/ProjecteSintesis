@@ -10,25 +10,25 @@ app.use(express.static(path.join(__dirname,'/dist/OnlineTaxi')));
 
 app.listen(process.env.PORT || 8080);
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/sintesis',{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
-})
-.then(()=> {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/sintesis', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => {
         console.log("Connectat a la BD");
     })
-.catch(err => console.log(err));
+    .catch(err => console.log(err));
 
 
 
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use((req, res,next) => {
-    res.header('Access-Control-Allow-Origin','*');
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods','GET, POSTS, OPTIONS, PUT, DELETE');
-    res.header('Allow','GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Access-Control-Allow-Methods', 'GET, POSTS, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
 

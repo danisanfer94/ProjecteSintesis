@@ -24,4 +24,4 @@ var ViatgeSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('Viatge',ViatgeSchema);
+module.exports = mongoose.model('Viatge', ViatgeSchema);
