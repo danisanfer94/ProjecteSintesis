@@ -1,7 +1,26 @@
-.contenido{
+.contenido {
     display: none;
 }
-th, td {
+
+form {
+    width: 500px;
+}
+
+th,
+td {
     text-align: center;
     vertical-align: middle;
 }
+
+
+.bara {
+    color: black;
+    background-color: #f5b971;
+}
+
+.bara:hover {
+    background-color: #85a392;
+    color: white;
+    transition: 0.6s;
+}
+

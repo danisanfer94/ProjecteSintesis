@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var helmet = require('helmet');
 
 app.use(helmet());
-app.use(express.static(path.join(__dirname,'/dist/OnlineTaxi')));
+app.use(express.static(path.join(__dirname, '/dist/OnlineTaxi')));
 
 app.listen(process.env.PORT || 8080);
 mongoose.Promise = global.Promise;
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 
 //public routes 
 var loginRoutes = require('./server/routes/publicRoutes');
-app.use('/api',loginRoutes);
+app.use('/api', loginRoutes);
 
 // middleware for check if users is login
 app.all('/api/*', async function (req, res, next) {
@@ -80,9 +80,10 @@ app.all('/api/*', async function (req, res, next) {
     //     res.sendFile(path.join(__dirname,'server/unauthorized.html'));
     // }
 
+
 // client routes
 var clientRoutes = require('./server/routes/clientRoutes');
-app.use('/api',clientRoutes);
+app.use('/api', clientRoutes);
 
 //middleware for check if xofer is logged
 app.all('/api/*', async function (req, res, next) {
@@ -123,7 +124,7 @@ app.all('/api/*', async function (req, res, next) {
 
 //xofer routes
 var xoferRoutes = require('./server/routes/xoferRoutes');
-app.use('/api',xoferRoutes);
+app.use('/api', xoferRoutes);
 
 //middleware for check if admin is login
 app.all('/api/*', async function (req, res, next) {
@@ -160,9 +161,10 @@ app.all('/api/*', async function (req, res, next) {
     
 });
 
+
 //private routes
 var rutes = require('./server/routes/routes');
-app.use('/api',rutes);
+app.use('/api', rutes);
 
 
 app.get('/test',async function(req,res,next){
@@ -172,3 +174,4 @@ app.get('/test',async function(req,res,next){
 app.get('*',function(req,res){
     res.sendFile(path.join(__dirname,'/dist/OnlineTaxi/index.html'));
 });
+

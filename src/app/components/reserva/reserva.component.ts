@@ -45,7 +45,7 @@ export class ReservaComponent implements OnInit {
           console.log(err);
         }); 
       }else{
-        this.router.navigate(['/auth/reserva']);
+        this.router.navigate(['/auth/reserva/login']);
       }
     }
 
