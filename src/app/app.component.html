@@ -26,8 +26,10 @@
                 <hr style="border-top: 2px solid grey;width: 50%;">
             </div>
             <div *ngIf="!client" class="navbar-nav ml-auto">
+
                 <a routerLink="/auth/nav/login" routerLinkActive="active" class="nav-item nav-link text-center">Login</a>
                 <a routerLink="/auth/nav/registre" routerLinkActive="active" class="nav-item nav-link text-center">Registre</a>
+
             </div>
             <div *ngIf="client" class="navbar-nav ml-auto ddown">
                 <a class="nav-item nav-link text-center" routerLink="/perfil-client">{{client.nom}} {{client.cognoms}}</a>
