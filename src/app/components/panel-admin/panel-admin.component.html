@@ -15,8 +15,9 @@
 
     </div>
     <div class="row mt-5 justify-content-center">
+        <!-- Xofer Form Afegir -->
         <div class="formChofer contenido">
-            <form method="post">
+            <form class="col-12" method="post">
                 <h4>Afegir Xofer</h4>
                 <div class="form-group">
                     <input type="text" class="form-control" name="nom" [(ngModel)]="xoferNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
@@ -45,7 +46,7 @@
                 </div>
             </form>
         </div>
-
+        <!-- Xofers Taula -->
         <div class="totsXofers contenido table-responsive-lg">
             <div *ngIf="admin">
                 <button class="btn btn-secondary " (click)="formChofer()">Afegir xofer</button>
@@ -79,7 +80,7 @@
                 </tbody>
             </table>
         </div>
-
+        <!-- Xofer Detalls -->
         <div class="detallXofer contenido">
             <div class="row">
                 <div class="col">
@@ -93,7 +94,7 @@
 
             </div>
         </div>
-
+        <!-- Xofer Form Edit -->
         <div class="editarXofer contenido">
             <form class="custom-form" method="post">
                 <h4>Editar Xofer</h4>
@@ -124,7 +125,7 @@
                 </div>
             </form>
         </div>
-
+        <!-- Cotxe Form Afegir -->
         <div class="formCotxe contenido">
             <form class="" method="post">
                 <h4>Afegir Cotxe</h4>
@@ -160,6 +161,7 @@
                 </div>
             </form>
         </div>
+        <!-- Cotxe Taula -->
         <div class="totsCotxes contenido table-responsive-lg">
             <button class="btn btn-secondary mr-3" (click)="formCotxe()">Afegir cotxe</button>
             <table class="table mt-2">
@@ -193,7 +195,7 @@
                 </tbody>
             </table>
         </div>
-
+        <!-- Cotxe Detalls -->
         <div class="detallCotxe contenido">
             <h3>Detalls del Cotxe</h3>
             <p>Matricula: {{cotxe.matricula}}</p>
@@ -203,7 +205,7 @@
             <p>Data caducitat ITV: {{cotxe.dataITV}}</p>
             <p>Data renovacio seguro: {{cotxe.dataSeguro}}</p>
         </div>
-
+        <!-- Cotxe Form Edit -->
         <div class="editarCotxe contenido">
             <form class="" method="post">
                 <h4>Editar Cotxe</h4>
@@ -239,7 +241,7 @@
                 </div>
             </form>
         </div>
-
+        <!-- Clients Taula -->
         <div class="totsClients contenido table-responsive-lg">
             <button class="btn btn-secondary mr-3" (click)="formClient()">Afegir client</button>
             <table class="table mt-2">
@@ -269,7 +271,7 @@
                 </tbody>
             </table>
         </div>
-
+        <!-- Clients Form Afegir -->
         <div class="formClient contenido">
             <form class="" method="post" #formRegistre="ngForm">
                 <h2>Afegir Client</h2>
@@ -301,7 +303,7 @@
                 <button type="submit" class="btn bara" (click)="clientRegistre()" [disabled]="!formRegistre.form.valid">Registrar Client</button>
             </form>
         </div>
-
+        <!-- Client Detalls -->
         <div class="detallClient contenido">
             <h3>Detalls del Client</h3>
             <p>Nom: {{client.nom}}</p>
@@ -309,7 +311,7 @@
             <p>Email: {{client.email}}</p>
             <p>Telefon: {{client.telefon}}</p>
         </div>
-
+        <!-- Client Form Edit -->
         <div class="editarClient contenido">
             <form class="" method="post" #formRegistre="ngForm">
                 <h2>Editar Client</h2>
@@ -337,7 +339,7 @@
                 <button type="submit" class="btn bara" (click)="clientUpdate(client._id)">Editar Client</button>
             </form>
         </div>
-
+        <!-- Viatges Taula -->
         <div class="totsViatges contenido table-responsive-lg">
 
             <button class="btn btn-secondary mr-3" (click)="formViatge()">Afegir viatge</button>
@@ -384,7 +386,7 @@
                 </tbody>
             </table>
         </div>
-
+        <!-- Viatge Detalls -->
         <div class="detallViatge contenido">
             <h3>Detall del Viatge</h3>
             <p>Origen: {{viatge.origen}}</p>
@@ -451,7 +453,7 @@
                 </form>
             </div>
         </div>
-
+        <!-- Viatge Form Afegir -->
         <div class="formViatge contenido">
             <form class="" method="post" #formRegistre="ngForm">
                 <h2>Afegir Viatge</h2>
@@ -489,7 +491,7 @@
                 <button type="submit" class="btn bara" (click)="viatgeRegistre()">Registrar Viatge</button>
             </form>
         </div>
-
+        <!-- Viatge Form Edit -->
         <div class="editarViatge contenido">
             <form class="" method="post" #formRegistre="ngForm">
                 <h2>Editar Viatge</h2>
@@ -525,25 +527,3 @@
 
     </div>
 </div>
-
-<!-- <h3>Viatges</h3>
-<table class="table m-3">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Origen</th>
-        <th scope="col">Desti</th>
-        <th scope="col">Hora</th>
-        <th scope="col">Data</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let viatge of viatges">
-        <th scope="row">{{viatge._id}}</th>
-        <td>{{viatge.origen}}</td>
-        <td>{{viatge.desti}}</td>
-        <td>{{viatge.data}}</td>
-        <td>{{viatge.hora}}</td>
-      </tr>
-    </tbody>
-  </table> -->

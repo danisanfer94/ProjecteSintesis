@@ -2,6 +2,10 @@
     display: none;
 }
 
+form {
+    width: 500px;
+}
+
 th,
 td {
     text-align: center;
