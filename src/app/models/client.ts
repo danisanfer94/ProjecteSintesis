@@ -5,6 +5,7 @@ export class Client {
     public email:string;
     public contrasenya:string;
     public telefon:string;
+    public rol:string;
     constructor(
     ){
     }

@@ -6,8 +6,6 @@ var XoferSchema = mongoose.Schema({
     dataCarnet:String,
     mail:String,
     telefon:String,
-    token:String,
-    contrasenya:String,
     // cotxe:{ type: Schema.Types.ObjectId, ref: 'Cotxe'}
 });
 

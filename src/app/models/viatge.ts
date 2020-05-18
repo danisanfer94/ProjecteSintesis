@@ -7,12 +7,16 @@ export class Viatge {
     public hora:string;
     public places:number;
     public preu:string;
+    public preuAprox:string;
     public tarifa:string;
     public cotxe:string;
     public xofer:string;
     public client:string;
     public comentari:string;
     public confirmat:string;
+    public crodes:boolean;
     constructor(
-    ){}
+    ){
+        this.crodes = false;
+    }
 } 

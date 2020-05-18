@@ -42,8 +42,7 @@ export class AppComponent {
 
   test(){
     this.petiService.test().subscribe(data=>{
-      console.log(data);
-      
+      console.log(data.message);
     })
   }
   

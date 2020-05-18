@@ -24,7 +24,23 @@ var service = {
     checkToken : function(token){
         var payload = jwt.decode(token,config.TOKEN_SECRET);
         return payload.sub;
+    },
+    extractCookie: function(req){
+      let cookielist = req.headers.cookie.split("; ");
+      let token = ''
+      cookielist.forEach(cookies => {
+        let cookie = cookies.split('=');
+        if(cookie[0]=='token'){
+            token = cookie[1];
+        }
+      });
+      if(token!=''){
+        return this.checkToken(token)
+      }else{
+        return false;
+      }
     }
+
 }
 
 // exports.createToken = function(client) {

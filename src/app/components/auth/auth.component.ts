@@ -26,6 +26,7 @@ export class AuthComponent implements OnInit {
   public origen:string;
   public error:string;
   public passerror:string;
+  public logreg:string;
   
 
   
@@ -44,7 +45,22 @@ export class AuthComponent implements OnInit {
         this.origen = params.origen; 
       }
     });
+
+    this.route.params.subscribe((params:Params) => {      
+      if(params.logreg){
+        this.logreg = params.logreg; 
+      }
+    });
     
+    if(this.logreg=='login'){
+      $('.registrat').hide();
+      $('.logejat').show();
+      }
+    else if(this.logreg=='registre'){
+      $('.logejat').hide();
+      $('.registrat').show();
+      }
+
     $('.white-panel').animate({ opacity: 0 }, 0);
     $('.white-panel').animate({ opacity: 1, top: "-40px" }, 'slow');
   }
@@ -55,6 +71,7 @@ export class AuthComponent implements OnInit {
     this.client.telefon=this.telefon;
     this.client.email=this.email;
     this.client.contrasenya=this.password;
+    this.client.rol="client";
     this.authService.registre(this.client).subscribe(data=>{
       console.log('Usuari registrat!!');
         

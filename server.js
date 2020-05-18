@@ -3,60 +3,175 @@ const app = express();
 const path = require('path');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var helmet = require('helmet');
 
-app.use(express.static(path.join(__dirname,'/dist/OnlineTaxi')));
+app.use(helmet());
+app.use(express.static(path.join(__dirname, '/dist/OnlineTaxi')));
 
 app.listen(process.env.PORT || 8080);
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/sintesis',{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
-})
-.then(()=> {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/sintesis', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => {
         console.log("Connectat a la BD");
     })
-.catch(err => console.log(err));
+    .catch(err => console.log(err));
 
 
 
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(function(req,res,next){
-//     if ('::1'==req.connection.remoteAddress) {
-//         next();
-//     }else{
-//         console.log('no authorized');
-//         console.log(req.connection.remoteAddress)
-//         res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
-//     }
-// });
 
-app.use((req, res,next) => {
-    res.header('Access-Control-Allow-Origin','*');
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods','GET, POSTS, OPTIONS, PUT, DELETE');
-    res.header('Allow','GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Access-Control-Allow-Methods', 'GET, POSTS, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
+});
+
+//public routes 
+var loginRoutes = require('./server/routes/publicRoutes');
+app.use('/api', loginRoutes);
+
+// middleware for check if users is login
+app.all('/api/*', async function (req, res, next) {
+    let service = require('./server/services');
+    let Client = require('./server/models/client');
+    
+    if(req.headers.cookie){
+        let cookielist = req.headers.cookie.split("; ");
+        let token = '';
+        cookielist.forEach(cookies => {
+            let cookie = cookies.split('=');
+            if(cookie[0]=='token'){
+                token = cookie[1]; 
+            }else{
+                console.log('No hi ha token');
+                res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
+            }
+        });
+        let clientId = service.checkToken(token);
+        const result = await Client.findOne({ _id: clientId }).select("_id").lean();
+        if (result){
+            console.log("Client accessing...");
+            next();
+        }else{
+            console.log("Fail Backend acces from "+req.connection.remoteAddress);
+            res.sendFile(path.join(__dirname,'server/unauthorized.html'));                       
+        }
+    }}); 
+    // let token = req.headers.cookie.split("=")[1];        
+    // //s'hauria de comprobar si estar caducada
+    // let clientId = service.checkToken(token);        
+    // const result = await Client.findOne({ _id: clientId }).select("_id").lean();
+    // if (result){
+    //     console.log("Client accessing...");
+    //     next();
+    // }else{
+    //     console.log("Fail Backend acces from "+req.connection.remoteAddress);
+    //     res.sendFile(path.join(__dirname,'server/unauthorized.html'));
+        
+    // }
+    // }else{
+    //     console.log('No hi ha token');
+    //     res.sendFile(path.join(__dirname,'server/unauthorized.html'));
+    // }
+
+
+// client routes
+var clientRoutes = require('./server/routes/clientRoutes');
+app.use('/api', clientRoutes);
+
+//middleware for check if xofer is logged
+app.all('/api/*', async function (req, res, next) {
+    let service = require('./server/services');
+    let  Client = require('./server/models/client');
+    let  Xofer = require('./server/models/client');   
+    if(req.headers.cookie){
+        let cookielist = req.headers.cookie.split("; ");
+        let token = '';
+        cookielist.forEach(cookies => {
+            let cookie = cookies.split('=');
+            if(cookie[0]=='token'){
+                token = cookie[1]; 
+            }else{
+                console.log('No hi ha token');
+                res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
+            }
+        });
+        //s'hauria de comprobar si estar caducada
+        let clientId = service.checkToken(token);        
+        const result = (await Client.find({ _id: clientId },'email rol').lean());
+        console.log(result);
+        
+        if (result[0].rol=='xofer' || result[0].email=="admin@taxionline.cat"){
+            console.log("Xofer accessing...");
+            next(); 
+        }else{
+            console.log("Fail Backend acces from "+req.connection.remoteAddress);
+            res.sendFile(path.join(__dirname,'server/unauthorized.html'));
+            
+        }
+    }else{
+        console.log('No hi ha token');
+        res.sendFile(path.join(__dirname,'server/unauthorized.html'));
+    }
+    
   });
 
-var rutes = require('./server/routes');
+//xofer routes
+var xoferRoutes = require('./server/routes/xoferRoutes');
+app.use('/api', xoferRoutes);
 
-// app.all('/api/*', function (req, res, next) {
-//     if ('::1'==req.connection.remoteAddress) {
-//         next();
-//     }else{
-//         console.log('no authorized');
-//         console.log(req.connection.remoteAddress)
-//         res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
-//     }
-//   });
-app.use('/api',rutes);
+//middleware for check if admin is login
+app.all('/api/*', async function (req, res, next) {
+    let service = require('./server/services');
+    let  Client = require('./server/models/client');
+    
+    if(req.headers.cookie){
+        let cookielist = req.headers.cookie.split("; ");
+        let token = '';
+        cookielist.forEach(cookies => {
+            let cookie = cookies.split('=');
+            if(cookie[0]=='token'){
+                token = cookie[1]; 
+            }else{
+                console.log('No hi ha token');
+                res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
+            }
+        });
+        //s'hauria de comprobar si estar caducada
+        let clientId = service.checkToken(token);        
+        const result = await Client.find({ _id: clientId },'email rol').lean();
+        if (result[0].email=="admin@taxionline.cat"){
+            console.log("Admin accessing...");
+            next();
+        }else{
+            console.log("Fail Backend acces from "+req.connection.remoteAddress);
+            res.sendFile(path.join(__dirname,'server/unauthorized.html'));
+            
+        }
+    }else{
+        console.log('No hi ha token');
+        res.sendFile(path.join(__dirname,'server/unauthorized.html'));
+    }
+    
+});
 
-app.get('/test',function(req,res){
-    console.log(req.connection.remoteAddress);
-    res.send({ helloFrom: req.connection.remoteAddress }); 
+
+//private routes
+var rutes = require('./server/routes/routes');
+app.use('/api', rutes);
+
+
+app.get('/test',async function(req,res,next){
+
 });
 
 app.get('*',function(req,res){
-    res.sendFile(path.join(__dirname,'/dist/OnlineTaxi/index.html'))
+    res.sendFile(path.join(__dirname,'/dist/OnlineTaxi/index.html'));
 });
+

@@ -52,7 +52,7 @@ var CotxeController = {
         });
     },
     deleteCotxe : function(req,res){
-        var cotxeId = req.params.cotxeID;
+        var cotxeId = req.params.cotxeId;
         if (cotxeId == null) return res.status(500).send({message:'No has dit cap ID'})
 
         Cotxe.findByIdAndDelete(cotxeId,(err,cotxeRemoved)=>{
