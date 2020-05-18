@@ -164,6 +164,7 @@ app.all('/api/*', async function (req, res, next) {
 var rutes = require('./server/routes/routes');
 app.use('/api',rutes);
 
+
 app.get('/test',async function(req,res,next){
 
 });
