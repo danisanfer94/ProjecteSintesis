@@ -42,24 +42,43 @@ app.all('/api/*', async function (req, res, next) {
     let Client = require('./server/models/client');
     
     if(req.headers.cookie){
-        let token = req.headers.cookie.split("=")[1];        
-    //s'hauria de comprobar si estar caducada
-    let clientId = service.checkToken(token);        
-    const result = await Client.findOne({ _id: clientId }).select("_id").lean();
-    if (result){
-        console.log("Client accessing...");
-        next();
-    }else{
-        console.log("Fail Backend acces from "+req.connection.remoteAddress);
-        res.sendFile(path.join(__dirname,'server/unauthorized.html'));
+        let cookielist = req.headers.cookie.split("; ");
+        let token = '';
+        cookielist.forEach(cookies => {
+            let cookie = cookies.split('=');
+            if(cookie[0]=='token'){
+                token = cookie[1]; 
+            }else{
+                console.log('No hi ha token');
+                res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
+            }
+        });
+        let clientId = service.checkToken(token);
+        const result = await Client.findOne({ _id: clientId }).select("_id").lean();
+        if (result){
+            console.log("Client accessing...");
+            next();
+        }else{
+            console.log("Fail Backend acces from "+req.connection.remoteAddress);
+            res.sendFile(path.join(__dirname,'server/unauthorized.html'));                       
+        }
+    }}); 
+    // let token = req.headers.cookie.split("=")[1];        
+    // //s'hauria de comprobar si estar caducada
+    // let clientId = service.checkToken(token);        
+    // const result = await Client.findOne({ _id: clientId }).select("_id").lean();
+    // if (result){
+    //     console.log("Client accessing...");
+    //     next();
+    // }else{
+    //     console.log("Fail Backend acces from "+req.connection.remoteAddress);
+    //     res.sendFile(path.join(__dirname,'server/unauthorized.html'));
         
-    }
-    }else{
-        console.log('No hi ha token');
-        res.sendFile(path.join(__dirname,'server/unauthorized.html'));
-    }
-    
-});
+    // }
+    // }else{
+    //     console.log('No hi ha token');
+    //     res.sendFile(path.join(__dirname,'server/unauthorized.html'));
+    // }
 
 // client routes
 var clientRoutes = require('./server/routes/clientRoutes');
@@ -71,7 +90,17 @@ app.all('/api/*', async function (req, res, next) {
     let  Client = require('./server/models/client');
     let  Xofer = require('./server/models/client');   
     if(req.headers.cookie){
-        let token = req.headers.cookie.split("=")[1];        
+        let cookielist = req.headers.cookie.split("; ");
+        let token = '';
+        cookielist.forEach(cookies => {
+            let cookie = cookies.split('=');
+            if(cookie[0]=='token'){
+                token = cookie[1]; 
+            }else{
+                console.log('No hi ha token');
+                res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
+            }
+        });
         //s'hauria de comprobar si estar caducada
         let clientId = service.checkToken(token);        
         const result = (await Client.find({ _id: clientId },'email rol').lean());
@@ -102,7 +131,17 @@ app.all('/api/*', async function (req, res, next) {
     let  Client = require('./server/models/client');
     
     if(req.headers.cookie){
-        let token = req.headers.cookie.split("=")[1];        
+        let cookielist = req.headers.cookie.split("; ");
+        let token = '';
+        cookielist.forEach(cookies => {
+            let cookie = cookies.split('=');
+            if(cookie[0]=='token'){
+                token = cookie[1]; 
+            }else{
+                console.log('No hi ha token');
+                res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
+            }
+        });
         //s'hauria de comprobar si estar caducada
         let clientId = service.checkToken(token);        
         const result = await Client.find({ _id: clientId },'email rol').lean();
@@ -126,29 +165,9 @@ var rutes = require('./server/routes/routes');
 app.use('/api',rutes);
 
 app.get('/test',async function(req,res,next){
-    // let cookielist = req.headers.cookie.split("; ");
-    // console.log(cookielist);
-    // cookielist.forEach(cookies => {
-    //     let cookie = cookies.split('=');
-    //     if(cookie[0]=='token'){
-            
-    //     }
-    // });
 
-    
-    
-    
-    // let service = require('./server/services');
-    // let  Client = require('./server/models/client');
-    // let token = req.headers.cookie.split("=")[1];        
-    // //s'hauria de comprobar si estar caducada
-    // let clientId = service.checkToken(token);        
-    // const result = await Client.findOne({ _id: clientId }).select("_id").lean();
-    // if (result){
-    //     console.log("yes");
-    // }
 });
 
 app.get('*',function(req,res){
-    res.sendFile(path.join(__dirname,'/dist/OnlineTaxi/index.html'))
+    res.sendFile(path.join(__dirname,'/dist/OnlineTaxi/index.html'));
 });

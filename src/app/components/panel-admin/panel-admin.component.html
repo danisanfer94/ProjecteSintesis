@@ -294,10 +294,6 @@
           <input type="text" #telefonR="ngModel" [(ngModel)]="clientTelefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
           </div>
 
-          <div class="form-group">
-          <input type="text" [(ngModel)]="clientRol" name="rol" placeholder="Rol->client/xofer" required="required" />
-          </div>
-
         <button type="submit" class="butreg" (click)="clientRegistre()" [disabled]="!formRegistre.form.valid">Registrar Client</button>
       </form>
       </div>
