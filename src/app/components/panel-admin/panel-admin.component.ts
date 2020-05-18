@@ -430,7 +430,7 @@ export class PanelAdminComponent implements OnInit {
     this.client.email=this.clientEmail;
     this.client.contrasenya=this.clientContrasenya;
     this.client.telefon=this.clientTelefon;
-    this.client.rol=this.clientRol;
+    this.client.rol='client';
 
     this.authService.registre(this.client).subscribe(data=>{
       console.log('Client registrat!!');
