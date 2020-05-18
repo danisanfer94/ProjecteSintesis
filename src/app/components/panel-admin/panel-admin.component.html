@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row mt-5">
+    <div class="row mt-5 text-center">
         <div class="col">
             <button class="btn btn-secondary" (click)="getXofers()">Xofers</button>
         </div>
@@ -16,41 +16,41 @@
     </div>
     <div class="row mt-5 justify-content-center">
         <div class="formChofer contenido">
-            <form class="custom-form" method="post">
+            <form method="post">
                 <h4>Afegir Xofer</h4>
                 <div class="form-group">
-                    <input type="text" name="nom" [(ngModel)]="xoferNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
+                    <input type="text" class="form-control" name="nom" [(ngModel)]="xoferNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="cognoms" [(ngModel)]="xoferCognoms" placeholder="Cognoms" required pattern="[a-zA-Z ]+" />
+                    <input type="text" class="form-control" name="cognoms" [(ngModel)]="xoferCognoms" placeholder="Cognoms" required pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
-                    <input type="email" [(ngModel)]="xoferEmail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                    <input type="email" class="form-control" [(ngModel)]="xoferEmail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                 </div>
 
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="xoferTelefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
+                    <input type="text" class="form-control" [(ngModel)]="xoferTelefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
                 </div>
 
                 <div class="form-group">
-                    <label for="dataCatner">Caducitat del carnet</label><br>
-                    <input type="date" [(ngModel)]="xoferDataCarnet" name="dataCarnet">
+                    <label for="dataCatner">Data de caducitat del carnet</label><br>
+                    <input type="date" class="form-control" [(ngModel)]="xoferDataCarnet" name="dataCarnet">
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success" (click)="xoferRegistre()">Afegir</button>
+                    <button type="submit" class="btn bara" (click)="xoferRegistre()">Registrar xofer</button>
                 </div>
             </form>
         </div>
 
         <div class="totsXofers contenido table-responsive-lg">
             <div *ngIf="admin">
-                <button class="btn btn-secondary mr-3" (click)="formChofer()">Afegir xofer</button>
+                <button class="btn btn-secondary " (click)="formChofer()">Afegir xofer</button>
             </div>
-            <table class="table m-3">
+            <table class="table mt-2">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>
@@ -98,29 +98,29 @@
             <form class="custom-form" method="post">
                 <h4>Editar Xofer</h4>
                 <div class="form-group">
-                    <input type="text" name="nom" [(ngModel)]="xofer.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
+                    <input type="text" class="form-control" name="nom" [(ngModel)]="xofer.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="xofer.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
+                    <input type="text" class="form-control" [(ngModel)]="xofer.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
-                    <input type="email" [(ngModel)]="xofer.mail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                    <input type="email" class="form-control" [(ngModel)]="xofer.mail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                 </div>
 
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="xofer.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
+                    <input type="text" class="form-control" [(ngModel)]="xofer.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
                 </div>
 
                 <div class="form-group">
                     <label for="dataCatner">Caducitat del carnet</label><br>
-                    <input type="date" [(ngModel)]="xofer.dataCarnet" name="dataCarnet">
+                    <input type="date" class="form-control" [(ngModel)]="xofer.dataCarnet" name="dataCarnet">
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success" (click)="xoferUpdate(xofer._id)">Editar</button>
+                    <button type="submit" class="btn bara" (click)="xoferUpdate(xofer._id)">Editar</button>
                 </div>
             </form>
         </div>
@@ -130,39 +130,39 @@
                 <h4>Afegir Cotxe</h4>
 
                 <div class="form-group">
-                    <input type="text" name="matricula" [(ngModel)]="cotxeMatricula" placeholder="Matricula" required />
+                    <input type="text" class="form-control" name="matricula" [(ngModel)]="cotxeMatricula" placeholder="Matricula" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="matricula" [(ngModel)]="cotxeMatricula" placeholder="Matricula" required />
+                    <input type="text" class="form-control" [(ngModel)]="cotxeMarca" name="marca" placeholder="Marca" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="cotxeMarca" name="marca" placeholder="Marca" required />
+                    <input type="text" class="form-control" [(ngModel)]="cotxeModel" name="model" placeholder="Model" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="cotxeModel" name="model" placeholder="Model" required />
+                    <input type="number" class="form-control" [(ngModel)]="cotxePlaces" name="places" placeholder="Places" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="number" [(ngModel)]="cotxePlaces" name="places" placeholder="Places" required />
+                    <label for="dataITV">Data de caducitat ITV</label><br>
+                    <input type="date" class="form-control" [(ngModel)]="cotxeDataITV" name="dataITV" placeholder="Caducitat ITV" required />
                 </div>
 
                 <div class="form-group">
-                    <label for="dataITV">Caducitat ITV</label><br>
-                    <input type="date" [(ngModel)]="cotxeDataITV" name="dataITV" placeholder="Caducitat ITV" required />
+                    <label for="dataSeguro">Data de caducitat Seguro</label><br>
+                    <input type="date" class="form-control" [(ngModel)]="cotxedataSeguro" name="dataSeguro" placeholder="Caducitat Seguro" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="dataSeguro">Caducitat Seguro</label><br>
-                    <input type="date" [(ngModel)]="cotxedataSeguro" name="dataSeguro" placeholder="Caducitat Seguro" required>
+                    <button type="submit" class="btn bara" (click)="cotxeRegistre()">Registrar cotxe</button>
                 </div>
             </form>
         </div>
         <div class="totsCotxes contenido table-responsive-lg">
             <button class="btn btn-secondary mr-3" (click)="formCotxe()">Afegir cotxe</button>
-            <table class="table m-3">
+            <table class="table mt-2">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>
@@ -209,40 +209,40 @@
                 <h4>Editar Cotxe</h4>
 
                 <div class="form-group">
-                    <input type="text" name="matricula" [(ngModel)]="cotxe.matricula" placeholder="Matricula" required />
+                    <input type="text" class="form-control" name="matricula" [(ngModel)]="cotxe.matricula" placeholder="Matricula" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="cotxe.marca" name="marca" placeholder="Marca" required />
+                    <input type="text" class="form-control" [(ngModel)]="cotxe.marca" name="marca" placeholder="Marca" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="cotxe.model" name="model" placeholder="Model" required />
+                    <input type="text" class="form-control" [(ngModel)]="cotxe.model" name="model" placeholder="Model" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="number" [(ngModel)]="cotxe.places" name="places" placeholder="Places" required />
+                    <input type="number" class="form-control" [(ngModel)]="cotxe.places" name="places" placeholder="Places" required />
                 </div>
 
                 <div class="form-group">
-                    <label for="dataITV">Caducitat ITV</label><br>
-                    <input type="date" [(ngModel)]="cotxe.dataITV" name="dataITV" placeholder="Caducitat ITV" required />
+                    <label for="dataITV">Data de caducitat ITV</label><br>
+                    <input type="date" class="form-control" [(ngModel)]="cotxe.dataITV" name="dataITV" placeholder="Caducitat ITV" required />
                 </div>
 
                 <div class="form-group">
-                    <label for="dataSeguro">Caducitat Seguro</label><br>
-                    <input type="date" [(ngModel)]="cotxe.dataSeguro" name="dataSeguro" placeholder="Caducitat Seguro" required>
+                    <label for="dataSeguro">Data de caducitat Seguro</label><br>
+                    <input type="date" class="form-control" [(ngModel)]="cotxe.dataSeguro" name="dataSeguro" placeholder="Caducitat Seguro" required>
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success" (click)="cotxeUpdate(cotxe._id)">Editar</button>
+                    <button type="submit" class="btn bara" (click)="cotxeUpdate(cotxe._id)">Editar</button>
                 </div>
             </form>
         </div>
 
         <div class="totsClients contenido table-responsive-lg">
             <button class="btn btn-secondary mr-3" (click)="formClient()">Afegir client</button>
-            <table class="table m-3">
+            <table class="table mt-2">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>
@@ -275,30 +275,30 @@
                 <h2>Afegir Client</h2>
 
                 <div class="form-group">
-                    <input type="text" name="nom" #nomR="ngModel" [(ngModel)]="clientNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
+                    <input type="text" class="form-control" name="nom" #nomR="ngModel" [(ngModel)]="clientNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" #cognomsR="ngModel" [(ngModel)]="clientCognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
+                    <input type="text" class="form-control" #cognomsR="ngModel" [(ngModel)]="clientCognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
-                    <input type="email" #emailR="ngModel" [(ngModel)]="clientEmail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                    <input type="email" class="form-control" #emailR="ngModel" [(ngModel)]="clientEmail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                 </div>
 
                 <div class="form-group">
-                    <input type="password" [(ngModel)]="clientContrasenya" name="password" placeholder="Password" required="required" pattern=".{6,}" />
+                    <input type="password" class="form-control" [(ngModel)]="clientContrasenya" name="password" placeholder="Password" required="required" pattern=".{6,}" />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" #telefonR="ngModel" [(ngModel)]="clientTelefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
+                    <input type="text" class="form-control" #telefonR="ngModel" [(ngModel)]="clientTelefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="clientRol" name="rol" placeholder="Rol->client/xofer" required="required" />
+                    <input type="text" class="form-control" [(ngModel)]="clientRol" name="rol" placeholder="Rol->client/xofer" required="required" />
                 </div>
 
-                <button type="submit" class="butreg" (click)="clientRegistre()" [disabled]="!formRegistre.form.valid">Registrar Client</button>
+                <button type="submit" class="btn bara" (click)="clientRegistre()" [disabled]="!formRegistre.form.valid">Registrar Client</button>
             </form>
         </div>
 
@@ -315,33 +315,33 @@
                 <h2>Editar Client</h2>
 
                 <div class="form-group">
-                    <input type="text" name="nom" #nomR="ngModel" [(ngModel)]="client.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
+                    <input type="text" class="form-control" name="nom" #nomR="ngModel" [(ngModel)]="client.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" #cognomsR="ngModel" [(ngModel)]="client.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
+                    <input type="text" class="form-control" #cognomsR="ngModel" [(ngModel)]="client.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
-                    <input type="email" #emailR="ngModel" [(ngModel)]="client.email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                    <input type="email" class="form-control" #emailR="ngModel" [(ngModel)]="client.email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" #telefonR="ngModel" [(ngModel)]="client.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
+                    <input type="text" class="form-control" #telefonR="ngModel" [(ngModel)]="client.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="client.rol" name="rol" placeholder="Rol->client/xofer" required="required" />
+                    <input type="text" class="form-control" [(ngModel)]="client.rol" name="rol" placeholder="Rol->client/xofer" required="required" />
                 </div>
 
-                <button type="submit" class="butreg" (click)="clientUpdate(client._id)">Editar Client</button>
+                <button type="submit" class="btn bara" (click)="clientUpdate(client._id)">Editar Client</button>
             </form>
         </div>
 
         <div class="totsViatges contenido table-responsive-lg">
 
             <button class="btn btn-secondary mr-3" (click)="formViatge()">Afegir viatge</button>
-            <table class="table m-3">
+            <table class="table mt-2">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Origen</th>
@@ -457,27 +457,27 @@
                 <h2>Afegir Viatge</h2>
 
                 <div class="form-group">
-                    <input type="text" name="origen" [(ngModel)]="viatgeOrigen" placeholder="Origen" required/>
+                    <input type="text" class="form-control" name="origen" [(ngModel)]="viatgeOrigen" placeholder="Origen" required/>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="viatgeDesti" name="desti" placeholder="Desti" required />
+                    <input type="text" class="form-control" [(ngModel)]="viatgeDesti" name="desti" placeholder="Desti" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="number" [(ngModel)]="viatgePlaces" name="places" placeholder="Persones" required />
+                    <input type="number" class="form-control" [(ngModel)]="viatgePlaces" name="places" placeholder="Persones" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="date" [(ngModel)]="viatgeData" name="data" required />
+                    <input type="date" class="form-control" [(ngModel)]="viatgeData" name="data" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="time" [(ngModel)]="viatgeHora" name="hora" required />
+                    <input type="time" class="form-control" [(ngModel)]="viatgeHora" name="hora" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="viatgeComentari" name="comentari" placeholder="Comentaris" />
+                    <input type="text" class="form-control" [(ngModel)]="viatgeComentari" name="comentari" placeholder="Comentaris" />
                 </div>
 
                 <div class="form-group">
@@ -486,7 +486,7 @@
             </select>
                 </div>
 
-                <button type="submit" class="butreg" (click)="viatgeRegistre()">Registrar Viatge</button>
+                <button type="submit" class="btn bara" (click)="viatgeRegistre()">Registrar Viatge</button>
             </form>
         </div>
 
@@ -495,30 +495,30 @@
                 <h2>Editar Viatge</h2>
 
                 <div class="form-group">
-                    <input type="text" name="origen" [(ngModel)]="viatge.origen" required/>
+                    <input type="text" class="form-control" name="origen" [(ngModel)]="viatge.origen" required/>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="viatge.desti" name="desti" required />
+                    <input type="text" class="form-control" [(ngModel)]="viatge.desti" name="desti" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="number" [(ngModel)]="viatge.places" name="places" required />
+                    <input type="number" class="form-control" [(ngModel)]="viatge.places" name="places" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="date" [(ngModel)]="viatge.data" name="data" required />
+                    <input type="date" class="form-control" [(ngModel)]="viatge.data" name="data" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="time" [(ngModel)]="viatge.hora" name="hora" required />
+                    <input type="time" class="form-control" [(ngModel)]="viatge.hora" name="hora" required />
                 </div>
 
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="viatge.comentari" name="comentari" />
+                    <input type="text" class="form-control" [(ngModel)]="viatge.comentari" name="comentari" />
                 </div>
 
-                <button type="submit" class="butreg" (click)="viatgeUpdate(viatge._id)">Registrar Viatge</button>
+                <button type="submit" class="btn bara" (click)="viatgeUpdate(viatge._id)">Registrar Viatge</button>
             </form>
 
         </div>
