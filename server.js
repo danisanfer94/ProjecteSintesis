@@ -42,46 +42,36 @@ app.all('/api/*', async function (req, res, next) {
     let Client = require('./server/models/client');
     
     if(req.headers.cookie){
-        let cookielist = req.headers.cookie.split("; ");
+        let cookielist = req.headers.cookie.split("; ");        
         let token = '';
+        let tokenchek=false;
         cookielist.forEach(cookies => {
             let cookie = cookies.split('=');
             if(cookie[0]=='token'){
-                token = cookie[1]; 
-            }else{
-                console.log('No hi ha token');
-                res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
-            }
+                token = cookie[1];
+                tokencheck=true; 
+            }            
         });
-        let clientId = service.checkToken(token);
-        const result = await Client.findOne({ _id: clientId }).select("_id").lean();
-        if (result){
-            console.log("Client accessing...");
-            next();
+        if(tokenchek){
+            let clientId = service.checkToken(token);
+            const result = await Client.findOne({ _id: clientId }).select("_id").lean();
+            if (result){
+                console.log("Client accessing...");
+                next();
+            }else{
+                console.log("Fail Backend acces from "+req.connection.remoteAddress);
+                res.sendFile(path.join(__dirname,'server/unauthorized.html'));                       
+            }
         }else{
-            console.log("Fail Backend acces from "+req.connection.remoteAddress);
-            res.sendFile(path.join(__dirname,'server/unauthorized.html'));                       
+            console.log('aqui5');
+            res.sendFile(path.join(__dirname,'server/unauthorized.html'));
         }
     }else{
+        console.log('aqui6');
+
         res.sendFile(path.join(__dirname,'server/unauthorized.html'));   
     }
     }); 
-    // let token = req.headers.cookie.split("=")[1];        
-    // //s'hauria de comprobar si estar caducada
-    // let clientId = service.checkToken(token);        
-    // const result = await Client.findOne({ _id: clientId }).select("_id").lean();
-    // if (result){
-    //     console.log("Client accessing...");
-    //     next();
-    // }else{
-    //     console.log("Fail Backend acces from "+req.connection.remoteAddress);
-    //     res.sendFile(path.join(__dirname,'server/unauthorized.html'));
-        
-    // }
-    // }else{
-    //     console.log('No hi ha token');
-    //     res.sendFile(path.join(__dirname,'server/unauthorized.html'));
-    // }
 
 
 // client routes
@@ -92,7 +82,7 @@ app.use('/api', clientRoutes);
 app.all('/api/*', async function (req, res, next) {
     let service = require('./server/services');
     let  Client = require('./server/models/client');
-    let  Xofer = require('./server/models/client');   
+    
     if(req.headers.cookie){
         let cookielist = req.headers.cookie.split("; ");
         let token = '';
@@ -100,9 +90,6 @@ app.all('/api/*', async function (req, res, next) {
             let cookie = cookies.split('=');
             if(cookie[0]=='token'){
                 token = cookie[1]; 
-            }else{
-                console.log('No hi ha token');
-                res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
             }
         });
         //s'hauria de comprobar si estar caducada
@@ -141,9 +128,6 @@ app.all('/api/*', async function (req, res, next) {
             let cookie = cookies.split('=');
             if(cookie[0]=='token'){
                 token = cookie[1]; 
-            }else{
-                console.log('No hi ha token');
-                res.sendFile(path.join(__dirname,'server/unauthorized.html')); 
             }
         });
         //s'hauria de comprobar si estar caducada
@@ -170,7 +154,7 @@ var rutes = require('./server/routes/routes');
 app.use('/api', rutes);
 
 
-app.get('/test',async function(req,res,next){
+app.get('/test',function(req,res,next){
 
 });
 
