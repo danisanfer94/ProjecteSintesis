@@ -62,7 +62,10 @@ app.all('/api/*', async function (req, res, next) {
             console.log("Fail Backend acces from "+req.connection.remoteAddress);
             res.sendFile(path.join(__dirname,'server/unauthorized.html'));                       
         }
-    }}); 
+    }else{
+        res.sendFile(path.join(__dirname,'server/unauthorized.html'));   
+    }
+    }); 
     // let token = req.headers.cookie.split("=")[1];        
     // //s'hauria de comprobar si estar caducada
     // let clientId = service.checkToken(token);        
