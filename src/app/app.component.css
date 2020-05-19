@@ -63,3 +63,8 @@ a {
     color: #85a392 !important;
     transition: 0.3s;
 }
+
+.modal-dialog {
+    margin-top: 0;
+    max-width: 100%;
+}

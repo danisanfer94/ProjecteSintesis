@@ -4,7 +4,7 @@ import { Client } from 'src/app/models/client';
 
 import { PeticionsService } from './services/peticions.service';
 
-
+declare var $:any;
 
 @Component({
   selector: 'app-root',
@@ -34,6 +34,7 @@ export class AppComponent {
     }
 
   ngOnInit(){
+      $('#cookieModal').modal('show');
   }
   public logout(){
     this.authService.logout();

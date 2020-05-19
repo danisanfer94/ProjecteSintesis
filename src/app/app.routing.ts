@@ -11,6 +11,7 @@ import { PanelAdminComponent } from './components/panel-admin/panel-admin.compon
 import { PerfilClientComponent } from './components/perfil-client/perfil-client.component';
 import { ViatgesClientComponent } from './components/viatges-client/viatges-client.component';
 import { TarifaComponent } from './components/tarifa/tarifa.component';
+import { CookiesComponent } from './components/cookies/cookies.component';
 
 // import { ReservaComponent } from './components/reserva/reserva.component';
 // import { ServeisComponent } from './components/serveis/serveis.component';
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'perfil-client', component: PerfilClientComponent},
     {path: 'viatges-client', component: ViatgesClientComponent},
+    {path: 'cookies', component: CookiesComponent},
     {path: '**', component: ErrorComponent},
 ]
 
