@@ -3,8 +3,9 @@
         <div class="col"></div>
         <div class="col-md-5 mt-5">
             <h3>Detalls de la teva reserva</h3>
+            <hr>
             <p><strong>Origen:</strong> {{viatge.origen}}</p>
-            <p><strong>Desti:</strong> {{viatge.desti}}</p>
+            <p><strong>Destí:</strong> {{viatge.desti}}</p>
             <p><strong>Data:</strong> {{viatge.data}}</p>
             <p><strong>Hora:</strong> {{viatge.hora}}</p>
             <p><strong>Persones:</strong> {{viatge.places}}</p>
@@ -15,31 +16,33 @@
                 <p><strong>Viatge amb cadira de rodes</strong></p>
             </div>
             <p [ngClass]="{
-                'bg-success':viatge.confirmat == 'Confirmat',
-                'bg-warning':viatge.confirmat == 'Pendent',
-                'bg-danger':viatge.confirmat == 'Cancelat'
-            }"><strong>Confirmacio:</strong> {{viatge.confirmat}}</p>
+                'text-success':viatge.confirmat == 'Confirmat',
+                'text-warning':viatge.confirmat == 'Pendent',
+                'text-danger':viatge.confirmat == 'Cancelat'
+            }"><strong>Confirmació:</strong> {{viatge.confirmat}}</p>
             <blockquote *ngIf="viatge.confirmat=='Pendent'">
-                Hem processat la teva reserva, un dels nostres xofers confirmara el viatge i rebras un avis al teu correu electronic.
+                Hem processat la teva reserva, un dels nostres xofers confirmarà el viatge i rebràs un avis al teu correu electrònic.
             </blockquote>
 
             <div *ngIf="viatge.xofer">
                 <h4>Dades del Xofer</h4>
-                <p>Aquest es el xofer asignat al teu viatge , per qualsevol dubte posat en contacte amb ell sense cap compromís.</p>
-                <p>Nom: {{viatgeXofer.nom}}</p>
-                <p>Email: {{viatgeXofer.mail}}</p>
-                <p>Telefon: {{viatgeXofer.telefon}}</p>
+                <hr>
+                <p>Aquest és el xofer a signat al teu viatge, per qualsevol dubte posat en contacte amb ell sense cap compromís.</p>
+                <p><strong>Nom:</strong> {{viatgeXofer.nom}}</p>
+                <p><strong>Email:</strong> {{viatgeXofer.mail}}</p>
+                <p><strong>Telèfon:</strong> {{viatgeXofer.telefon}}</p>
             </div>
             <div *ngIf="viatge.cotxe">
                 <h4>Dades del Taxi</h4>
+                <hr>
                 <p>Aquestes són les dades del teu taxi </p>
-                <p>{{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
-                <p>{{viatgeCotxe.matricula}}</p>
-                <p>Places disponibles: {{viatgeCotxe.places}}</p>
+                <p><strong>Model/Marca:</strong> {{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
+                <p><strong>Matrícula:</strong> {{viatgeCotxe.matricula}}</p>
+                <p><strong>Places disponibles:</strong> {{viatgeCotxe.places}}</p>
             </div>
 
-            <p>Pots entrar a consultar el estat de la reserva amb aquest link.</p>
-            <a href="/viatges-client" class="bara">Els teus viatges</a>
+            <p>Pots entrar a consultar l'estat de la reserva aquí.</p>
+            <a href="/viatges-client" class="btn bara">Els teus viatges</a>
 
         </div>
         <div class="col"></div>

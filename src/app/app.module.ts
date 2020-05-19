@@ -18,6 +18,8 @@ import { PerfilClientComponent } from './components/perfil-client/perfil-client.
 import { ViatgesClientComponent } from './components/viatges-client/viatges-client.component';
 import { TarifaComponent } from './components/tarifa/tarifa.component';
 import { CookiesComponent } from './components/cookies/cookies.component';
+import { ServeisComponent } from './components/serveis/serveis.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CookiesComponent } from './components/cookies/cookies.component';
     PerfilClientComponent,
     ViatgesClientComponent,
     TarifaComponent,
-    CookiesComponent
+    CookiesComponent,
+    ServeisComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
