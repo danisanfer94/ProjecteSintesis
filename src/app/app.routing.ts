@@ -19,7 +19,6 @@ const appRoutes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'home', component: HomeComponent},
     {path: 'tarifa', component: TarifaComponent},
-    // {path: 'reserva', component: ReservaComponent},
     // {path: 'serveis', component: ServeisComponent},
     // {path: 'coneixens', component: ConeixensComponent},
     {path: 'panel-admin',component: PanelAdminComponent},
