@@ -27,6 +27,9 @@ export class AuthComponent implements OnInit {
   public error:string;
   public passerror:string;
   public logreg:string;
+
+  public passwordConfirm:string;
+  public errorPass:string;
   
 
   
@@ -70,23 +73,30 @@ export class AuthComponent implements OnInit {
     this.client.cognoms=this.cognoms;
     this.client.telefon=this.telefon;
     this.client.email=this.email;
-    this.client.contrasenya=this.password;
-    this.client.rol="client";
-    this.authService.registre(this.client).subscribe(data=>{
-      console.log('Usuari registrat!!');
+    if(this.passwordConfirm==this.password){
+      this.client.contrasenya=this.password;
+      this.client.rol="client";
+      this.authService.registre(this.client).subscribe(data=>{
+        console.log('Usuari registrat!!');
+          
+          this.authService.setToken(data.client.token);
+          if(this.origen=='nav'){
+            window.location.href = '/';
+          }else{
+            window.location.href = '/reserva';
+          }
         
-        this.authService.setToken(data.client.token);
-        if(this.origen=='nav'){
-          window.location.href = '/';
-        }else{
-          window.location.href = '/reserva';
-        }
+      },error=>{
+        this.error = error.error.message;
+        console.log(this.error);
+        
+      });
+    }else{
+      console.log('no coincide');
       
-    },error=>{
-      this.error = error.error.message;
-      console.log(this.error);
-      
-    });
+      this.errorPass = "Les contrasñas no coincideixen"
+    }
+    
     
   }
 

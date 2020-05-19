@@ -370,7 +370,7 @@
                         <td>{{viatge.data}}</td>
                         <td>{{viatge.hora}}</td>
                         <td>{{viatge.places}}</td>
-                        <td>{{viatge.crodes}}</td>
+                        <td><span *ngIf="viatge.crodes">X</span></td>
                         <td>{{viatge.client.nom}} {{viatge.client.cognoms}}</td>
                         <td *ngIf="viatge.cotxe;else celabuida">{{viatge.cotxe.model}} {{viatge.cotxe.matricula}}</td>
                         <ng-template #celabuida>
