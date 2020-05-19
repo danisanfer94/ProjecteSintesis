@@ -1,4 +1,21 @@
 <header>
+    <div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="notice d-flex justify-content-between align-items-center">
+                        <div class="cookie-text">Nosaltres i els nostres socis desem i accedim a informació no sensible del vostre dispositiu, com les cookies o un identificador de dispositiu exclusiu, i processem dades personals com ara direccions d'IP i identificadors de cookies
+                            pel processament de dades que serveix per mostrar anuncis personalitzats, mesurar les preferències dels nostres visitants, etc. Podeu canviar les vostres preferències en qualsevol moment a la Política de Privacitat d'aquest
+                            lloc web.</div>
+                        <div class="buttons d-flex flex-column flex-lg-row">
+                            <a href="#a" class="btn btn-success btn-sm mr-2 btn-group-vertical" data-dismiss="modal">Accepto</a>
+                            <a routerLink="/cookies" class="btn btn-secondary btn-sm" data-dismiss="modal">Més informació</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="idioma col">
         <p>
             Idioma
@@ -52,7 +69,7 @@
         <div class="m-2 text-center">
             <p><a routerLink="/reserva">RESERVA ARA</a></p>
             <p><a routerLink="">Coneixe'ns</a></p>
-            <p><a routerLink="">Política de privacitat</a></p>
+            <p><a routerLink="/cookies">Cookies</a></p>
             <p><a routerLink="">Condicions Generals</a></p>
         </div>
         <div class="m-2 text-center">
