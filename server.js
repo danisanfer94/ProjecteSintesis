@@ -44,10 +44,12 @@ app.all('/api/*', async function (req, res, next) {
     if(req.headers.cookie){
         let cookielist = req.headers.cookie.split("; ");        
         let token = '';
-        let tokenchek=false;
+        let tokenchek;
         cookielist.forEach(cookies => {
             let cookie = cookies.split('=');
+            console.log(cookie[0]);
             if(cookie[0]=='token'){
+                console.log("si");
                 token = cookie[1];
                 tokencheck=true; 
             }            
@@ -63,6 +65,7 @@ app.all('/api/*', async function (req, res, next) {
                 res.sendFile(path.join(__dirname,'server/unauthorized.html'));                       
             }
         }else{
+            console.log(tokencheck);
             console.log('aqui5');
             res.sendFile(path.join(__dirname,'server/unauthorized.html'));
         }
