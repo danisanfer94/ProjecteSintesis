@@ -1,5 +1,5 @@
 <header>
-    <div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div  class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
@@ -8,7 +8,7 @@
                             pel processament de dades que serveix per mostrar anuncis personalitzats, mesurar les preferències dels nostres visitants, etc. Podeu canviar les vostres preferències en qualsevol moment a la Política de Privacitat d'aquest
                             lloc web.</div>
                         <div class="buttons d-flex flex-column flex-lg-row">
-                            <a href="#a" class="btn btn-success btn-sm mr-2 btn-group-vertical" data-dismiss="modal">Accepto</a>
+                            <a href="#a" (click)="setCookie()" class="btn btn-success btn-sm mr-2 btn-group-vertical" data-dismiss="modal">Accepto</a>
                             <a routerLink="/cookies" class="btn btn-secondary btn-sm" data-dismiss="modal">Més informació</a>
                         </div>
                     </div>

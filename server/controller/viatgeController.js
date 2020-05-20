@@ -1,5 +1,4 @@
 var Viatge = require('./../models/viatge');
-var mailController = require('./mailController');
 var Xofer = require('./../models/xofer');
 
 var ViatgeController = {
@@ -49,6 +48,7 @@ var ViatgeController = {
         viatge.hora = params.hora;
         viatge.places = params.places;
         viatge.preu = params.preu;
+        viatge.comentari = params.comentari;
         viatge.tarifa = params.tarifa;
         viatge.crodes = params.crodes;
         viatge.client = clientId;

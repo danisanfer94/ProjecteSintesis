@@ -558,5 +558,191 @@
                 <button type="submit" class="btn bara" (click)="clientUpdate(client._id)">Editar Client</button>
             </form>
         </div>
+
+        <!-- Viatges Taula -->
+        <div class="totsViatges contenido table-responsive-lg">
+
+            <button class="btn btn-secondary mr-3" (click)="formViatge()">Afegir viatge</button>
+            <table class="table mt-2">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Origen</th>
+                        <th scope="col">Desti</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Places</th>
+                        <th scope="col">Cadira de Rodes</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Cotxe</th>
+                        <th scope="col">Xofer</th>
+                        <th scope="col">Opcions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let viatge of viatges" [ngClass]="{
+              'text-success':viatge.confirmat == 'Confirmat',
+              'text-warning':viatge.confirmat == 'Pendent',
+              'text-danger':viatge.confirmat == 'Cancelat'
+          }">
+                        <td>{{viatge.origen}}</td>
+                        <td>{{viatge.desti}}</td>
+                        <td>{{viatge.data}}</td>
+                        <td>{{viatge.hora}}</td>
+                        <td>{{viatge.places}}</td>
+                        <td><span *ngIf="viatge.crodes">X</span></td>
+                        <td>{{viatge.client.nom}} {{viatge.client.cognoms}}</td>
+                        <td *ngIf="viatge.cotxe;else celabuida">{{viatge.cotxe.model}} {{viatge.cotxe.matricula}}</td>
+                        <ng-template #celabuida>
+                            <td></td>
+                        </ng-template>
+                        <td *ngIf="viatge.xofer;else celabuida">{{viatge.xofer.nom}} {{viatge.xofer.cognoms}}</td>
+                        <td class="d-flex flex-column">
+                            <button class="btn btn-success mt-1" (click)="detallViatge(viatge._id)">Veure</button>
+                            <button class="btn btn-warning mt-1" (click)="editarViatge(viatge._id)">Editar</button>
+                            <!-- <button class="btn btn-warning mt-1" (click)="viatgeConfirmar(viatge._id)" *ngIf="viatge.confirmat=='Pendent'">Confirmar</button> -->
+                            <button class="btn btn-danger mt-1" (click)="eliminarViatge(viatge._id)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Viatge Detalls -->
+        <div class="detallViatge contenido">
+            <h3>Detall del Viatge</h3>
+            <p>Origen: {{viatge.origen}}</p>
+            <p>Desti: {{viatge.desti}}</p>
+            <p>Data: {{viatge.data}} Hora: {{viatge.hora}}</p>
+            <p>Places: {{viatge.places}}</p>
+            <p *ngIf="viatge.crodes">Viatge amb cadira de rodes</p>
+            <p>Comentartis: {{viatge.comentari}}</p>
+            <p *ngIf="viatge.preuAprox">Preu aproximat : {{viatge.preuAprox}} €</p>
+            <p *ngIf="viatge.tarifa">Tarifa: {{viatge.tarifa}}</p>
+            <p [ngClass]="{
+            'bg-success':viatge.confirmat == 'Confirmat',
+            'bg-warning':viatge.confirmat == 'Pendent',
+            'bg-danger':viatge.confirmat == 'Cancelat'
+        }">Confirmacio: {{viatge.confirmat}}</p>
+
+            <div *ngIf="viatge.client">
+                <h4>Dades client</h4>
+                <p>Nom: {{viatgeClient.nom}} {{viatgeClient.cognoms}}</p>
+                <p>Email: {{viatgeClient.email}}</p>
+                <p>Telefon: {{viatgeClient.telefon}}</p>
+            </div>
+            <div *ngIf="viatge.xofer">
+                <h4>Dades Xofer</h4>
+                <p>Nom: {{viatgeXofer.nom}}</p>
+                <p>Email: {{viatgeXofer.mail}}</p>
+                <p>Telefon: {{viatgeXofer.telefon}}</p>
+            </div>
+            <div *ngIf="viatge.cotxe">
+                <h4>Dades Cotxe</h4>
+                <p>{{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
+                <p>{{viatgeCotxe.matricula}}</p>
+                <p>Places disponibles: {{viatgeCotxe.places}}</p>
+            </div>
+
+            <div *ngIf="viatge.confirmat=='Pendent'">
+                <hr>
+                <form method="post" class="mt-3">
+                    <div class="form-group">
+                        <label for="cotxe">Cotxe</label>
+                        <select name="cotxe" id="cotxe" [(ngModel)]="cotxeId">
+                 <option *ngFor="let cotxe of cotxes" [ngValue]="cotxe._id">{{cotxe.model}} {{cotxe.matricula}}</option>
+               </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="xofer">Xofer</label>
+                        <select name="xofer" id="xofer" [(ngModel)]="xoferId">
+                 <option *ngFor="let xofer of xofers" [ngValue]="xofer._id">{{xofer.nom}} {{xofer.cognoms}}</option>
+               </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="preuAprox">Preu Aproximat</label>
+                        <input type="number" name="preuAprox" [(ngModel)]="preuAprox" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="tarifa" id="tarifa" [(ngModel)]="viatgeTarifa">
+                 <option value="D">Diürn</option>
+                 <option value="F">Festiu/Nocturn</option>
+                 <option value="U">Urbà</option>
+               </select>
+                    </div>
+
+                    <button type="submit" class="butreg" (click)="confirmarViatge(viatge._id)">Confirmar</button>
+                </form>
+            </div>
+        </div>
+        <!-- Viatge Form Afegir -->
+        <div class="formViatge contenido">
+            <form class="" method="post" #formRegistre="ngForm">
+                <h2>Afegir Viatge</h2>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="origen" [(ngModel)]="viatgeOrigen" placeholder="Origen" required/>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="viatgeDesti" name="desti" placeholder="Desti" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" [(ngModel)]="viatgePlaces" name="places" placeholder="Persones" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="date" class="form-control" [(ngModel)]="viatgeData" name="data" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="time" class="form-control" [(ngModel)]="viatgeHora" name="hora" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="viatgeComentari" name="comentari" placeholder="Comentaris" />
+                </div>
+
+                <div class="form-group">
+                    <select name="client" id="client" [(ngModel)]="viatgeClient">
+              <option *ngFor="let client of clients" [ngValue]="client._id">{{client.nom}} {{client.cognoms}}</option>
+            </select>
+                </div>
+
+                <button type="submit" class="btn bara" (click)="viatgeRegistre()">Registrar Viatge</button>
+            </form>
+        </div>
+        <!-- Viatge Form Edit -->
+        <div class="editarViatge contenido">
+            <form class="" method="post" #formRegistre="ngForm">
+                <h2>Editar Viatge</h2>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="origen" [(ngModel)]="viatge.origen" required/>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="viatge.desti" name="desti" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" [(ngModel)]="viatge.places" name="places" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="date" class="form-control" [(ngModel)]="viatge.data" name="data" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="time" class="form-control" [(ngModel)]="viatge.hora" name="hora" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="viatge.comentari" name="comentari" />
+                </div>
+
+                <button type="submit" class="btn bara" (click)="viatgeUpdate(viatge._id)">Registrar Viatge</button>
+            </form>
+
+        </div>
     </div>
 </div>
