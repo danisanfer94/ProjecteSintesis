@@ -44,7 +44,7 @@ app.all('/api/*', async function (req, res, next) {
     if(req.headers.cookie){
         let cookielist = req.headers.cookie.split("; ");        
         let token = '';
-        let tokenchek;
+        let tokencheck = false;
         cookielist.forEach(cookies => {
             let cookie = cookies.split('=');
             console.log(cookie[0]);
@@ -54,7 +54,7 @@ app.all('/api/*', async function (req, res, next) {
                 tokencheck=true; 
             }            
         });
-        if(tokenchek){
+        if(tokencheck){
             let clientId = service.checkToken(token);
             const result = await Client.findOne({ _id: clientId }).select("_id").lean();
             if (result){
@@ -65,13 +65,9 @@ app.all('/api/*', async function (req, res, next) {
                 res.sendFile(path.join(__dirname,'server/unauthorized.html'));                       
             }
         }else{
-            console.log(tokencheck);
-            console.log('aqui5');
             res.sendFile(path.join(__dirname,'server/unauthorized.html'));
         }
     }else{
-        console.log('aqui6');
-
         res.sendFile(path.join(__dirname,'server/unauthorized.html'));   
     }
     }); 
@@ -113,6 +109,7 @@ app.all('/api/*', async function (req, res, next) {
     }
     
   });
+
 //xofer routes
 var xoferRoutes = require('./server/routes/xoferRoutes');
 app.use('/api', xoferRoutes);
@@ -152,14 +149,6 @@ app.all('/api/*', async function (req, res, next) {
 //private routes
 var rutes = require('./server/routes/routes');
 app.use('/api', rutes);
-
-
-
-app.get('/test',function(req,res,next){
-
-});
-
-});
 
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, '/dist/OnlineTaxi/index.html'));
