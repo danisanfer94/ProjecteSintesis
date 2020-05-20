@@ -73,7 +73,6 @@ app.all('/api/*', async function (req, res, next) {
     }
     }); 
 
-
 // client routes
 var clientRoutes = require('./server/routes/clientRoutes');
 app.use('/api', clientRoutes);
@@ -111,7 +110,6 @@ app.all('/api/*', async function (req, res, next) {
     }
     
   });
-
 //xofer routes
 var xoferRoutes = require('./server/routes/xoferRoutes');
 app.use('/api', xoferRoutes);
@@ -148,17 +146,18 @@ app.all('/api/*', async function (req, res, next) {
     
 });
 
-
 //private routes
 var rutes = require('./server/routes/routes');
 app.use('/api', rutes);
+
 
 
 app.get('/test',function(req,res,next){
 
 });
 
-app.get('*',function(req,res){
-    res.sendFile(path.join(__dirname,'/dist/OnlineTaxi/index.html'));
 });
 
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, '/dist/OnlineTaxi/index.html'));
+});
