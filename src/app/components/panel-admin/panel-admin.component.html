@@ -12,13 +12,13 @@
         <div class="col">
             <button class="btn btn-secondary" (click)="getClients()">Clients</button>
         </div>
-
     </div>
     <div class="row mt-5 justify-content-center">
         <!-- Xofer Form Afegir -->
-        <div class="formChofer contenido">
+        <div class="formChofer contenido col-md-4">
             <form class="col-12" method="post">
                 <h4>Afegir Xofer</h4>
+                <hr>
                 <div class="form-group">
                     <input type="text" class="form-control" name="nom" [(ngModel)]="xoferNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
@@ -85,33 +85,39 @@
             <div class="row">
                 <div class="col">
                     <h3>Detalls del xofer</h3>
-                    <p>Nom: {{xofer.nom}}</p>
-                    <p>Cognoms: {{xofer.cognoms}}</p>
-                    <p>Data Caducitat del Carnet: {{xofer.dataCarnet}}</p>
-                    <p>Telefon: {{xofer.telefon}}</p>
-                    <p>Email: {{xofer.mail}}</p>
+                    <hr>
+                    <p><strong>Nom:</strong> {{xofer.nom}}</p>
+                    <p><strong>Cognoms:</strong> {{xofer.cognoms}}</p>
+                    <p><strong>Data Caducitat del Carnet:</strong> {{xofer.dataCarnet}}</p>
+                    <p><strong>Telèfon:</strong> {{xofer.telefon}}</p>
+                    <p><strong>Email:</strong> {{xofer.mail}}</p>
                 </div>
 
             </div>
         </div>
         <!-- Xofer Form Edit -->
-        <div class="editarXofer contenido">
-            <form class="custom-form" method="post">
+        <div class="editarXofer contenido  col-md-4">
+            <form class="custom-form col-12" method="post">
                 <h4>Editar Xofer</h4>
+                <hr>
                 <div class="form-group">
+                    <label for="nom">Nom</label>
                     <input type="text" class="form-control" name="nom" [(ngModel)]="xofer.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
+                    <label for="cognoms">Cognoms</label>
                     <input type="text" class="form-control" [(ngModel)]="xofer.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
+                    <label for="email">Email</label>
                     <input type="email" class="form-control" [(ngModel)]="xofer.mail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                 </div>
 
 
                 <div class="form-group">
+                    <label for="telefon">Telèfon</label>
                     <input type="text" class="form-control" [(ngModel)]="xofer.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
                 </div>
 
@@ -125,11 +131,212 @@
                 </div>
             </form>
         </div>
-        <!-- Cotxe Form Afegir -->
-        <div class="formCotxe contenido">
-            <form class="" method="post">
-                <h4>Afegir Cotxe</h4>
 
+        <!-- Viatges Taula -->
+        <div class="totsViatges contenido table-responsive-lg">
+
+            <button class="btn btn-secondary mr-3" (click)="formViatge()">Afegir viatge</button>
+            <table class="table mt-2">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Origen</th>
+                        <th scope="col">Desti</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Places</th>
+                        <th scope="col">Cadira de Rodes</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Cotxe</th>
+                        <th scope="col">Xofer</th>
+                        <th scope="col">Opcions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let viatge of viatges" [ngClass]="{
+                      'text-success':viatge.confirmat == 'Confirmat',
+                      'text-warning':viatge.confirmat == 'Pendent',
+                      'text-danger':viatge.confirmat == 'Cancelat'
+                  }">
+                        <td>{{viatge.origen}}</td>
+                        <td>{{viatge.desti}}</td>
+                        <td>{{viatge.data}}</td>
+                        <td>{{viatge.hora}}</td>
+                        <td>{{viatge.places}}</td>
+                        <td>{{viatge.crodes}}</td>
+                        <td>{{viatge.client.nom}} {{viatge.client.cognoms}}</td>
+                        <td *ngIf="viatge.cotxe;else celabuida">{{viatge.cotxe.model}} {{viatge.cotxe.matricula}}</td>
+                        <ng-template #celabuida>
+                            <td></td>
+                        </ng-template>
+                        <td *ngIf="viatge.xofer;else celabuida">{{viatge.xofer.nom}} {{viatge.xofer.cognoms}}</td>
+                        <td class="d-flex flex-column">
+                            <button class="btn btn-success mt-1" (click)="detallViatge(viatge._id)">Veure</button>
+                            <button class="btn btn-warning mt-1" (click)="editarViatge(viatge._id)">Editar</button>
+                            <!-- <button class="btn btn-warning mt-1" (click)="viatgeConfirmar(viatge._id)" *ngIf="viatge.confirmat=='Pendent'">Confirmar</button> -->
+                            <button class="btn btn-danger mt-1" (click)="eliminarViatge(viatge._id)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Viatge Detalls -->
+        <div class="detallViatge contenido">
+            <h3>Detall del Viatge</h3>
+            <hr>
+            <p><strong>Origen:</strong> {{viatge.origen}}</p>
+            <p><strong>Destí:</strong> {{viatge.desti}}</p>
+            <p><strong>Data:</strong> {{viatge.data}} Hora: {{viatge.hora}}</p>
+            <p><strong>Places:</strong> {{viatge.places}}</p>
+            <p *ngIf="viatge.crodes">Viatge amb cadira de rodes</p>
+            <p><strong>Comentaris:</strong> {{viatge.comentari}}</p>
+            <p *ngIf="viatge.preuAprox"><strong>Preu Aprox.</strong> {{viatge.preuAprox}} €</p>
+            <p *ngIf="viatge.tarifa"><strong>Tarifa:</strong> {{viatge.tarifa}}</p>
+            <p [ngClass]="{
+                    'text-success':viatge.confirmat == 'Confirmat',
+                    'text-warning':viatge.confirmat == 'Pendent',
+                    'text-danger':viatge.confirmat == 'Cancelat'
+                }"><strong>Confirmació:</strong> {{viatge.confirmat}}</p>
+
+            <div *ngIf="viatge.client">
+                <h4>Dades client</h4>
+                <hr>
+                <p><strong>Nom:</strong> {{viatgeClient.nom}} {{viatgeClient.cognoms}}</p>
+                <p><strong>Email:</strong> {{viatgeClient.email}}</p>
+                <p><strong>Telèfon:</strong> {{viatgeClient.telefon}}</p>
+            </div>
+            <div *ngIf="viatge.xofer">
+                <h4>Dades Xofer</h4>
+                <hr>
+                <p><strong>Nom:</strong> {{viatgeXofer.nom}}</p>
+                <p><strong>Email:</strong> {{viatgeXofer.mail}}</p>
+                <p><strong>Telèfon:</strong> {{viatgeXofer.telefon}}</p>
+            </div>
+            <div *ngIf="viatge.cotxe">
+                <h4>Dades Cotxe</h4>
+                <hr>
+                <p><strong>Model/Marca:</strong> {{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
+                <p><strong>Matrícula:</strong> {{viatgeCotxe.matricula}}</p>
+                <p><strong>Places disponibles:</strong> {{viatgeCotxe.places}}</p>
+            </div>
+
+            <div *ngIf="viatge.confirmat=='Pendent'">
+                <hr>
+                <form method="post" class="mt-3">
+                    <div class="form-group w-50">
+                        <label for="cotxe">Cotxe</label><br>
+                        <select name="cotxe" class="form-control" id="cotxe" [(ngModel)]="cotxeId">
+                         <option *ngFor="let cotxe of cotxes" [ngValue]="cotxe._id">{{cotxe.marca}}/{{cotxe.model}} {{cotxe.matricula}}</option>
+                       </select>
+                    </div>
+                    <div class="form-group w-50">
+                        <label for="xofer">Xofer</label><br>
+                        <select name="xofer" class="form-control" id="xofer" [(ngModel)]="xoferId">
+                         <option *ngFor="let xofer of xofers" [ngValue]="xofer._id">{{xofer.nom}} {{xofer.cognoms}}</option>
+                       </select>
+                    </div>
+                    <div class="form-group w-50">
+                        <label for="preuAprox">Preu Aproximat</label><br>
+                        <input type="number" class="form-control" name="preuAprox" [(ngModel)]="preuAprox" required pattern="[0-9]">
+                    </div>
+                    <div class="form-group w-50">
+                        <label for="">Tarifa</label><br>
+                        <select name="tarifa" class="form-control" id="tarifa" [(ngModel)]="viatgeTarifa">
+                         <option value="Diürn">Diürn</option>
+                         <option value="Festiu/Nocturn">Festiu/Nocturn</option>
+                         <option value="Urbà">Urbà</option>
+                       </select>
+                    </div>
+
+                    <button type="submit" class="btn bara" (click)="confirmarViatge(viatge._id)">Confirmar</button>
+                </form>
+            </div>
+        </div>
+        <!-- Viatge Form Afegir -->
+        <div class="formViatge contenido  col-md-4">
+            <form class="col-12" method="post" #formRegistre="ngForm">
+                <h2>Afegir Viatge</h2>
+                <hr>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="origen" [(ngModel)]="viatgeOrigen" placeholder="Origen" required/>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="viatgeDesti" name="desti" placeholder="Desti" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" [(ngModel)]="viatgePlaces" name="places" placeholder="Persones" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="">Data</label>
+                    <input type="date" class="form-control" [(ngModel)]="viatgeData" name="data" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="">Hora</label>
+                    <input type="time" class="form-control" [(ngModel)]="viatgeHora" name="hora" required />
+                </div>
+
+                <div class="form-group">
+                    <textarea name="comentari" class="form-control" [(ngModel)]="viatgeComentari" rows="4" placeholder="Comentaris..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Selecciona un client</label> <br>
+                    <select name="client" id="client" class="form-control" [(ngModel)]="viatgeClient">
+                      <option *ngFor="let client of clients" [ngValue]="client._id">{{client.nom}} {{client.cognoms}}</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn bara" (click)="viatgeRegistre()">Registrar Viatge</button>
+            </form>
+        </div>
+        <!-- Viatge Form Edit -->
+        <div class="editarViatge contenido  col-md-4">
+            <form class="col-12" method="post" #formRegistre="ngForm">
+                <h2>Editar Viatge</h2>
+                <hr>
+                <div class="form-group">
+                    <label for="origen">Origen</label>
+                    <input type="text" class="form-control" name="origen" [(ngModel)]="viatge.origen" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="desti">Destí</label>
+                    <input type="text" class="form-control" [(ngModel)]="viatge.desti" name="desti" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="persones">Persones</label>
+                    <input type="number" class="form-control" [(ngModel)]="viatge.places" name="places" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="data">Data</label>
+                    <input type="date" class="form-control" [(ngModel)]="viatge.data" name="data" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="hora">Hora</label>
+                    <input type="time" class="form-control" [(ngModel)]="viatge.hora" name="hora" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="comentari">Comentaris</label>
+                    <textarea name="comentari" class="form-control" [(ngModel)]="viatge.comentari" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="btn bara" (click)="viatgeUpdate(viatge._id)">Registrar Viatge</button>
+            </form>
+
+        </div>
+
+        <!-- Cotxe Form Afegir -->
+        <div class="formCotxe contenido  col-md-4">
+            <form class="col-12" method="post">
+                <h4>Afegir Cotxe</h4>
+                <hr>
                 <div class="form-group">
                     <input type="text" class="form-control" name="matricula" [(ngModel)]="cotxeMatricula" placeholder="Matricula" required />
                 </div>
@@ -198,31 +405,36 @@
         <!-- Cotxe Detalls -->
         <div class="detallCotxe contenido">
             <h3>Detalls del Cotxe</h3>
-            <p>Matricula: {{cotxe.matricula}}</p>
-            <p>Marca: {{cotxe.marca}}</p>
-            <p>Model: {{cotxe.model}}</p>
-            <p>Places: {{cotxe.places}}</p>
-            <p>Data caducitat ITV: {{cotxe.dataITV}}</p>
-            <p>Data renovacio seguro: {{cotxe.dataSeguro}}</p>
+            <hr>
+            <p><strong>Matrícula:</strong> {{cotxe.matricula}}</p>
+            <p><strong>Marca:</strong> {{cotxe.marca}}</p>
+            <p><strong>Model:</strong> {{cotxe.model}}</p>
+            <p><strong>Places:</strong> {{cotxe.places}}</p>
+            <p><strong>Data caducitat ITV:</strong> {{cotxe.dataITV}}</p>
+            <p><strong>Data renovació seguro:</strong> {{cotxe.dataSeguro}}</p>
         </div>
         <!-- Cotxe Form Edit -->
-        <div class="editarCotxe contenido">
-            <form class="" method="post">
+        <div class="editarCotxe contenido  col-md-4">
+            <form class="col-12" method="post">
                 <h4>Editar Cotxe</h4>
-
+                <hr>
                 <div class="form-group">
+                    <label for="matricula">Matrícula</label>
                     <input type="text" class="form-control" name="matricula" [(ngModel)]="cotxe.matricula" placeholder="Matricula" required />
                 </div>
 
                 <div class="form-group">
+                    <label for="marca">Marca</label>
                     <input type="text" class="form-control" [(ngModel)]="cotxe.marca" name="marca" placeholder="Marca" required />
                 </div>
 
                 <div class="form-group">
+                    <label for="model">Model</label>
                     <input type="text" class="form-control" [(ngModel)]="cotxe.model" name="model" placeholder="Model" required />
                 </div>
 
                 <div class="form-group">
+                    <label for="places">Places</label>
                     <input type="number" class="form-control" [(ngModel)]="cotxe.places" name="places" placeholder="Places" required />
                 </div>
 
@@ -261,7 +473,7 @@
                         <th scope="row">{{client._id}}</th>
                         <td>{{client.nom}}</td>
                         <td>{{client.cognoms}}</td>
-                        <td>{{client.emaill}}</td>
+                        <td>{{client.email}}</td>
                         <td>{{client.telefon}}</td>
                         <td class="d-flex flex-column">
                             <button class="btn btn-success mt-1" (click)="detallClient(client._id)">Veure</button>
@@ -273,10 +485,10 @@
             </table>
         </div>
         <!-- Clients Form Afegir -->
-        <div class="formClient contenido">
-            <form class="" method="post" #formRegistre="ngForm">
+        <div class="formClient contenido  col-md-4">
+            <form class="col-12" method="post" #formRegistre="ngForm">
                 <h2>Afegir Client</h2>
-
+                <hr>
                 <div class="form-group">
                     <input type="text" class="form-control" name="nom" #nomR="ngModel" [(ngModel)]="clientNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
@@ -307,39 +519,46 @@
         <!-- Client Detalls -->
         <div class="detallClient contenido">
             <h3>Detalls del Client</h3>
-            <p>Nom: {{client.nom}}</p>
-            <p>Cognoms: {{client.cognoms}}</p>
-            <p>Email: {{client.email}}</p>
-            <p>Telefon: {{client.telefon}}</p>
+            <hr>
+            <p><strong>Nom:</strong> {{client.nom}}</p>
+            <p><strong>Cognoms:</strong> {{client.cognoms}}</p>
+            <p><strong>Email:</strong> {{client.email}}</p>
+            <p><strong>Telèfon:</strong> {{client.telefon}}</p>
         </div>
         <!-- Client Form Edit -->
-        <div class="editarClient contenido">
-            <form class="" method="post" #formRegistre="ngForm">
+        <div class="editarClient contenido  col-md-4">
+            <form class="col-12" method="post" #formRegistre="ngForm">
                 <h2>Editar Client</h2>
-
+                <hr>
                 <div class="form-group">
+                    <label for="nom">Nom</label>
                     <input type="text" class="form-control" name="nom" #nomR="ngModel" [(ngModel)]="client.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
+                    <label for="cognoms">Cognoms</label>
                     <input type="text" class="form-control" #cognomsR="ngModel" [(ngModel)]="client.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
+                    <label for="email">Email</label>
                     <input type="email" class="form-control" #emailR="ngModel" [(ngModel)]="client.email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                 </div>
 
                 <div class="form-group">
+                    <label for="telefon">Telèfon</label>
                     <input type="text" class="form-control" #telefonR="ngModel" [(ngModel)]="client.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
                 </div>
 
                 <div class="form-group">
+                    <label for="rol">Rol</label>
                     <input type="text" class="form-control" [(ngModel)]="client.rol" name="rol" placeholder="Rol->client/xofer" required="required" />
                 </div>
 
                 <button type="submit" class="btn bara" (click)="clientUpdate(client._id)">Editar Client</button>
             </form>
         </div>
+
         <!-- Viatges Taula -->
         <div class="totsViatges contenido table-responsive-lg">
 
@@ -525,6 +744,5 @@
             </form>
 
         </div>
-
     </div>
 </div>

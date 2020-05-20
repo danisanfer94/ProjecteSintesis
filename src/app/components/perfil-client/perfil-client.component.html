@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="data">Telefon</label>
+                    <label for="data">Telèfon</label>
                     <input type="text" class="form-control inp" #mobile="ngModel" [(ngModel)]="client.telefon" id="data" name="telefon" pattern="[0-9]{9,}">
                     <span *ngIf="mobile.touched && !mobile.valid">
                         El telèfon és obligatori
@@ -50,7 +50,7 @@
                     <!-- <label for="contrassenya">Contrasenya</label> -->
                     <input type="password" title="contrasenya" class="form-control inp" [(ngModel)]="contrassenya" name="contrasenya" pattern=".{6,}">
                 </div>
-                <input type="submit" class="btn bara" value="Actualitzar contrassenya">
+                <input type="submit" class="btn bara" value="Actualitzar contrasenya">
             </form>
             <hr>
             <div class="">

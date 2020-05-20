@@ -103,12 +103,7 @@ export class PanelAdminComponent implements OnInit {
   public viatgeXofer:any;
   public viatgeCotxe:any;
 
-
-
-
   ngOnInit() {
-  
-  
   }
 
   formChofer(){
@@ -347,11 +342,9 @@ export class PanelAdminComponent implements OnInit {
         
         },err=>{
         console.log(err);
-        
         });
     },err=>{
       console.log(err);
-      
     })
   }
   editarViatge(id:string){
@@ -395,7 +388,6 @@ export class PanelAdminComponent implements OnInit {
     this.xofer.telefon=this.xoferTelefon;
     this.xofer.dataCarnet=this.xoferDataCarnet;
     console.log(this.xofer);
-    
 
     this.petiService.guardarChofer(this.xofer).subscribe(data=>{
       console.log('Xofer registrat!!');
