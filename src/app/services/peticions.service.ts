@@ -104,6 +104,9 @@ export class PeticionsService {
         return this._http.get('http://localhost:8080/test',{headers});
    
     }
+    confirmarViatge(id:any):Observable<any>{
+        return this._http.get(this.url+'confirmar/'+id);
+    }
 
     // updateClients(id,pwd,client):Observable<any>{
     //     if (pwd){
