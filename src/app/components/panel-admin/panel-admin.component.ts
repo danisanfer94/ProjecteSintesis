@@ -94,6 +94,7 @@ export class PanelAdminComponent implements OnInit {
   public viatgeHora:string;
   public viatgeComentari:string;
   public viatgeClient:any;
+  public viatgeCrodes:any;
 
   public cotxeId:string;
   public xoferId:string;
@@ -437,6 +438,7 @@ export class PanelAdminComponent implements OnInit {
     this.viatge.places=this.viatgePlaces;
     this.viatge.client=this.viatgeClient;
     this.viatge.comentari=this.viatgeComentari;
+    this.viatge.crodes=this.viatgeCrodes;
     this.viatge.confirmat="Pendent";
 
     this.petiService.guardarViatge(this.viatge).subscribe(data=>{
