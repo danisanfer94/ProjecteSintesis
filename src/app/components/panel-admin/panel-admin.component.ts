@@ -455,6 +455,9 @@ export class PanelAdminComponent implements OnInit {
     this.petiService.updateViatge(id,this.viatge).subscribe(data=>{
       this.petiService.getViatges().subscribe(data2=>{
         this.viatges=data2.viatges;
+        this.petiService.confirmarViatge(id).subscribe(data=>{
+          console.log(data.missatge);
+        })
       },err=>{
         console.log(err);
       })
