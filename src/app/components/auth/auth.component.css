@@ -6,10 +6,9 @@
         right: 0;
         left: 0;
         margin: auto;
-        height: 440px;
+        height: 480px;
         background-color: #85a392;
         margin-top: 70px;
-        margin-bottom: 40px;
         box-shadow: 0 0 10px 6px #00000096;
     }
     .white-panel {
@@ -26,7 +25,7 @@
     .register-info-box {
         width: 77%;
         margin-left: 10%;
-        margin-top: 180px;
+        margin-top: 190px;
         position: absolute;
         text-align: left;
     }
@@ -100,7 +99,7 @@
         right: 0;
         left: 0;
         margin: auto;
-        height: 430px;
+        height: 480px;
         background-color: #85a392;
         margin-top: 70px;
         margin-bottom: 40px;
