@@ -37,6 +37,7 @@ var loginRoutes = require('./server/routes/publicRoutes');
 app.use('/api', loginRoutes);
 
 // middleware for check if users is login
+
 // app.all('/api/*', async function (req, res, next) {
 //     let service = require('./server/services');
 //     let Client = require('./server/models/client');
@@ -72,20 +73,24 @@ app.use('/api', loginRoutes);
 //     }
 //     }); 
 
+
 // client routes
 var clientRoutes = require('./server/routes/clientRoutes');
 app.use('/api', clientRoutes);
 
 //middleware for check if xofer is logged
+
 // app.all('/api/*', async function (req, res, next) {
 //     let service = require('./server/services');
 //     let  Client = require('./server/models/client');
     
 //     if(req.headers.cookie){
+
 //         let cookielist = req.headers.cookie.split("; ");
 //         let token = '';
 //         cookielist.forEach(cookies => {
 //             let cookie = cookies.split('=');
+
 //             if(cookie[0]=='token'){
 //                 token = cookie[1]; 
 //             }
@@ -110,20 +115,24 @@ app.use('/api', clientRoutes);
     
 //   });
 
+
 //xofer routes
 var xoferRoutes = require('./server/routes/xoferRoutes');
 app.use('/api', xoferRoutes);
 
 //middleware for check if admin is login
+
 // app.all('/api/*', async function (req, res, next) {
 //     let service = require('./server/services');
 //     let  Client = require('./server/models/client');
     
 //     if(req.headers.cookie){
+
 //         let cookielist = req.headers.cookie.split("; ");
 //         let token = '';
 //         cookielist.forEach(cookies => {
 //             let cookie = cookies.split('=');
+
 //             if(cookie[0]=='token'){
 //                 token = cookie[1]; 
 //             }
@@ -144,11 +153,13 @@ app.use('/api', xoferRoutes);
 //         res.sendFile(path.join(__dirname,'server/unauthorized.html'));
 //     }
     
+
 // });
 
 //private routes
 var rutes = require('./server/routes/routes');
 app.use('/api', rutes);
+
 
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, '/dist/OnlineTaxi/index.html'));
