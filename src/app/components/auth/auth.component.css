@@ -6,14 +6,14 @@
         right: 0;
         left: 0;
         margin: auto;
-        height: 480px;
+        height: 540px;
         background-color: #85a392;
         margin-top: 70px;
         box-shadow: 0 0 10px 6px #00000096;
     }
     .white-panel {
         background-color: rgba(255, 255, 255, 1);
-        height: 215px;
+        height: 290px;
         position: absolute;
         top: -40px;
         width: 80%;
@@ -25,7 +25,7 @@
     .register-info-box {
         width: 77%;
         margin-left: 10%;
-        margin-top: 190px;
+        margin-top: 260px;
         position: absolute;
         text-align: left;
     }
@@ -35,6 +35,9 @@
         color: #242424;
         text-align: left;
         padding: 5px;
+    }
+    .login-show {
+        margin-top: 30px;
     }
     .login-show input[type="email"],
     .login-show input[type="password"] {
