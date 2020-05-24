@@ -410,67 +410,72 @@
         <!-- Viatge Detalls -->
         <div class="detallViatge contenido">
             <h3>Detall del Viatge</h3>
-            <p>Origen: {{viatge.origen}}</p>
-            <p>Desti: {{viatge.desti}}</p>
-            <p>Data: {{viatge.data}} Hora: {{viatge.hora}}</p>
-            <p>Places: {{viatge.places}}</p>
+            <hr>
+            <p><strong>Origen:</strong> {{viatge.origen}}</p>
+            <p><strong>Destí:</strong> {{viatge.desti}}</p>
+            <p><strong>Data:</strong> {{viatge.data}} Hora: {{viatge.hora}}</p>
+            <p><strong>Places:</strong> {{viatge.places}}</p>
             <p *ngIf="viatge.crodes">Viatge amb cadira de rodes</p>
-            <p>Comentartis: {{viatge.comentari}}</p>
-            <p *ngIf="viatge.preuAprox">Preu aproximat : {{viatge.preuAprox}} €</p>
-            <p *ngIf="viatge.tarifa">Tarifa: {{viatge.tarifa}}</p>
+            <p><strong>Comentaris:</strong> {{viatge.comentari}}</p>
+            <p *ngIf="viatge.preuAprox"><strong>Preu Aprox.</strong> {{viatge.preuAprox}} €</p>
+            <p *ngIf="viatge.tarifa"><strong>Tarifa:</strong> {{viatge.tarifa}}</p>
             <p [ngClass]="{
-            'bg-success':viatge.confirmat == 'Confirmat',
-            'bg-warning':viatge.confirmat == 'Pendent',
-            'bg-danger':viatge.confirmat == 'Cancelat'
-        }">Confirmacio: {{viatge.confirmat}}</p>
+                    'text-success':viatge.confirmat == 'Confirmat',
+                    'text-warning':viatge.confirmat == 'Pendent',
+                    'text-danger':viatge.confirmat == 'Cancelat'
+                }"><strong>Confirmació:</strong> {{viatge.confirmat}}</p>
 
             <div *ngIf="viatge.client">
                 <h4>Dades client</h4>
-                <p>Nom: {{viatgeClient.nom}} {{viatgeClient.cognoms}}</p>
-                <p>Email: {{viatgeClient.email}}</p>
-                <p>Telefon: {{viatgeClient.telefon}}</p>
+                <hr>
+                <p><strong>Nom:</strong> {{viatgeClient.nom}} {{viatgeClient.cognoms}}</p>
+                <p><strong>Email:</strong> {{viatgeClient.email}}</p>
+                <p><strong>Telèfon:</strong> {{viatgeClient.telefon}}</p>
             </div>
-            <div *ngIf="viatgeXofer">
+            <div *ngIf="viatge.xofer">
                 <h4>Dades Xofer</h4>
-                <p>Nom: {{viatgeXofer.nom}}</p>
-                <p>Email: {{viatgeXofer.mail}}</p>
-                <p>Telefon: {{viatgeXofer.telefon}}</p>
+                <hr>
+                <p><strong>Nom:</strong> {{viatgeXofer.nom}}</p>
+                <p><strong>Email:</strong> {{viatgeXofer.mail}}</p>
+                <p><strong>Telèfon:</strong> {{viatgeXofer.telefon}}</p>
             </div>
-            <div *ngIf="viatgeCotxe">
+            <div *ngIf="viatge.cotxe">
                 <h4>Dades Cotxe</h4>
-                <p>{{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
-                <p>{{viatgeCotxe.matricula}}</p>
-                <p>Places disponibles: {{viatgeCotxe.places}}</p>
+                <hr>
+                <p><strong>Model/Marca:</strong> {{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
+                <p><strong>Matrícula:</strong> {{viatgeCotxe.matricula}}</p>
+                <p><strong>Places disponibles:</strong> {{viatgeCotxe.places}}</p>
             </div>
 
             <div *ngIf="viatge.confirmat=='Pendent'">
                 <hr>
                 <form method="post" class="mt-3">
-                    <div class="form-group">
-                        <label for="cotxe">Cotxe</label>
-                        <select name="cotxe" id="cotxe" [(ngModel)]="cotxeId">
-                 <option *ngFor="let cotxe of cotxes" [ngValue]="cotxe._id">{{cotxe.model}} {{cotxe.matricula}}</option>
-               </select>
+                    <div class="form-group w-50">
+                        <label for="cotxe">Cotxe</label><br>
+                        <select name="cotxe" class="form-control" id="cotxe" [(ngModel)]="cotxeId">
+                         <option *ngFor="let cotxe of cotxes" [ngValue]="cotxe._id">{{cotxe.marca}}/{{cotxe.model}} {{cotxe.matricula}}</option>
+                       </select>
                     </div>
-                    <div class="form-group">
-                        <label for="xofer">Xofer</label>
-                        <select name="xofer" id="xofer" [(ngModel)]="xoferId">
-                 <option *ngFor="let xofer of xofers" [ngValue]="xofer._id">{{xofer.nom}} {{xofer.cognoms}}</option>
-               </select>
+                    <div class="form-group w-50">
+                        <label for="xofer">Xofer</label><br>
+                        <select name="xofer" class="form-control" id="xofer" [(ngModel)]="xoferId">
+                         <option *ngFor="let xofer of xofers" [ngValue]="xofer._id">{{xofer.nom}} {{xofer.cognoms}}</option>
+                       </select>
                     </div>
-                    <div class="form-group">
-                        <label for="preuAprox">Preu Aproximat</label>
-                        <input type="number" name="preuAprox" [(ngModel)]="preuAprox" required>
+                    <div class="form-group w-50">
+                        <label for="preuAprox">Preu Aproximat</label><br>
+                        <input type="number" class="form-control" name="preuAprox" [(ngModel)]="preuAprox" required pattern="[0-9]">
                     </div>
-                    <div class="form-group">
-                        <select name="tarifa" id="tarifa" [(ngModel)]="viatgeTarifa">
-                 <option value="D">Diürn</option>
-                 <option value="F">Festiu/Nocturn</option>
-                 <option value="U">Urbà</option>
-               </select>
+                    <div class="form-group w-50">
+                        <label for="">Tarifa</label><br>
+                        <select name="tarifa" class="form-control" id="tarifa" [(ngModel)]="viatgeTarifa">
+                         <option value="Diürn">Diürn</option>
+                         <option value="Festiu/Nocturn">Festiu/Nocturn</option>
+                         <option value="Urbà">Urbà</option>
+                       </select>
                     </div>
 
-                    <button type="submit" class="butreg" (click)="confirmarViatge(viatge._id)">Confirmar</button>
+                    <button type="submit" class="btn bara" (click)="confirmarViatge(viatge._id)">Confirmar</button>
                 </form>
             </div>
         </div>
