@@ -1,15 +1,15 @@
 <div class="login-reg-panel logejat">
-    <div class="white-panel ">
-        <div class="login-show">
+    <div class="white-panel">
+        <div class="login-show logg">
             <form class="custom-form" method="post" #formLogin="ngForm">
                 <h2>LOGIN</h2>
                 <span *ngIf="passerror" class="text-danger">{{passerror}}</span>
-                <input type="email" #emailL="ngModel" [(ngModel)]="emaillogin" name="emaillogin" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
-                <span *ngIf="emailL.touched && !emailL.valid">
+                <input type="email" #emailLL="ngModel" [(ngModel)]="emaillogin" name="emaillogin" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                <span *ngIf="emailLL.touched && !emailLL.valid">
                   El email és obligatori
                 </span>
-                <input type="password" #passwordL="ngModel" [(ngModel)]="passwordlogin" name="passwordlogin" placeholder="Password" required pattern=".{6,}" />
-                <span *ngIf="passwordL.touched && !passwordL.valid">
+                <input type="password" #passwordLL="ngModel" [(ngModel)]="passwordlogin" name="passwordlogin" placeholder="Password" required pattern=".{6,}" />
+                <span *ngIf="passwordLL.touched && !passwordLL.valid">
                   La contrassenya és obligatoria
                 </span>
                 <button type="submit" class="butlog" (click)="login()" [disabled]="!formLogin.form.valid">Login</button>
@@ -18,30 +18,36 @@
         </div>
     </div>
 
-    <div class="register-info-box">
+    <div class="register-info-box verd">
         <div class="register-show">
             <form class="custom-form" method="post" #formRegistre="ngForm">
                 <h2>REGISTRE</h2>
-                <input type="text" name="nom" #nomR="ngModel" [(ngModel)]="nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
-                <span *ngIf="nomR.touched && !nomR.valid">
+                <input type="text" name="nom" #nomRR="ngModel" [(ngModel)]="nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
+                <span *ngIf="nomRR.touched && !nomRR.valid">
                 El nom és obligatori
               </span>
-                <input type="text" #cognomsR="ngModel" [(ngModel)]="cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
-                <span *ngIf="cognomsR.touched && !cognomsR.valid">
+                <input type="text" #cognomsRR="ngModel" [(ngModel)]="cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
+                <span *ngIf="cognomsRR.touched && !cognomsRR.valid">
                 El cognom és obligatori
               </span>
-                <input type="email" #emailR="ngModel" [(ngModel)]="email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
-                <span *ngIf="emailR.touched && !emailR.valid">
+                <input type="email" #emailRR="ngModel" [(ngModel)]="email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                <span *ngIf="emailRR.touched && !emailRR.valid">
                 El email és obligatori i en format mail@exemple.com
               </span>
                 <span *ngIf="error" class="text-danger">{{error}}</span>
 
-                <input type="password" #passwordR="ngModel" [(ngModel)]="password" name="password" placeholder="Password" required="required" pattern=".{6,}" />
-                <span *ngIf="passwordR.touched && !passwordR.valid">
-                La contrassenya és obligatoria i 6 caracters minim
-              </span>
-                <input type="text" #telefonR="ngModel" [(ngModel)]="telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
-                <span *ngIf="telefonR.touched && !telefonR.valid">
+                <input type="password" #passwordRR="ngModel" [(ngModel)]="password" name="password" placeholder="Password" required="required" pattern=".{6,}" />
+                <span *ngIf="passwordRR.touched && !passwordRR.valid">
+                La contrassenya és obligatoria i 6 caracters mínim
+                </span>
+
+                <input type="password" #passwordRR2="ngModel" name="passwordConfirm" [(ngModel)]="passwordConfirm" placeholder="Confirmar Password" required="required" pattern=".{6,}" />
+                <span *ngIf="errorPass">
+                  {{errorPass}}
+                </span>
+
+                <input type="text" #telefonRR="ngModel" [(ngModel)]="telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
+                <span *ngIf="telefonRR.touched && !telefonRR.valid">
                 El telèfon és obligatori
               </span>
                 <button type="submit" class="butreg" (click)="registre()" [disabled]="!formRegistre.form.valid">Registre</button>
@@ -74,6 +80,12 @@
                 <span *ngIf="passwordR.touched && !passwordR.valid">
           La contrassenya és obligatoria i 6 caracters minim
         </span>
+
+                <input type="password" #passwordR2="ngModel" name="passwordConfirm" [(ngModel)]="passwordConfirm" placeholder="Confirmar Password" required="required" pattern=".{6,}" />
+                <span *ngIf="errorPass">
+                  {{errorPass}}
+                </span>
+
                 <input type="text" #telefonR="ngModel" [(ngModel)]="telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
                 <span *ngIf="telefonR.touched && !telefonR.valid">
           El telèfon és obligatori

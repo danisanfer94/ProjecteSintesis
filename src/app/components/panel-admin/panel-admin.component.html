@@ -12,13 +12,13 @@
         <div class="col">
             <button class="btn btn-secondary" (click)="getClients()">Clients</button>
         </div>
-
     </div>
     <div class="row mt-5 justify-content-center">
         <!-- Xofer Form Afegir -->
-        <div class="formChofer contenido">
+        <div class="formChofer contenido col-md-4">
             <form class="col-12" method="post">
                 <h4>Afegir Xofer</h4>
+                <hr>
                 <div class="form-group">
                     <input type="text" class="form-control" name="nom" [(ngModel)]="xoferNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
@@ -85,33 +85,39 @@
             <div class="row">
                 <div class="col">
                     <h3>Detalls del xofer</h3>
-                    <p>Nom: {{xofer.nom}}</p>
-                    <p>Cognoms: {{xofer.cognoms}}</p>
-                    <p>Data Caducitat del Carnet: {{xofer.dataCarnet}}</p>
-                    <p>Telefon: {{xofer.telefon}}</p>
-                    <p>Email: {{xofer.mail}}</p>
+                    <hr>
+                    <p><strong>Nom:</strong> {{xofer.nom}}</p>
+                    <p><strong>Cognoms:</strong> {{xofer.cognoms}}</p>
+                    <p><strong>Data Caducitat del Carnet:</strong> {{xofer.dataCarnet}}</p>
+                    <p><strong>Telèfon:</strong> {{xofer.telefon}}</p>
+                    <p><strong>Email:</strong> {{xofer.mail}}</p>
                 </div>
 
             </div>
         </div>
         <!-- Xofer Form Edit -->
-        <div class="editarXofer contenido">
-            <form class="custom-form" method="post">
+        <div class="editarXofer contenido  col-md-4">
+            <form class="custom-form col-12" method="post">
                 <h4>Editar Xofer</h4>
+                <hr>
                 <div class="form-group">
+                    <label for="nom">Nom</label>
                     <input type="text" class="form-control" name="nom" [(ngModel)]="xofer.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
+                    <label for="cognoms">Cognoms</label>
                     <input type="text" class="form-control" [(ngModel)]="xofer.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
+                    <label for="email">Email</label>
                     <input type="email" class="form-control" [(ngModel)]="xofer.mail" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                 </div>
 
 
                 <div class="form-group">
+                    <label for="telefon">Telèfon</label>
                     <input type="text" class="form-control" [(ngModel)]="xofer.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
                 </div>
 
@@ -125,11 +131,13 @@
                 </div>
             </form>
         </div>
-        <!-- Cotxe Form Afegir -->
-        <div class="formCotxe contenido">
-            <form class="" method="post">
-                <h4>Afegir Cotxe</h4>
 
+
+        <!-- Cotxe Form Afegir -->
+        <div class="formCotxe contenido  col-md-4">
+            <form class="col-12" method="post">
+                <h4>Afegir Cotxe</h4>
+                <hr>
                 <div class="form-group">
                     <input type="text" class="form-control" name="matricula" [(ngModel)]="cotxeMatricula" placeholder="Matricula" required />
                 </div>
@@ -198,31 +206,36 @@
         <!-- Cotxe Detalls -->
         <div class="detallCotxe contenido">
             <h3>Detalls del Cotxe</h3>
-            <p>Matricula: {{cotxe.matricula}}</p>
-            <p>Marca: {{cotxe.marca}}</p>
-            <p>Model: {{cotxe.model}}</p>
-            <p>Places: {{cotxe.places}}</p>
-            <p>Data caducitat ITV: {{cotxe.dataITV}}</p>
-            <p>Data renovacio seguro: {{cotxe.dataSeguro}}</p>
+            <hr>
+            <p><strong>Matrícula:</strong> {{cotxe.matricula}}</p>
+            <p><strong>Marca:</strong> {{cotxe.marca}}</p>
+            <p><strong>Model:</strong> {{cotxe.model}}</p>
+            <p><strong>Places:</strong> {{cotxe.places}}</p>
+            <p><strong>Data caducitat ITV:</strong> {{cotxe.dataITV}}</p>
+            <p><strong>Data renovació seguro:</strong> {{cotxe.dataSeguro}}</p>
         </div>
         <!-- Cotxe Form Edit -->
-        <div class="editarCotxe contenido">
-            <form class="" method="post">
+        <div class="editarCotxe contenido  col-md-4">
+            <form class="col-12" method="post">
                 <h4>Editar Cotxe</h4>
-
+                <hr>
                 <div class="form-group">
+                    <label for="matricula">Matrícula</label>
                     <input type="text" class="form-control" name="matricula" [(ngModel)]="cotxe.matricula" placeholder="Matricula" required />
                 </div>
 
                 <div class="form-group">
+                    <label for="marca">Marca</label>
                     <input type="text" class="form-control" [(ngModel)]="cotxe.marca" name="marca" placeholder="Marca" required />
                 </div>
 
                 <div class="form-group">
+                    <label for="model">Model</label>
                     <input type="text" class="form-control" [(ngModel)]="cotxe.model" name="model" placeholder="Model" required />
                 </div>
 
                 <div class="form-group">
+                    <label for="places">Places</label>
                     <input type="number" class="form-control" [(ngModel)]="cotxe.places" name="places" placeholder="Places" required />
                 </div>
 
@@ -261,7 +274,7 @@
                         <th scope="row">{{client._id}}</th>
                         <td>{{client.nom}}</td>
                         <td>{{client.cognoms}}</td>
-                        <td>{{client.emaill}}</td>
+                        <td>{{client.email}}</td>
                         <td>{{client.telefon}}</td>
                         <td class="d-flex flex-column">
                             <button class="btn btn-success mt-1" (click)="detallClient(client._id)">Veure</button>
@@ -273,10 +286,10 @@
             </table>
         </div>
         <!-- Clients Form Afegir -->
-        <div class="formClient contenido">
-            <form class="" method="post" #formRegistre="ngForm">
+        <div class="formClient contenido  col-md-4">
+            <form class="col-12" method="post" #formRegistre="ngForm">
                 <h2>Afegir Client</h2>
-
+                <hr>
                 <div class="form-group">
                     <input type="text" class="form-control" name="nom" #nomR="ngModel" [(ngModel)]="clientNom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
@@ -307,39 +320,46 @@
         <!-- Client Detalls -->
         <div class="detallClient contenido">
             <h3>Detalls del Client</h3>
-            <p>Nom: {{client.nom}}</p>
-            <p>Cognoms: {{client.cognoms}}</p>
-            <p>Email: {{client.email}}</p>
-            <p>Telefon: {{client.telefon}}</p>
+            <hr>
+            <p><strong>Nom:</strong> {{client.nom}}</p>
+            <p><strong>Cognoms:</strong> {{client.cognoms}}</p>
+            <p><strong>Email:</strong> {{client.email}}</p>
+            <p><strong>Telèfon:</strong> {{client.telefon}}</p>
         </div>
         <!-- Client Form Edit -->
-        <div class="editarClient contenido">
-            <form class="" method="post" #formRegistre="ngForm">
+        <div class="editarClient contenido  col-md-4">
+            <form class="col-12" method="post" #formRegistre="ngForm">
                 <h2>Editar Client</h2>
-
+                <hr>
                 <div class="form-group">
+                    <label for="nom">Nom</label>
                     <input type="text" class="form-control" name="nom" #nomR="ngModel" [(ngModel)]="client.nom" placeholder="Nom" required pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
+                    <label for="cognoms">Cognoms</label>
                     <input type="text" class="form-control" #cognomsR="ngModel" [(ngModel)]="client.cognoms" name="cognoms" placeholder="Cognoms" required="required" pattern="[a-zA-Z ]+" />
                 </div>
 
                 <div class="form-group">
+                    <label for="email">Email</label>
                     <input type="email" class="form-control" #emailR="ngModel" [(ngModel)]="client.email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                 </div>
 
                 <div class="form-group">
+                    <label for="telefon">Telèfon</label>
                     <input type="text" class="form-control" #telefonR="ngModel" [(ngModel)]="client.telefon" name="telefon" placeholder="Telefon" required="required" pattern="[0-9]{9,}" />
                 </div>
 
                 <div class="form-group">
+                    <label for="rol">Rol</label>
                     <input type="text" class="form-control" [(ngModel)]="client.rol" name="rol" placeholder="Rol->client/xofer" required="required" />
                 </div>
 
                 <button type="submit" class="btn bara" (click)="clientUpdate(client._id)">Editar Client</button>
             </form>
         </div>
+
         <!-- Viatges Taula -->
         <div class="totsViatges contenido table-responsive-lg">
 
@@ -370,7 +390,7 @@
                         <td>{{viatge.data}}</td>
                         <td>{{viatge.hora}}</td>
                         <td>{{viatge.places}}</td>
-                        <td>{{viatge.crodes}}</td>
+                        <td><span *ngIf="viatge.crodes">X</span></td>
                         <td>{{viatge.client.nom}} {{viatge.client.cognoms}}</td>
                         <td *ngIf="viatge.cotxe;else celabuida">{{viatge.cotxe.model}} {{viatge.cotxe.matricula}}</td>
                         <ng-template #celabuida>
@@ -410,13 +430,13 @@
                 <p>Email: {{viatgeClient.email}}</p>
                 <p>Telefon: {{viatgeClient.telefon}}</p>
             </div>
-            <div *ngIf="viatge.xofer">
+            <div *ngIf="viatgeXofer">
                 <h4>Dades Xofer</h4>
                 <p>Nom: {{viatgeXofer.nom}}</p>
                 <p>Email: {{viatgeXofer.mail}}</p>
                 <p>Telefon: {{viatgeXofer.telefon}}</p>
             </div>
-            <div *ngIf="viatge.cotxe">
+            <div *ngIf="viatgeCotxe">
                 <h4>Dades Cotxe</h4>
                 <p>{{viatgeCotxe.model}} {{viatgeCotxe.marca}}</p>
                 <p>{{viatgeCotxe.matricula}}</p>
@@ -455,7 +475,7 @@
             </div>
         </div>
         <!-- Viatge Form Afegir -->
-        <div class="formViatge contenido">
+        <div class="formViatge contenido col-md-4">
             <form class="" method="post" #formRegistre="ngForm">
                 <h2>Afegir Viatge</h2>
 
@@ -493,7 +513,7 @@
             </form>
         </div>
         <!-- Viatge Form Edit -->
-        <div class="editarViatge contenido">
+        <div class="editarViatge contenido col-md-4">
             <form class="" method="post" #formRegistre="ngForm">
                 <h2>Editar Viatge</h2>
 

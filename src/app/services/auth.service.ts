@@ -34,7 +34,8 @@ export class AuthenticationService {
         return this.cookies.check('token');
     }
     setToken(token: any) {
-        this.cookies.set("token", token);
+        let date = new Date();
+        this.cookies.set("token", token,date.getDate()+7);
     }
     getToken() {
         return this.cookies.get("token");
@@ -52,6 +53,16 @@ export class AuthenticationService {
 
     logout(){
         this.cookies.delete("token");
+    }
+    acceptCookie(){
+       if(this.checkCookie()){
+        this.cookies.delete("cookie");
+       }
+       let date = new Date();
+       this.cookies.set("cookie",'true',date.getDate()+7);
+    }
+    checkCookie(){
+       return this.cookies.get("cookie");
     }
 
 }

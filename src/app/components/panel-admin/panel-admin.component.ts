@@ -94,6 +94,7 @@ export class PanelAdminComponent implements OnInit {
   public viatgeHora:string;
   public viatgeComentari:string;
   public viatgeClient:any;
+  public viatgeCrodes:any;
 
   public cotxeId:string;
   public xoferId:string;
@@ -103,12 +104,7 @@ export class PanelAdminComponent implements OnInit {
   public viatgeXofer:any;
   public viatgeCotxe:any;
 
-
-
-
   ngOnInit() {
-  
-  
   }
 
   formChofer(){
@@ -347,11 +343,9 @@ export class PanelAdminComponent implements OnInit {
         
         },err=>{
         console.log(err);
-        
         });
     },err=>{
       console.log(err);
-      
     })
   }
   editarViatge(id:string){
@@ -395,7 +389,6 @@ export class PanelAdminComponent implements OnInit {
     this.xofer.telefon=this.xoferTelefon;
     this.xofer.dataCarnet=this.xoferDataCarnet;
     console.log(this.xofer);
-    
 
     this.petiService.guardarChofer(this.xofer).subscribe(data=>{
       console.log('Xofer registrat!!');
@@ -445,6 +438,7 @@ export class PanelAdminComponent implements OnInit {
     this.viatge.places=this.viatgePlaces;
     this.viatge.client=this.viatgeClient;
     this.viatge.comentari=this.viatgeComentari;
+    this.viatge.crodes=this.viatgeCrodes;
     this.viatge.confirmat="Pendent";
 
     this.petiService.guardarViatge(this.viatge).subscribe(data=>{
@@ -463,6 +457,9 @@ export class PanelAdminComponent implements OnInit {
     this.petiService.updateViatge(id,this.viatge).subscribe(data=>{
       this.petiService.getViatges().subscribe(data2=>{
         this.viatges=data2.viatges;
+        this.petiService.confirmarViatge(id).subscribe(data=>{
+          console.log(data.missatge);
+        })
       },err=>{
         console.log(err);
       })

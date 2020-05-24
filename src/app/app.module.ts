@@ -17,6 +17,9 @@ import { PanelAdminComponent } from './components/panel-admin/panel-admin.compon
 import { PerfilClientComponent } from './components/perfil-client/perfil-client.component';
 import { ViatgesClientComponent } from './components/viatges-client/viatges-client.component';
 import { TarifaComponent } from './components/tarifa/tarifa.component';
+import { CookiesComponent } from './components/cookies/cookies.component';
+import { ServeisComponent } from './components/serveis/serveis.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { TarifaComponent } from './components/tarifa/tarifa.component';
     PanelAdminComponent,
     PerfilClientComponent,
     ViatgesClientComponent,
-    TarifaComponent
+    TarifaComponent,
+    CookiesComponent,
+    ServeisComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

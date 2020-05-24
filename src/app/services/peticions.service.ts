@@ -98,11 +98,14 @@ export class PeticionsService {
     deleteClient (id:any):Observable<any>{
         return this._http.delete(this.url+"client/"+id);
     }
-    test ():Observable<any>{
-        let headers = new HttpHeaders().set('Authorization', 'patata');
+    // test ():Observable<any>{
+    //     let headers = new HttpHeaders().set('Authorization', 'patata');
         
-        return this._http.get('http://localhost:8080/test',{headers});
+    //     return this._http.get('http://localhost:8080/test',{headers});
    
+    // }
+    confirmarViatge(id:any):Observable<any>{
+        return this._http.get(this.url+'confirmar/'+id);
     }
 
     // updateClients(id,pwd,client):Observable<any>{

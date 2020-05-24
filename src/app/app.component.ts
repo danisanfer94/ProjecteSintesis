@@ -4,7 +4,7 @@ import { Client } from 'src/app/models/client';
 
 import { PeticionsService } from './services/peticions.service';
 
-
+declare var $:any;
 
 @Component({
   selector: 'app-root',
@@ -15,11 +15,12 @@ export class AppComponent {
   title = 'OnlineTaxi';
   public token:string;
   public client:any;
+  public cookie:boolean;  
+
   constructor(
     private authService:AuthenticationService,
-    private petiService:PeticionsService
-    ) 
-    {
+    private petiService:PeticionsService,
+    ){
       if(this.authService.checkToken()){
         this.client = new Object();
         let token=this.authService.getToken();
@@ -29,11 +30,19 @@ export class AppComponent {
           this.client=clientdata.client;
           
         }); 
-
-      }  
+      }
+      if(this.authService.checkCookie()){
+        this.cookie=false; 
+      }else{
+        this.cookie=true;
+      }
     }
 
+
   ngOnInit(){
+    if(this.cookie){
+      $('#cookieModal').modal('show');  
+    }
   }
   public logout(){
     this.authService.logout();
@@ -44,6 +53,9 @@ export class AppComponent {
     this.petiService.test().subscribe(data=>{
       console.log(data.message);
     })
+  }
+  setCookie(){
+    this.authService.acceptCookie();
   }
   
 }

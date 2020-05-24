@@ -1,6 +1,6 @@
 var Viatge = require('./../models/viatge');
-var mailController = require('./mailController');
 var Xofer = require('./../models/xofer');
+var mailController = require('./mailController');
 
 var ViatgeController = {
     getViatges: function(req, res) {
@@ -49,6 +49,7 @@ var ViatgeController = {
         viatge.hora = params.hora;
         viatge.places = params.places;
         viatge.preu = params.preu;
+        viatge.comentari = params.comentari;
         viatge.tarifa = params.tarifa;
         viatge.crodes = params.crodes;
         viatge.client = clientId;
@@ -59,11 +60,12 @@ var ViatgeController = {
             if (!viatgeGuardat) return res.status(404).send({ message: 'Viatge no desat' });
             return res.status(200).send({ viatge: viatgeGuardat, message: 'Viatge Guardat' });
         });
-        // Xofer.find({}).exec((err,xofers)=>{
-        //     xofers.forEach(xofer => {
-        //         mailController.enviar(xofer.mail);
-        //     });
-        // });
+        Xofer.find({}).select('mail -_id').exec((err,xofers)=>{
+            console.log(xofers);
+            xofers.forEach(xofer => {
+                mailController.enviarReserva(xofer.mail);
+            });
+        });
 
     },
     updateViatge: function(req, res) {
@@ -85,6 +87,15 @@ var ViatgeController = {
             if (err) return res.status(500).send({ message: 'Error actualizant les dades' });
             if (!viatgeRemoved) return res.status(404).send({ message: 'No existeixen les dades' });
             return res.status(200).send({ viatge: viatgeRemoved });
+        });
+    },
+    confirmarViatge: function(req,res){
+        var viatgeId = req.params.viatgeId;
+        if (viatgeId == null) return res.status(500).send({ message: 'No has dit cap ID' });
+
+        Viatge.findById(viatgeId).populate('client').exec((err,viatge)=>{
+            mailController.confirmarReserva(viatge.client.email,viatge);
+            return res.status(200).send({missatge: 'mail enviat'});
         });
     }
 }
