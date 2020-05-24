@@ -5,8 +5,8 @@ var mailController = {
         service: 'gmail',
         auth:{
             user: 'taxionline.sintesis@gmail.com',
-            // pass: process.env.MAILPASS
-            pass: 'ADMIN1234.' 
+            pass: process.env.MAILPASS
+             
         }
     }),
     enviarReserva : function(mailXofer){
