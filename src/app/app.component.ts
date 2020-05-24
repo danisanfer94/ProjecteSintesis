@@ -49,11 +49,11 @@ export class AppComponent {
     window.location.replace("/");
   }
 
-  test(){
-    this.petiService.test().subscribe(data=>{
-      console.log(data.message);
-    })
-  }
+  //test(){
+  //  this.petiService.test().subscribe(data=>{
+  //    console.log(data.message);
+  //  })
+ // }
   setCookie(){
     this.authService.acceptCookie();
   }
